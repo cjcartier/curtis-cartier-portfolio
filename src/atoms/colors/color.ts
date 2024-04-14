@@ -1,4 +1,4 @@
-import { defineTokens } from '@pandacss/dev';
+import { defineSemanticTokens, defineTokens } from '@pandacss/dev';
 
 const colorMap = {
   white: { value: '#FFFFFF' },
@@ -84,6 +84,11 @@ const colorMap = {
     900: { value: '#8a00a8' },
   },
 };
+
+export const semanticColors = defineSemanticTokens.colors({
+  bodyCopy: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.100}' } },
+  heading: { value: { base: '{colors.gray.900}', _dark: '{colors.gray.100}' } },
+});
 
 const colors = defineTokens.colors(colorMap);
 

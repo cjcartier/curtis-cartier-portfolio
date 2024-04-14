@@ -12,7 +12,7 @@ export const breakpoints = Object.keys(breakpointsValue).reduce(
 
     return acc;
   },
-  {} as { [key: string]: string }
+  {} as { [key: string]: string },
 );
 
 export const media = Object.keys(breakpoints).reduce(
@@ -21,7 +21,7 @@ export const media = Object.keys(breakpoints).reduce(
 
     return acc;
   },
-  {} as { [key: string]: string }
+  {} as { [key: string]: string },
 );
 
 export default breakpoints;

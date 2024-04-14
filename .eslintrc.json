@@ -119,6 +119,11 @@
             "pattern": "theme/**",
             "group": "internal",
             "position": "after"
+          },
+          {
+            "pattern": "payload/**",
+            "group": "internal",
+            "position": "after"
           }
         ],
         "pathGroupsExcludedImportTypes": ["builtin", "type"],
@@ -151,13 +156,13 @@
     ],
     "prefer-arrow/prefer-arrow-functions": ["warn", { "singleReturnOnly": true }],
     "no-inline-styles/no-inline-styles": 2
-  },
-  "overrides": [
-    {
-      "files": ["*.stories.**"],
-      "rules": {
-        "import/prefer-default-export": "off"
-      }
-    }
-  ]
+  }
+  // "overrides": [
+  //   {
+  //     "files": ["*.stories.**"],
+  //     "rules": {
+  //       "import/prefer-default-export": "off"
+  //     }
+  //   }
+  // ]
 }

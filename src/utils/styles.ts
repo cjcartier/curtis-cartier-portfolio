@@ -14,10 +14,6 @@ const generateTransitions = (
   props: (keyof CssProperties)[],
   timing: number,
   curve?: CssProperties['animationTimingFunction'],
-) =>
-  props.map(
-    (prop, index) =>
-      `${camelToKebab(prop)} ${timing}ms ${curve || 'ease-in-out'}${index !== props.length - 1 ? ',' : ''}`,
-  );
+) => props.map(prop => `${camelToKebab(prop)} ${timing}ms ${curve || 'ease-in-out'}`).join(', ');
 
 export default generateTransitions;
