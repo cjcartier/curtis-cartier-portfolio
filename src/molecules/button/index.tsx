@@ -1,7 +1,5 @@
-import getButtonIconArrays from 'molecules/button/utils';
 import Icon from 'atoms/icon';
 
-import { arrayValuesExist } from 'utils/arrays';
 import parseUrl from 'utils/parseUrl';
 
 import { cx } from 'theme/css';
@@ -12,13 +10,12 @@ import type { IconIds } from 'atoms/icon';
 import type { ComponentPropsWithoutRef, FC, ReactNode } from 'react';
 import type { HTMLStyledProps } from 'theme/jsx';
 import type { ButtonVariantProps } from 'theme/recipes';
-import generateTransitions from 'utils/styles';
 
 type NativeButtonProps = ComponentPropsWithoutRef<'button'> & ComponentPropsWithoutRef<'a'>;
 
 export type ButtonIconProps = { id: number; position: 'start' | 'end'; icon: IconIds };
 
-export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps, 'color'> {
+export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps, 'color' | 'type'> {
   /**
    * String label for button. Recommend short concise call to action
    * if `iconsOnly` is selected, label will become visibly hidden
@@ -28,16 +25,16 @@ export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps,
    * Link if button is acting as navigation
    * Do not add a link if you are use an action event
    */
-  link?: string;
+  link?: string | null;
   /**
-   * Array of objects with an Icon Id and position.
-   * @position is optional
+   * The ID of the icon to be used in the button.
    */
-  icons?: Omit<ButtonIconProps, 'id'>[];
+  icon?: IconIds | 'none' | null;
   /**
    * If true, this will remove the label visibly but include it for screen readers
    */
   iconsOnly?: boolean;
+  type?: 'custom' | 'reference' | null;
 }
 
 interface LabelProps extends HTMLStyledProps<'span'>, Pick<ButtonProps, 'iconsOnly'> {
@@ -50,31 +47,37 @@ const Label: FC<LabelProps> = ({ iconsOnly, children, className }) =>
 const Button: FC<ButtonProps> = ({
   label,
   link,
-  icons,
+  icon,
   iconsOnly,
   disabled,
   className,
   hierarchy,
   size,
   color,
+  onClick,
+  noPadding,
   ...props
 }) => {
   const { Component: as, ...urlProps } = parseUrl(!disabled && link ? link : '');
-  const { startIcons, endIcons } = getButtonIconArrays(icons) || {};
   const component = as === 'div' ? 'button' : 'a';
   const Component = styled(component);
-  const classes = button({ hierarchy, size, color });
+  const classes = button({ hierarchy, size, color, noPadding });
 
   return (
-    <Component className={cx(classes.root, className, 'group')} disabled={disabled} {...urlProps} {...props}>
-      {arrayValuesExist(startIcons) && startIcons.map(({ id, icon }) => <Icon key={id} icon={icon} />)}
+    <Component
+      className={cx(classes.root, className, 'group')}
+      disabled={disabled}
+      data-icon-only={iconsOnly}
+      {...urlProps}
+      onClick={onClick}
+      {...props}
+    >
       {label && (
         <Label iconsOnly={iconsOnly} className={classes.label}>
           {label}
         </Label>
       )}
-      {arrayValuesExist(endIcons) &&
-        endIcons.map(({ id, icon }) => <Icon key={id} icon={icon} className={classes.endIcon} />)}
+      {icon && <Icon icon={icon} className={classes.endIcon} />}
     </Component>
   );
 };

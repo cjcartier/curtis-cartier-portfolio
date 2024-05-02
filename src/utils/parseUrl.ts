@@ -19,7 +19,7 @@ const parseUrl = (href: string) => {
     } as const;
   }
 
-  const domain = 'curtiscartier.com';
+  const domain = 'iamcurtis.com';
 
   if (href.charAt(0) !== '/' && !urlPrefixConstants.some(prefix => href.includes(prefix))) {
     href = `https://${domain}/${href}`;

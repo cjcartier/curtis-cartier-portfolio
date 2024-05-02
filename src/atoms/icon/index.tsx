@@ -4,11 +4,10 @@ import type { FC } from 'react';
 import type { HTMLStyledProps } from 'theme/jsx';
 import type { ColorToken, SpacingToken } from 'theme/tokens';
 
-export const buttonIds = ['chevron-up', 'chevron-right', 'chevron-down', 'chevron-left'] as const;
-export const badgeIds = [] as const;
-export const miscellaneousIds = [] as const;
+export const buttonIds = ['chevron-right', 'chevron-left', 'mail', 'moon', 'sun', 'expand'] as const;
+export const miscellaneousIds = ['info-circle'] as const;
 
-export const iconSet = new Set([...buttonIds, ...badgeIds, ...miscellaneousIds]);
+export const iconSet = new Set([...buttonIds, ...miscellaneousIds]);
 export const iconIds = Array.from(iconSet);
 export type IconIds = (typeof iconIds)[number];
 
@@ -35,9 +34,9 @@ export const SVG = styled('svg');
 
 const Icon: FC<IconProps> = ({ icon, size, iconColor, ariaLabel, ...props }) =>
   iconSet.has(icon) && (
-    <SVG
-      w={size || '24'}
-      h={size || '24'}
+    <svg
+      width={size || '24'}
+      height={size || '24'}
       fill={iconColor || 'currentColor'}
       stroke={iconColor || 'currentColor'}
       focusable="false"
@@ -47,7 +46,7 @@ const Icon: FC<IconProps> = ({ icon, size, iconColor, ariaLabel, ...props }) =>
     >
       {ariaLabel && <title>{ariaLabel}</title>}
       <use href={`/icons/sprites.svg#${icon}`} />
-    </SVG>
+    </svg>
   );
 
 export default Icon;

@@ -1,4 +1,4 @@
-import { checkRole } from './checkRole';
+import { checkRole } from 'payload/collections/users/utils/checkRole';
 
 import type { Access } from 'payload/types';
 

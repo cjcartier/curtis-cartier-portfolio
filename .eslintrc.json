@@ -96,11 +96,6 @@
             "position": "after"
           },
           {
-            "pattern": "quarks/**",
-            "group": "internal",
-            "position": "after"
-          },
-          {
             "pattern": "molecules/**",
             "group": "internal",
             "position": "after"
@@ -111,12 +106,42 @@
             "position": "after"
           },
           {
+            "pattern": "global/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
             "pattern": "utils/**",
             "group": "internal",
             "position": "after"
           },
           {
+            "pattern": "styles/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
             "pattern": "theme/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "payload/fields/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "payload/blocks/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "payload/collection/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "payload/globals/**",
             "group": "internal",
             "position": "after"
           },
@@ -157,12 +182,4 @@
     "prefer-arrow/prefer-arrow-functions": ["warn", { "singleReturnOnly": true }],
     "no-inline-styles/no-inline-styles": 2
   }
-  // "overrides": [
-  //   {
-  //     "files": ["*.stories.**"],
-  //     "rules": {
-  //       "import/prefer-default-export": "off"
-  //     }
-  //   }
-  // ]
 }

@@ -1,6 +1,8 @@
 // import type { S3UploadCollectionConfig } from 'payload-s3-upload';
 
-import { CollectionConfig } from 'payload/types';
+import defaultAccess from 'payload/utils/defaultAccess';
+
+import type { CollectionConfig } from 'payload/types';
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -15,9 +17,7 @@ export const Media: CollectionConfig = {
     // adminThumbnail: ({ doc }) =>
     //   `https://${process.env.S3_BUCKET}.s3.us-west-2.amazonaws.com/assets/${doc.type}/${doc.filename}`,
   },
-  access: {
-    read: () => true,
-  },
+  ...defaultAccess,
   fields: [
     {
       name: 'url',

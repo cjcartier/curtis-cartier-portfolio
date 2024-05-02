@@ -1,4 +1,4 @@
-import { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types';
+import type { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types';
 import type { Block } from 'payload/types';
 
 const Code: Block = {

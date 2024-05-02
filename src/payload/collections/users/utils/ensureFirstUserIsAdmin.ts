@@ -1,4 +1,4 @@
-import type { User } from '../../../payload-types';
+import type { User } from 'payload/payload-types';
 import type { FieldHook } from 'payload/types';
 
 // ensure the first user created is an admin

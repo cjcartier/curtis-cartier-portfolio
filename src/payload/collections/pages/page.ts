@@ -1,12 +1,9 @@
-import admins from '../../access/admins';
-import adminsOrPublished from '../../access/adminsOrPublished';
-import Heading from '../../blocks/heading';
-import sectionField from '../../fields/section';
-import slugField from '../../fields/slug';
+import slugField from 'payload/fields/slug';
 
-import populatePublishedAt from '../../hooks/populatePublishedAt';
+import populatePublishedAt from 'payload/hooks/populatePublishedAt';
+import defaultAccess from 'payload/utils/defaultAccess';
 
-import type { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload/dist/collections/config/types';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -21,16 +18,7 @@ export const Pages: CollectionConfig = {
   hooks: {
     beforeChange: [populatePublishedAt],
   },
-  versions: {
-    drafts: true,
-    maxPerDoc: 10,
-  },
-  access: {
-    read: adminsOrPublished,
-    update: admins,
-    create: admins,
-    delete: admins,
-  },
+  ...defaultAccess,
   fields: [
     {
       name: 'title',
@@ -40,15 +28,15 @@ export const Pages: CollectionConfig = {
     {
       name: 'layout',
       label: 'Content',
-      type: 'blocks',
+      type: 'relationship',
       required: true,
       access: {
         read: () => true,
       },
-      blocks: [Heading],
+      relationTo: ['hero', 'switchback', 'testimonialComponent', 'toolsComponent'],
+      hasMany: true,
     },
     slugField(),
-    sectionField(),
     {
       name: 'publishedAt',
       type: 'date',

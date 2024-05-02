@@ -1,6 +1,8 @@
-import adminsOrPublished from '../access/adminsOrPublished';
-import Button from '../blocks/button';
-import link from '../fields/link';
+import link from 'payload/fields/link';
+
+import Button from 'payload/blocks/button';
+
+import adminsOrPublished from 'payload/access/adminsOrPublished';
 
 import type { RowLabelArgs } from 'payload/dist/admin/components/forms/RowLabel/types';
 import type { GlobalConfig } from 'payload/types';

@@ -1,16 +1,22 @@
 import { defineConfig } from '@pandacss/dev';
 
-import { tokens, atomicSlotRecipes, semanticTokens } from 'atoms';
+import { atomicRecipes, atomicSlotRecipes, semanticTokens, tokens } from 'atoms';
+import globalSlotRecipes from 'global/globalRecipes';
+import globalCss from 'styles/global';
+import keyframes from 'styles/keyframes';
+import layerStyles from 'styles/layerStyles';
+import utilities from 'styles/utilities';
+import variables from 'styles/variables';
 
 import breakpoints from 'atoms/breakpoints';
-import keyframes from 'atoms/keyframes';
-import layerStyles from 'atoms/layerStyles';
 import textStyles from 'atoms/typography/typography';
-import utilities from 'atoms/utilities';
-import variables from 'atoms/variables';
-import moleculeSlotRecipes from 'molecules/moleculeRecipes';
 
-const slotRecipes = { ...atomicSlotRecipes, ...moleculeSlotRecipes };
+import moleculeSlotRecipes, { moleculeRecipes } from 'molecules/moleculeRecipes';
+
+import componentSlotRecipes from 'components/componentRecipes';
+
+const recipes = { ...atomicRecipes, ...moleculeRecipes };
+const slotRecipes = { ...atomicSlotRecipes, ...moleculeSlotRecipes, ...componentSlotRecipes, ...globalSlotRecipes };
 
 export default defineConfig({
   preflight: true,
@@ -24,17 +30,29 @@ export default defineConfig({
     tokens,
     semanticTokens,
     extend: {
+      recipes,
       slotRecipes,
       layerStyles,
     },
   },
   utilities,
-  globalCss: {
-    h1: {
-      color: 'bodyCopy',
+  globalCss,
+  globalVars: variables,
+  conditions: {
+    notLastOfType: '&:not(:last-of-type)',
+    extend: {
+      dark: '.dark &, [data-theme="dark"] &',
     },
   },
-  globalVars: variables,
+  staticCss: {
+    css: [
+      {
+        properties: {
+          filter: ['url(/backgrounds/filters.svg#home-curve)', 'url(/backgrounds/filters.svg#home-curve-dark)'],
+        },
+      },
+    ],
+  },
   jsxFramework: 'react',
   gitignore: false,
 });

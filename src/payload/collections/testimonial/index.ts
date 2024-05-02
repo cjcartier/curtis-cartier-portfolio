@@ -1,18 +1,13 @@
-import adminsOrPublished from '../../access/adminsOrPublished';
+import defaultAccess from 'payload/utils/defaultAccess';
 
-import type { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload/dist/collections/config/types';
 
 const Testimonials: CollectionConfig = {
   slug: 'testimonials',
   admin: {
     useAsTitle: 'authorName',
   },
-  access: {
-    read: adminsOrPublished,
-  },
-  versions: {
-    drafts: true,
-  },
+  ...defaultAccess,
   fields: [
     {
       name: 'authorName',

@@ -1,6 +1,6 @@
-import link from '../../fields/link';
+import link from 'payload/fields/link';
 
-import type { Block } from 'payload/types';
+import type { Block } from 'payload/dist/fields/config/types';
 
 const Button: Block = {
   slug: 'button',

@@ -3,14 +3,14 @@
  * @param item
  * @returns {boolean}
  */
-export const isObject = (item: unknown): boolean => item && typeof item === 'object' && !Array.isArray(item);
+export const isObject = (item: unknown): boolean => Boolean(item) && typeof item === 'object' && !Array.isArray(item);
 
 /**
  * Deep merge two objects.
  * @param target
  * @param ...sources
  */
-export default function deepMerge<T extends {}, R>(target: T, source: R): T {
+export default function deepMerge<T extends Record<string, never>, R>(target: T, source: R): T {
   const output = { ...target };
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach(key => {

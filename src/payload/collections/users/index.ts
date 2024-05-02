@@ -1,9 +1,10 @@
-import { CollectionConfig } from 'payload/types';
-import checkRole from './utils/checkRole';
-import adminsAndUser from './utils/adminsAndUser';
-import anyone from '../../access/anyone';
-import admins from '../../access/admins';
-import loginAfterCreate from './utils/loginAfterCreate';
+import admins from 'payload/access/admins';
+import anyone from 'payload/access/anyone';
+import adminsAndUser from 'payload/collections/users/utils/adminsAndUser';
+import checkRole from 'payload/collections/users/utils/checkRole';
+import loginAfterCreate from 'payload/collections/users/utils/loginAfterCreate';
+
+import type { CollectionConfig } from 'payload/types';
 
 const Users: CollectionConfig = {
   slug: 'users',

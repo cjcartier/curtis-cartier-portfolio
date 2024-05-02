@@ -31,6 +31,13 @@ export const buttonVariants = {
     text: {},
   },
   color: {},
+  noPadding: {
+    true: {
+      root: {
+        padding: '0',
+      },
+    },
+  },
 } as SlotRecipeVariantRecord<string>;
 
 export const buttonRecipe = defineSlotRecipe({
@@ -45,6 +52,7 @@ export const buttonRecipe = defineSlotRecipe({
       justifyContent: 'center',
       transition: generateTransitions(['backgroundColor', 'color', 'borderColor'], 250),
       width: '100',
+      height: 'fit-content',
       borderRadius: '6px',
       outlineOffset: '2',
       fontWeight: 'bold',
@@ -53,6 +61,10 @@ export const buttonRecipe = defineSlotRecipe({
       gap: '8',
       paddingX: '20',
       paddingY: '10',
+
+      '&[data-icon-only]': {
+        paddingX: '10',
+      },
 
       sm: {
         width: 'fit-content',
@@ -64,6 +76,7 @@ export const buttonRecipe = defineSlotRecipe({
     },
     label: {
       textStyle: 'text.md',
+      color: { base: 'gray.900', _dark: 'white' },
     },
     endIcon: {
       transition: 'transform ease-in-out 200ms',

@@ -1,13 +1,13 @@
-import type { CollectionConfig } from 'payload/types';
+import defaultAccess from 'payload/utils/defaultAccess';
+
+import type { CollectionConfig } from 'payload/dist/collections/config/types';
 
 const Person: CollectionConfig = {
   slug: 'person',
   admin: {
-    useAsTitle: 'fullName',
+    useAsTitle: 'displayName',
   },
-  access: {
-    read: () => true,
-  },
+  ...defaultAccess,
   fields: [
     {
       name: 'displayName',

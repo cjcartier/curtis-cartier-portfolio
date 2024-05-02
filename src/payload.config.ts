@@ -1,20 +1,28 @@
-import { postgresAdapter } from '@payloadcms/db-postgres';
-import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'; // editor-import
 import path from 'path';
-import { buildConfig } from 'payload/config';
 // import sharp from 'sharp'
 import { fileURLToPath } from 'url';
 
-import Testimonials from 'payload/collections/testimonial';
-import Media from 'payload/collections/media';
-import Person from 'payload/collections/person';
-import Company from 'payload/collections/company';
-import Pages from 'payload/collections/pages/page';
-import Header from 'payload/globals/Header';
-import Footer from 'payload/globals/Footer';
-import Users from 'payload/collections/users';
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { BlocksFeature, TreeViewFeature, lexicalEditor } from '@payloadcms/richtext-lexical'; // editor-import
+
 import Button from 'payload/blocks/button';
 import Code from 'payload/blocks/code';
+
+import Footer from 'payload/globals/Footer';
+import Header from 'payload/globals/Header';
+
+import Company from 'payload/collections/company';
+import Hero from 'payload/collections/hero';
+import Media from 'payload/collections/media';
+import Pages from 'payload/collections/pages/page';
+import Person from 'payload/collections/person';
+import Switchback from 'payload/collections/switchback';
+import Testimonials from 'payload/collections/testimonial';
+import TestimonialComponent from 'payload/collections/testimonialComponent';
+import Tools from 'payload/collections/tools';
+import ToolsComponent from 'payload/collections/toolsComponent';
+import Users from 'payload/collections/users';
+import { buildConfig } from 'payload/config';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -23,7 +31,19 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Users, Testimonials, Media, Person, Company, Pages],
+  collections: [
+    Users,
+    Testimonials,
+    Media,
+    Person,
+    Company,
+    Pages,
+    Hero,
+    Switchback,
+    TestimonialComponent,
+    Tools,
+    ToolsComponent,
+  ],
   globals: [Header, Footer],
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
@@ -31,6 +51,7 @@ export default buildConfig({
       BlocksFeature({
         blocks: [Button, Code],
       }),
+      TreeViewFeature(),
     ],
   }),
   plugins: [
@@ -54,7 +75,7 @@ export default buildConfig({
   ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, 'payload/payload-types.ts'),
+    outputFile: path.resolve(dirname, 'types/payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {

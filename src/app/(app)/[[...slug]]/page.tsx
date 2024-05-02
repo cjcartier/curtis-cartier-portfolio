@@ -1,14 +1,31 @@
-import { Section } from 'atoms/containers/section';
-import Button from 'molecules/button';
+import { notFound } from 'next/navigation';
+import { getPayload } from 'payload';
 
-const Page = async () => {
-  console.log();
+import configPromise from '@payload-config';
+
+import { arrayValuesExist } from 'utils/arrays';
+import ComponentGenerator from 'utils/componentGenerator';
+
+import type { FC } from 'react';
+import type { PageProps } from 'types/global';
+
+const Page: FC<PageProps> = async ({ params }) => {
+  const payload = await getPayload({ config: configPromise });
+
+  const data = await payload.find({
+    collection: 'pages',
+    depth: 10,
+    where: { slug: { equals: params?.slug?.join('/') || 'homepage' } },
+  });
+
+  if (!arrayValuesExist(data.docs)) {
+    return notFound();
+  }
 
   return (
-    <Section>
-      <h1>Heyo!</h1>
-      <Button label="Some Button" />
-    </Section>
+    <>
+      <ComponentGenerator sections={data.docs[0].layout} />
+    </>
   );
 };
 

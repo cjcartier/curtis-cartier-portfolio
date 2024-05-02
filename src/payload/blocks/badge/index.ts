@@ -1,4 +1,4 @@
-import { Block } from 'payload/types';
+import type { Block } from 'payload/dist/fields/config/types';
 
 const Badge: Block = {
   slug: 'badge',
@@ -6,13 +6,10 @@ const Badge: Block = {
   fields: [
     {
       name: 'label',
-      label: 'Label',
       type: 'text',
-      required: true,
     },
     {
       name: 'variant',
-      label: 'Variant',
       type: 'select',
       defaultValue: 'primary',
       options: [

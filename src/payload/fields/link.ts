@@ -1,6 +1,6 @@
-import deepMerge from '../utils/deepMerge';
+import deepMerge from 'payload/utils/deepMerge';
 
-import type { Field } from 'payload/types';
+import type { Field } from 'payload/dist/fields/config/types';
 
 export const themeOptions = {
   fill: {
@@ -37,21 +37,9 @@ const iconOptions = {
     label: 'None',
     value: 'none',
   },
-  'arrow-right': {
-    label: 'Arrow Right',
-    value: 'arrow-right',
-  },
-  'arrow-up-right': {
-    label: 'Arrow Up Right',
-    value: 'arrow-up-right',
-  },
   mail: {
     label: 'Mail',
     value: 'mail',
-  },
-  'file-heart': {
-    label: 'File Heart',
-    value: 'file-heart',
   },
 };
 
@@ -128,7 +116,7 @@ const link: LinkType = ({ theme, disableLabel = false, icon, overrides = {} } = 
       },
     },
     {
-      name: 'url',
+      name: 'link',
       label: 'Custom URL',
       type: 'text',
       required: true,

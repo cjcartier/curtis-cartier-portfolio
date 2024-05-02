@@ -1,9 +1,9 @@
-import deepMerge from '../utils/deepMerge'
-import formatSlug from '../utils/formatSlug'
+import deepMerge from 'payload/utils/deepMerge';
+import formatSlug from 'payload/utils/formatSlug';
 
-import type { Field } from 'payload/types'
+import type { Field } from 'payload/types';
 
-type Slug = (fieldToUse?: string, overrides?: Partial<Field>) => Field
+type Slug = (fieldToUse?: string, overrides?: Partial<Field>) => Field;
 
 export const slugField: Slug = (fieldToUse = 'title', overrides = {}) =>
   deepMerge<Field, Partial<Field>>(
@@ -20,6 +20,6 @@ export const slugField: Slug = (fieldToUse = 'title', overrides = {}) =>
       },
     },
     overrides,
-  )
+  );
 
-  export default slugField
+export default slugField;

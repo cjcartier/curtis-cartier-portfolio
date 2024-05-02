@@ -1,12 +1,12 @@
 import { defineSlotRecipe } from '@pandacss/dev';
 
+import type { SlotRecipeVariantRecord } from '@pandacss/dev';
 import type { SystemStyleObject } from 'theme/types';
 
 export const sectionSizing = {
   maxW: 'container.sm',
   paddingX: '16',
   marginX: 'auto',
-  paddingY: '500px',
   sm: {
     maxW: 'container.md',
     paddingX: '32',
@@ -19,6 +19,19 @@ export const sectionSizing = {
   },
 } satisfies SystemStyleObject;
 
+export const sectionVariants = {
+  paddingTop: {
+    small: { root: { pt: '24' } },
+    medium: { root: { pt: '32' } },
+    large: {},
+    xLarge: { root: { pt: '48', md: { pt: '88' }, lg: { pt: '136' } } },
+  },
+  paddingBottom: {
+    small: { root: { pb: '24' } },
+    medium: { root: { pb: '32' } },
+    large: {},
+  },
+} as SlotRecipeVariantRecord<string>;
 export const sectionRecipe = defineSlotRecipe({
   className: 'section',
   slots: ['root', 'grain', 'container'],
@@ -36,6 +49,7 @@ export const sectionRecipe = defineSlotRecipe({
       backgroundImage: 'var(--background-grain)',
     },
     container: {
+      position: 'relative',
       display: 'flex',
       flexDir: 'column',
       w: '100',
@@ -43,6 +57,12 @@ export const sectionRecipe = defineSlotRecipe({
       ...sectionSizing,
     },
   },
+  variants: sectionVariants,
+  defaultVariants: {
+    paddingTop: 'medium',
+    paddingBottom: 'medium',
+  },
+  staticCss: ['*'],
 });
 
 export default sectionRecipe;

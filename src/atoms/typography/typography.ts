@@ -1,7 +1,7 @@
 import { defineTextStyles } from '@pandacss/dev';
 
-const displayFont = 'var(--grotesk-sharp)';
-const bodyFont = 'var(--sans-sharp)';
+const displayFont = 'var(--sharp-grotesk)';
+const bodyFont = 'var(--sharp-sans)';
 const codeFont = 'var(--roboto-mono)';
 
 export const fonts = {
@@ -58,35 +58,35 @@ export const typeMap = {
   text: {
     xs: {
       value: {
-        fontFamily: fonts.body,
+        fontFamily: fonts.body.value,
         fontSize: fontSizes.textXs.value,
         lineHeight: lineHeights.textXs.value,
       },
     },
     sm: {
       value: {
-        fontFamily: fonts.body,
+        fontFamily: fonts.body.value,
         fontSize: fontSizes.textSm.value,
         lineHeight: lineHeights.textSm.value,
       },
     },
     md: {
       value: {
-        fontFamily: fonts.body,
+        fontFamily: fonts.body.value,
         fontSize: fontSizes.textMd.value,
         lineHeight: lineHeights.textMd.value,
       },
     },
     lg: {
       value: {
-        fontFamily: fonts.body,
+        fontFamily: fonts.body.value,
         fontSize: fontSizes.textLg.value,
         lineHeight: lineHeights.textLg.value,
       },
     },
     xl: {
       value: {
-        fontFamily: fonts.body,
+        fontFamily: fonts.body.value,
         fontSize: fontSizes.textXl.value,
         lineHeight: lineHeights.textXl.value,
       },
@@ -95,7 +95,7 @@ export const typeMap = {
   display: {
     xs: {
       value: {
-        fontFamily: fonts.display,
+        fontFamily: fonts.display.value,
         fontSize: fontSizes.displayXs.value,
         lineHeight: lineHeights.displayXs.value,
         fontWeight: fontWeights.bold.value,
@@ -103,7 +103,7 @@ export const typeMap = {
     },
     sm: {
       value: {
-        fontFamily: fonts.display,
+        fontFamily: fonts.display.value,
         fontSize: fontSizes.displaySm.value,
         lineHeight: lineHeights.displaySm.value,
         fontWeight: fontWeights.bold.value,
@@ -111,7 +111,7 @@ export const typeMap = {
     },
     md: {
       value: {
-        fontFamily: fonts.display,
+        fontFamily: fonts.display.value,
         fontSize: fontSizes.displayMd.value,
         lineHeight: lineHeights.displayMd.value,
         fontWeight: fontWeights.bold.value,
@@ -120,7 +120,7 @@ export const typeMap = {
     },
     lg: {
       value: {
-        fontFamily: fonts.display,
+        fontFamily: fonts.display.value,
         fontSize: fontSizes.displayLg.value,
         lineHeight: lineHeights.displayLg.value,
         fontWeight: fontWeights.bold.value,
@@ -129,7 +129,7 @@ export const typeMap = {
     },
     xl: {
       value: {
-        fontFamily: fonts.display,
+        fontFamily: fonts.display.value,
         fontSize: fontSizes.displayXl.value,
         lineHeight: lineHeights.displayXl.value,
         fontWeight: fontWeights.bold.value,
@@ -138,7 +138,7 @@ export const typeMap = {
     },
     xxl: {
       value: {
-        fontFamily: fonts.display,
+        fontFamily: fonts.display.value,
         fontSize: fontSizes.display2xl.value,
         lineHeight: lineHeights.display2xl.value,
         fontWeight: fontWeights.bold.value,
@@ -148,7 +148,7 @@ export const typeMap = {
   },
   code: {
     value: {
-      fontFamily: fonts.code,
+      fontFamily: fonts.code.value,
       fontSize: fontSizes.code.value,
       lineHeight: lineHeights.code.value,
     },
