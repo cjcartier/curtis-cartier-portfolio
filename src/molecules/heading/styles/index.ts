@@ -15,8 +15,10 @@ const headingVariants = {
     md: {
       heading: {
         textStyle: 'display.sm',
+        fontWeight: 'extraBold',
         sm: {
           textStyle: 'display.lg',
+          fontWeight: 'extraBold',
         },
       },
     },

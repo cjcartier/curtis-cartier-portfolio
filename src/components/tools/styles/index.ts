@@ -2,13 +2,17 @@ import { defineSlotRecipe } from '@pandacss/dev';
 
 const toolsRecipe = defineSlotRecipe({
   className: 'tools',
-  slots: ['root', 'toolsContainer', 'tool', 'hoverCardIcon'],
+  slots: ['root', 'toolsContainer', 'hiddenTool', 'tool', 'toolLogo', 'hoverCardIcon'],
   base: {
     root: {
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: 'column',
       alignItems: 'center',
       gap: '32px',
+
+      lg: {
+        flexDirection: 'row',
+      },
     },
     toolsContainer: {
       position: 'relative',
@@ -18,21 +22,45 @@ const toolsRecipe = defineSlotRecipe({
       justifyContent: 'center',
       gap: '16px',
       flex: '1 0 40%',
+      minW: '345px',
+      maxW: '650px',
+
+      lg: {
+        minW: '482px',
+      },
+    },
+    hiddenTool: {
+      display: 'blocl',
+
+      sm: {
+        display: 'none',
+      },
+
+      lg: {
+        display: 'block',
+      },
     },
     tool: {
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      w: '150px',
-      h: '150px',
+      w: '100px',
+      h: '100px',
       borderRadius: 'lg',
       backgroundColor: { base: 'white/35', _dark: 'white/10' },
       transition: 'transform 150ms ease-in-out, backgroundColor 250ms ease-in-out',
       perspective: '1000px',
+
+      sm: {
+        w: '150px',
+        h: '150px',
+      },
+
       _hover: {
         transform: 'scale(1.05)',
       },
+
       _after: {
         content: '""',
         borderRadius: 'lg',
@@ -61,6 +89,15 @@ const toolsRecipe = defineSlotRecipe({
           animationDuration: '300ms',
           animationTimingFunction: 'ease-in-out',
         },
+      },
+    },
+    toolLogo: {
+      w: '60',
+      h: '60',
+
+      sm: {
+        w: '77',
+        h: '77',
       },
     },
     hoverCardIcon: {

@@ -33,7 +33,7 @@ export const Pages: CollectionConfig = {
       access: {
         read: () => true,
       },
-      relationTo: ['hero', 'switchback', 'testimonialComponent', 'toolsComponent'],
+      relationTo: ['conversionPanel', 'hero', 'switchback', 'testimonialComponent', 'toolsComponent'],
       hasMany: true,
     },
     slugField(),

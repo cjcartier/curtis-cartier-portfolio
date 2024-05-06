@@ -8,6 +8,9 @@ import Logo from 'atoms/logo';
 import Heading from 'molecules/heading';
 import HoverCard from 'molecules/hoverCard';
 
+import updateToolArray from 'components/tools/utils/updateToolArray';
+
+import { getRandomInt } from 'utils/numbers';
 import richTextParser from 'utils/richTextParser';
 
 import { cx } from 'theme/css';
@@ -15,29 +18,12 @@ import { toolsComponent } from 'theme/recipes';
 
 import type { Tool, ToolsComponent } from 'types/payload-types';
 
-const getRandomInt = (max: number, exclude?: number | null): number => {
-  const num = Math.floor(Math.random() * max);
-
-  return num === exclude ? getRandomInt(max, exclude) : num;
-};
-
-const updateToolArray = (currentTools: Tool[], allTools: Tool[], updateInd: number) => {
-  const currentToolsIds = currentTools.map(tool => tool.logoId);
-  const newTools = allTools.reduce(
-    (acc, tool) => (currentToolsIds.includes(tool.logoId) ? acc : [...acc, tool]),
-    [] as Tool[],
-  );
-
-  currentTools.splice(updateInd, 1, newTools[getRandomInt(newTools.length)]);
-
-  return [...currentTools];
-};
-
 const shownTools = 7;
 
 const Tools: FC<ToolsComponent> = ({ heading, tools }) => {
   const classes = toolsComponent();
-  const [currentTools, setCurrentTools] = useState<Tool[]>(tools?.slice(0, shownTools) || []);
+  const filteredTools = tools?.filter(tool => tool && typeof tool !== 'number') as Tool[];
+  const [currentTools, setCurrentTools] = useState<Tool[]>(filteredTools?.slice(0, shownTools) || []);
 
   useEffect(() => {
     if (!tools) {
@@ -52,7 +38,7 @@ const Tools: FC<ToolsComponent> = ({ heading, tools }) => {
       card?.classList.add('flip-out-right');
 
       setTimeout(() => {
-        setCurrentTools(updateToolArray(currentTools, tools, updatedInd));
+        setCurrentTools(updateToolArray(currentTools, filteredTools, updatedInd));
       }, 300);
 
       setTimeout(() => {
@@ -69,9 +55,9 @@ const Tools: FC<ToolsComponent> = ({ heading, tools }) => {
       {heading && <Heading headingType="h2" alignment="start" size="md" {...heading[0]} />}
       <div className={classes.toolsContainer}>
         <Glow temperature="warm" />
-        <div />
+        <div className={classes.hiddenTool} />
         {currentTools?.map((tool, ind) => {
-          if (typeof tool === 'number') {
+          if (typeof tool === 'number' || !tool.logoId) {
             return null;
           }
 
@@ -81,13 +67,13 @@ const Tools: FC<ToolsComponent> = ({ heading, tools }) => {
               id={`tool-${ind}`}
               className={cx(classes.tool, 'group')}
               data-index={ind}
-              onMouseEnter={e => e.target.setAttribute('data-hovered', true)}
-              onMouseLeave={e => e.target.removeAttribute('data-hovered')}
+              onMouseEnter={e => (e.target as HTMLDivElement).setAttribute('data-hovered', 'true')}
+              onMouseLeave={e => (e.target as HTMLDivElement).removeAttribute('data-hovered')}
             >
-              <Logo logo={tool.logoId} size="90" />
+              <Logo logo={tool.logoId} className={classes.toolLogo} />
               <HoverCard id={tool.logoId || String(ind)} iconId="info-circle" iconClassName={classes.hoverCardIcon}>
                 <h4>{tool.tool}</h4>
-                {tool.description && <p>{richTextParser(tool.description)}</p>}
+                {tool.description && <p>{richTextParser(tool.description.root.children)}</p>}
               </HoverCard>
             </div>
           );

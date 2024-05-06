@@ -6,7 +6,6 @@ import type { SystemStyleObject } from 'theme/types';
 export const sectionSizing = {
   maxW: 'container.sm',
   paddingX: '16',
-  marginX: 'auto',
   sm: {
     maxW: 'container.md',
     paddingX: '32',
@@ -40,6 +39,7 @@ export const sectionRecipe = defineSlotRecipe({
       position: 'relative',
       display: 'flex',
       justifyContent: 'center',
+      alignItems: 'center',
       flexDirection: 'column',
       w: 'screen',
     },

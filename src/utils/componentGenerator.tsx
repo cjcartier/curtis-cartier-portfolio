@@ -1,5 +1,6 @@
 import { Section } from 'atoms/containers/section';
 
+import ConversionPanel from 'components/conversionPanel';
 import Hero from 'components/hero';
 import SwitchbackSection from 'components/switchbackSection';
 import Testimonials from 'components/testimonials';
@@ -11,6 +12,7 @@ import type { FC } from 'react';
 import type { Hero as HeroProps, Page, Switchback, TestimonialComponent } from 'types/payload-types';
 
 const components = {
+  conversionPanel: ConversionPanel,
   hero: Hero,
   switchback: SwitchbackSection,
   testimonialComponent: Testimonials,
@@ -23,6 +25,8 @@ interface componentGeneratorProps {
 
 const getComponent = (component: keyof typeof components, props: HeroProps | Switchback | TestimonialComponent) => {
   switch (component) {
+    case 'conversionPanel':
+      return <ConversionPanel {...props} />;
     case 'hero':
       return <Hero {...props} />;
     case 'switchback':

@@ -3,15 +3,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { postgresAdapter } from '@payloadcms/db-postgres';
-import { BlocksFeature, TreeViewFeature, lexicalEditor } from '@payloadcms/richtext-lexical'; // editor-import
-
-import Button from 'payload/blocks/button';
-import Code from 'payload/blocks/code';
+import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
+import { seoPlugin } from '@payloadcms/plugin-seo';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
 
 import Footer from 'payload/globals/Footer';
 import Header from 'payload/globals/Header';
 
 import Company from 'payload/collections/company';
+import ConversionPanel from 'payload/collections/conversionPanel';
 import Hero from 'payload/collections/hero';
 import Media from 'payload/collections/media';
 import Pages from 'payload/collections/pages/page';
@@ -32,46 +32,35 @@ export default buildConfig({
     user: Users.slug,
   },
   collections: [
-    Users,
-    Testimonials,
-    Media,
-    Person,
     Company,
-    Pages,
+    ConversionPanel,
     Hero,
+    Media,
+    Pages,
+    Person,
     Switchback,
     TestimonialComponent,
+    Testimonials,
     Tools,
     ToolsComponent,
+    Users,
   ],
   globals: [Header, Footer],
-  editor: lexicalEditor({
-    features: ({ defaultFeatures }) => [
-      ...defaultFeatures,
-      BlocksFeature({
-        blocks: [Button, Code],
-      }),
-      TreeViewFeature(),
-    ],
-  }),
+  editor: lexicalEditor({}),
   plugins: [
-    // s3Upload(
-    //   new S3Client({
-    //     region: process.env.AWS_REGION,
-    //     credentials: {
-    //       accessKeyId: process.env.AWS_KEY,
-    //       secretAccessKey: process.env.AWS_SECRET,
-    //     },
-    //   }),
-    // ),
-    // seoPlugin({
-    //   collections: ['pages'],
-    //   uploadsCollection: 'media',
-    //   generateTitle: ({ doc }: any) => `Curtis Cartier Portfolio — ${doc.title.value}`,
-    //   generateImage: ({ doc }: any) => doc?.featuredImage?.value,
-    //   generateURL: ({ doc }: any) => doc?.slug?.value,
-    //   tabbedUI: true,
-    // }),
+    seoPlugin({
+      collections: ['pages'],
+      uploadsCollection: 'media',
+      generateTitle: ({ doc }: any) => `Curtis Cartier Portfolio — ${doc.title.value}`,
+      generateImage: ({ doc }: any) => doc?.featuredImage?.value,
+      generateURL: ({ doc }: any) => doc?.slug?.value,
+      tabbedUI: true,
+    }),
+    formBuilderPlugin({
+      fields: {
+        payment: false,
+      },
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

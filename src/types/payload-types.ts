@@ -8,17 +8,20 @@
 
 export interface Config {
   collections: {
-    users: User;
-    testimonials: Testimonial;
-    media: Media;
-    person: Person;
     company: Company;
-    pages: Page;
+    conversionPanel: ConversionPanel;
     hero: Hero;
+    media: Media;
+    pages: Page;
+    person: Person;
     switchback: Switchback;
     testimonialComponent: TestimonialComponent;
+    testimonials: Testimonial;
     tools: Tool;
     toolsComponent: ToolsComponent;
+    users: User;
+    forms: Form;
+    'form-submissions': FormSubmission;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -33,65 +36,12 @@ export interface Config {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "company".
  */
-export interface User {
+export interface Company {
   id: number;
-  name?: string | null;
-  roles?: ('admin' | 'user')[] | null;
-  updatedAt: string;
-  createdAt: string;
-  enableAPIKey?: boolean | null;
-  apiKey?: string | null;
-  apiKeyIndex?: string | null;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: number;
-  authorName?: string | null;
-  author?: (number | null) | Person;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "person".
- */
-export interface Person {
-  id: number;
-  displayName?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
-  headshot?: (number | null) | Media;
-  company?: (number | null) | Company;
-  position?: string | null;
+  companyName?: string | null;
+  logo?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -118,55 +68,13 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "company".
+ * via the `definition` "conversionPanel".
  */
-export interface Company {
-  id: number;
-  companyName?: string | null;
-  logo?: (number | null) | Media;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
- */
-export interface Page {
-  id: number;
-  title: string;
-  layout: (
-    | {
-        relationTo: 'hero';
-        value: number | Hero;
-      }
-    | {
-        relationTo: 'switchback';
-        value: number | Switchback;
-      }
-    | {
-        relationTo: 'testimonialComponent';
-        value: number | TestimonialComponent;
-      }
-    | {
-        relationTo: 'toolsComponent';
-        value: number | ToolsComponent;
-      }
-  )[];
-  slug?: string | null;
-  publishedAt?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hero".
- */
-export interface Hero {
+export interface ConversionPanel {
   id: number;
   title?: string | null;
   heading?: HeadingBlock[] | null;
+  form?: (number | null) | Form;
   section?: {
     paddingTop?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
     paddingBottom?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
@@ -229,11 +137,254 @@ export interface ButtonBlock {
     link?: string | null;
     label: string;
     theme?: ('fill' | 'outline' | 'text') | null;
-    icon?: ('none' | 'mail') | null;
+    icon?: ('none' | 'mail' | 'gitHub' | 'linkedIn') | null;
   };
   id?: string | null;
   blockName?: string | null;
   blockType: 'button';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name?: string | null;
+  roles?: ('admin' | 'user')[] | null;
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+  id: number;
+  title: string;
+  fields?:
+    | (
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            defaultValue?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'checkbox';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'country';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'email';
+          }
+        | {
+            message?: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            } | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'message';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'number';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            options?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'select';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'state';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textarea';
+          }
+      )[]
+    | null;
+  submitButtonLabel?: string | null;
+  confirmationType?: ('message' | 'redirect') | null;
+  confirmationMessage?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  redirect?: {
+    url: string;
+  };
+  emails?:
+    | {
+        emailTo?: string | null;
+        cc?: string | null;
+        bcc?: string | null;
+        replyTo?: string | null;
+        emailFrom?: string | null;
+        subject: string;
+        message?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero".
+ */
+export interface Hero {
+  id: number;
+  title?: string | null;
+  heading?: HeadingBlock[] | null;
+  section?: {
+    paddingTop?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    paddingBottom?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    backgroundImage?: 'home-curve' | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  layout: (
+    | {
+        relationTo: 'conversionPanel';
+        value: number | ConversionPanel;
+      }
+    | {
+        relationTo: 'hero';
+        value: number | Hero;
+      }
+    | {
+        relationTo: 'switchback';
+        value: number | Switchback;
+      }
+    | {
+        relationTo: 'testimonialComponent';
+        value: number | TestimonialComponent;
+      }
+    | {
+        relationTo: 'toolsComponent';
+        value: number | ToolsComponent;
+      }
+  )[];
+  slug?: string | null;
+  publishedAt?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -270,6 +421,49 @@ export interface TestimonialComponent {
   title?: string | null;
   heading?: HeadingBlock[] | null;
   testimonials?: (number | Testimonial)[] | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  authorName?: string | null;
+  author?: (number | null) | Person;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "person".
+ */
+export interface Person {
+  id: number;
+  displayName?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  headshot?: (number | null) | Media;
+  company?: (number | null) | Company;
+  position?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -316,6 +510,23 @@ export interface Tool {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: number;
+  form: number | Form;
+  submissionData?:
+    | {
+        field: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -382,9 +593,21 @@ export interface Header {
  */
 export interface Footer {
   id: number;
-  description?: string | null;
-  layout?: ButtonBlock[] | null;
   mainLinks?:
+    | {
+        link: {
+          type?: ('custom' | 'reference') | null;
+          reference?: {
+            relationTo: 'users';
+            value: number | User;
+          } | null;
+          link?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  resourceLinks?:
     | {
         link: {
           type?: ('custom' | 'reference') | null;
@@ -412,37 +635,9 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
-  footerNote?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CodeBlock".
- */
-export interface CodeBlock {
-  internalName: string;
-  codeBlocks?:
-    | {
-        path?: string | null;
-        language: 'typescript' | 'javascript' | 'css';
-        code?: string | null;
-        rowHighlights?:
-          | {
-              [k: string]: unknown;
-            }
-          | unknown[]
-          | string
-          | number
-          | boolean
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'code';
 }
 
 

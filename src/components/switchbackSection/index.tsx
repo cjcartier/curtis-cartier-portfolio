@@ -5,6 +5,7 @@ import Image from 'molecules/image';
 import Switchback from 'molecules/switchback';
 
 import { arrayValuesExist } from 'utils/arrays';
+import payloadContentExists from 'utils/payloadContentExists';
 
 import { switchbackSection } from 'theme/recipes';
 
@@ -24,12 +25,14 @@ const SwitchbackSection: FC<SwitchbackProps> = ({ heading, switchbacks }) => {
               <Heading headingType="h3" size="sm" alignment="start" {...switchback?.content?.[0]} />
               <div className={switchbackMedia}>
                 <Glow temperature="cool" />
-                <Image
-                  src={switchback.media.url}
-                  alt={switchback.media.alt}
-                  aspectRatio="14/9"
-                  frameColor={switchback.media.featuredColor}
-                />
+                {payloadContentExists(switchback.media) && (
+                  <Image
+                    src={switchback.media.url || ''}
+                    alt={switchback.media.alt}
+                    aspectRatio="14/9"
+                    frameColor={switchback.media.featuredColor || ''}
+                  />
+                )}
               </div>
             </Switchback>
           ))}

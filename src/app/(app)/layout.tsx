@@ -2,6 +2,7 @@ import ThemeScript from 'lib/ThemeScript';
 
 import { robotoMono, sharpGrotesk, sharpSans } from 'assets/fonts';
 
+import Footer from 'global/footer';
 import Header from 'global/header';
 
 import { cx } from 'theme/css';
@@ -23,6 +24,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body className={cx(sharpGrotesk.variable, sharpSans.variable, robotoMono.variable)}>
       <Header />
       {children}
+      <Footer />
     </body>
   </html>
 );

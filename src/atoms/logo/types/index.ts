@@ -1,8 +1,7 @@
 import type { LogoIds } from 'atoms/logo/types/ids';
-import type { SpacingToken } from 'theme/tokens';
-import type { HTMLStyledProps } from 'theme/types';
+import type { ClassStyles } from 'types/global';
 
-export interface LogoProps extends HTMLStyledProps<'svg'> {
+export interface LogoProps extends ClassStyles {
   /**
    * Defines the props for an logo component.
    */
@@ -10,7 +9,7 @@ export interface LogoProps extends HTMLStyledProps<'svg'> {
   /**
    * Defines the size and color properties for an logo component.
    */
-  size?: SpacingToken;
+  size?: `${number}px`;
   /**
    * Defines an optional aria-label attribute for the logo component.
    */

@@ -6,7 +6,32 @@ import type { SlotRecipeVariantRecord } from 'theme/types';
 
 export const buttonVariants = {
   size: {
-    md: {},
+    md: {
+      root: {
+        gap: '8',
+        paddingX: '20',
+        paddingY: '10',
+
+        '&[data-icon-only]': {
+          paddingX: '10',
+        },
+      },
+      label: {
+        textStyle: 'text.md',
+      },
+    },
+    lg: {
+      root: {
+        gap: '8',
+        paddingX: '24',
+        paddingY: '14',
+      },
+      label: {
+        textStyle: 'text.xl',
+        fontWeight: 'extraBold',
+        fontFamily: 'var(--sharp-grotesk)',
+      },
+    },
   },
   hierarchy: {
     fill: {
@@ -38,6 +63,11 @@ export const buttonVariants = {
       },
     },
   },
+  fullWidth: {
+    true: {
+      root: { w: '100%' },
+    },
+  },
 } as SlotRecipeVariantRecord<string>;
 
 export const buttonRecipe = defineSlotRecipe({
@@ -51,23 +81,15 @@ export const buttonRecipe = defineSlotRecipe({
       alignItems: 'center',
       justifyContent: 'center',
       transition: generateTransitions(['backgroundColor', 'color', 'borderColor'], 250),
-      width: '100',
+      w: '100',
       height: 'fit-content',
       borderRadius: '6px',
       outlineOffset: '2',
       fontWeight: 'bold',
       whiteSpace: 'nowrap',
 
-      gap: '8',
-      paddingX: '20',
-      paddingY: '10',
-
-      '&[data-icon-only]': {
-        paddingX: '10',
-      },
-
       sm: {
-        width: 'fit-content',
+        w: 'fit-content',
       },
 
       _disabled: {
@@ -75,7 +97,6 @@ export const buttonRecipe = defineSlotRecipe({
       },
     },
     label: {
-      textStyle: 'text.md',
       color: { base: 'gray.900', _dark: 'white' },
     },
     endIcon: {

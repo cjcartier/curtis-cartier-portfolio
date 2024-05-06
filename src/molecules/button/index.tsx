@@ -15,7 +15,7 @@ type NativeButtonProps = ComponentPropsWithoutRef<'button'> & ComponentPropsWith
 
 export type ButtonIconProps = { id: number; position: 'start' | 'end'; icon: IconIds };
 
-export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps, 'color' | 'type'> {
+export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps, 'color'> {
   /**
    * String label for button. Recommend short concise call to action
    * if `iconsOnly` is selected, label will become visibly hidden
@@ -34,7 +34,6 @@ export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps,
    * If true, this will remove the label visibly but include it for screen readers
    */
   iconsOnly?: boolean;
-  type?: 'custom' | 'reference' | null;
 }
 
 interface LabelProps extends HTMLStyledProps<'span'>, Pick<ButtonProps, 'iconsOnly'> {
@@ -56,12 +55,13 @@ const Button: FC<ButtonProps> = ({
   color,
   onClick,
   noPadding,
+  fullWidth,
   ...props
 }) => {
   const { Component: as, ...urlProps } = parseUrl(!disabled && link ? link : '');
   const component = as === 'div' ? 'button' : 'a';
   const Component = styled(component);
-  const classes = button({ hierarchy, size, color, noPadding });
+  const classes = button({ hierarchy, size, color, noPadding, fullWidth });
 
   return (
     <Component

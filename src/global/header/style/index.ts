@@ -7,6 +7,8 @@ const headerRecipe = defineSlotRecipe({
   slots: ['root', 'headerWrapper', 'logoWrapper', 'logo'],
   base: {
     root: {
+      display: 'flex',
+      justifyContent: 'center',
       paddingY: '24px',
       zIndex: '100',
       position: 'fixed',
@@ -22,7 +24,16 @@ const headerRecipe = defineSlotRecipe({
       backgroundColor: { base: 'white/20', _dark: 'white/3' },
       borderRadius: 'lg',
       boxShadow: 'black.md',
+      w: '100',
+      marginInline: '16',
+
       ...sectionSizing,
+
+      md: {
+        marginInline: '32',
+        ...sectionSizing.md,
+      },
+
       _after: {
         content: '""',
         layerStyle: 'frame',
@@ -34,6 +45,7 @@ const headerRecipe = defineSlotRecipe({
       alignItems: 'center',
       gap: '12',
       textStyle: 'display.sm',
+      fontWeight: 'extraBold',
       color: { base: 'gray.900', _dark: 'white' },
     },
     logo: {

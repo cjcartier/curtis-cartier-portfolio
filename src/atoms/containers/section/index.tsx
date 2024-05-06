@@ -1,5 +1,6 @@
 import Backgrounds from 'atoms/backgrounds';
 
+import { cx } from 'theme/css';
 import { styled } from 'theme/jsx';
 import { section } from 'theme/recipes';
 
@@ -36,13 +37,14 @@ export const Section: FC<SectionProps> = ({
   backgroundImage,
   paddingTop,
   paddingBottom,
+  className,
   ...props
 }) => {
   const { root, grain, container } = section({ paddingTop, paddingBottom });
   const Component = styled(as || 'section');
 
   return (
-    <Component as="section" id={id} className={root} {...props}>
+    <Component as="section" id={id} className={cx(root, className)} {...props}>
       <div className={grain} />
       <div className={container}>
         {backgroundImage && <Backgrounds id={backgroundImage} />}

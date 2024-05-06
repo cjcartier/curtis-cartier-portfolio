@@ -41,6 +41,14 @@ const iconOptions = {
     label: 'Mail',
     value: 'mail',
   },
+  gitHub: {
+    label: 'GitHub',
+    value: 'gitHub',
+  },
+  linkedIn: {
+    label: 'LinkedIn',
+    value: 'linkedIn',
+  },
 };
 
 const linkIconOptions = Object.keys(iconOptions).map(iconOption => ({

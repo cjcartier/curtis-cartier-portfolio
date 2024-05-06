@@ -8,11 +8,10 @@ import type { FC } from 'react';
 const Logo: FC<LogoProps> = ({ logo, size, className, ...props }) =>
   logoSet.has(logo) && (
     <svg
-      width={size || '24'}
-      height={size || '24'}
       focusable="false"
       aria-hidden
       className={cx(css({ fill: 'current', stroke: 'current' }), className)}
+      style={size && { width: size, height: size }}
       {...props}
     >
       <use href={`/logos/sprites.svg#${logo}`} />

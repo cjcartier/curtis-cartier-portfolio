@@ -1,21 +1,23 @@
 import { defineConfig } from '@pandacss/dev';
 
 import { atomicRecipes, atomicSlotRecipes, semanticTokens, tokens } from 'atoms';
-import globalSlotRecipes from 'global/globalRecipes';
-import globalCss from 'styles/global';
-import keyframes from 'styles/keyframes';
-import layerStyles from 'styles/layerStyles';
-import utilities from 'styles/utilities';
-import variables from 'styles/variables';
 
 import breakpoints from 'atoms/breakpoints';
 import textStyles from 'atoms/typography/typography';
 
 import moleculeSlotRecipes, { moleculeRecipes } from 'molecules/moleculeRecipes';
 
-import componentSlotRecipes from 'components/componentRecipes';
+import { componentRecipes, componentSlotRecipes } from 'components/componentRecipes';
 
-const recipes = { ...atomicRecipes, ...moleculeRecipes };
+import globalSlotRecipes from 'global/globalRecipes';
+
+import globalCss from 'styles/global';
+import keyframes from 'styles/keyframes';
+import layerStyles from 'styles/layerStyles';
+import utilities from 'styles/utilities';
+import variables from 'styles/variables';
+
+const recipes = { ...atomicRecipes, ...moleculeRecipes, ...componentRecipes };
 const slotRecipes = { ...atomicSlotRecipes, ...moleculeSlotRecipes, ...componentSlotRecipes, ...globalSlotRecipes };
 
 export default defineConfig({
