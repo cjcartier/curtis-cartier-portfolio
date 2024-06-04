@@ -1,4 +1,4 @@
-import { logoIds } from 'atoms/logo/types/ids';
+import { logoIds } from 'atoms/logo/data';
 
 import defaultAccess from 'payload/utils/defaultAccess';
 

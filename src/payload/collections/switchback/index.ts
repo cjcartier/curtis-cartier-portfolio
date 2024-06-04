@@ -37,8 +37,17 @@ const Switchback: CollectionConfig = {
         },
       },
       fields: [
-        { name: 'title', type: 'text' },
-        { name: 'reversed', type: 'checkbox' },
+        {
+          type: 'row',
+          fields: [
+            { name: 'title', type: 'text', admin: { width: '75%' } },
+            { name: 'reversed', type: 'checkbox', admin: { width: '25%' } },
+          ],
+        },
+        {
+          name: 'liveSite',
+          type: 'text',
+        },
         {
           name: 'content',
           type: 'blocks',
@@ -49,6 +58,12 @@ const Switchback: CollectionConfig = {
             initCollapsed: true,
             width: '50%',
           },
+        },
+        {
+          name: 'tools',
+          type: 'relationship',
+          relationTo: 'tools',
+          hasMany: true,
         },
         {
           name: 'media',

@@ -5,7 +5,7 @@ import TextArea from 'molecules/inputs/textArea';
 
 import type { Control, ControllerRenderProps, FieldError, FieldErrors } from 'react-hook-form';
 import type { Form } from 'types/payload-types';
-import type { ArrayElement, StripMaybe } from 'utils/typeUtils';
+import type { ArrayElement } from 'utils/typeUtils';
 
 type FieldTypes = ArrayElement<StripMaybe<Form['fields']>>;
 

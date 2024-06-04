@@ -22,10 +22,10 @@ interface CarouselProps extends ClassStyles {
   items: (number | TestimonialProps)[];
 }
 
-const getComponent = (componentName: string, props: TestimonialProps) => {
+const getComponent = (componentName: string, props: TestimonialProps, active: boolean) => {
   switch (componentName) {
     case 'testimonial':
-      return <Testimonial {...props} />;
+      return <Testimonial key={props.id} active={active} {...props} />;
     default:
       return null;
   }
@@ -49,7 +49,7 @@ const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) =>
 
               return (
                 <div key={item.id} {...api.getItemProps({ index })}>
-                  {getComponent(itemComponent, item)}
+                  {getComponent(itemComponent, item, api.index === index)}
                 </div>
               );
             })}

@@ -1,5 +1,7 @@
-import type { LogoIds } from 'atoms/logo/types/ids';
+import type { logoIds } from 'atoms/logo/data';
 import type { ClassStyles } from 'types/global';
+
+export type LogoIds = (typeof logoIds)[number];
 
 export interface LogoProps extends ClassStyles {
   /**
@@ -14,4 +16,8 @@ export interface LogoProps extends ClassStyles {
    * Defines an optional aria-label attribute for the logo component.
    */
   ariaLabel?: string;
+  /**
+   * Defines whether the logo is an icon.
+   */
+  isIcon?: boolean;
 }

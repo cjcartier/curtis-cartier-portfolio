@@ -6,7 +6,7 @@ import { cx } from 'theme/css';
 import { VisuallyHidden, styled } from 'theme/jsx';
 import { button } from 'theme/recipes';
 
-import type { IconIds } from 'atoms/icon';
+import type { IconIds } from 'atoms/icon/types';
 import type { ComponentPropsWithoutRef, FC, ReactNode } from 'react';
 import type { HTMLStyledProps } from 'theme/jsx';
 import type { ButtonVariantProps } from 'theme/recipes';
@@ -56,12 +56,13 @@ const Button: FC<ButtonProps> = ({
   onClick,
   noPadding,
   fullWidth,
+  loading,
   ...props
 }) => {
   const { Component: as, ...urlProps } = parseUrl(!disabled && link ? link : '');
   const component = as === 'div' ? 'button' : 'a';
   const Component = styled(component);
-  const classes = button({ hierarchy, size, color, noPadding, fullWidth });
+  const classes = button({ hierarchy, size, color, noPadding, fullWidth, loading });
 
   return (
     <Component
@@ -77,7 +78,7 @@ const Button: FC<ButtonProps> = ({
           {label}
         </Label>
       )}
-      {icon && <Icon icon={icon} className={classes.endIcon} />}
+      {icon && icon !== 'none' && <Icon icon={icon} className={classes.endIcon} />}
     </Component>
   );
 };

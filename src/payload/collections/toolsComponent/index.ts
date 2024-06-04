@@ -1,3 +1,5 @@
+import sectionField from 'payload/fields/section';
+
 import Heading from 'payload/blocks/heading';
 
 import defaultAccess from 'payload/utils/defaultAccess';
@@ -28,6 +30,7 @@ const ToolsComponent: CollectionConfig = {
       relationTo: 'tools',
       hasMany: true,
     },
+    sectionField(),
   ],
 };
 

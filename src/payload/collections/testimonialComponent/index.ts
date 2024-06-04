@@ -1,3 +1,5 @@
+import sectionField from 'payload/fields/section';
+
 import Heading from 'payload/blocks/heading';
 
 import defaultAccess from 'payload/utils/defaultAccess';
@@ -31,6 +33,7 @@ const TestimonialComponent: CollectionConfig = {
       relationTo: 'testimonials',
       hasMany: true,
     },
+    sectionField(),
   ],
 };
 

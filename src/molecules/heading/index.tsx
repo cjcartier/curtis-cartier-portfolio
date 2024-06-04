@@ -9,7 +9,7 @@ import richTextParser from 'utils/richTextParser';
 import { styled } from 'theme/jsx';
 import { heading as headingStyles } from 'theme/recipes';
 
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import type { HeadingVariant } from 'theme/recipes';
 import type { Badge as BadgeProps, ButtonBlock } from 'types/payload-types';
 
@@ -37,15 +37,27 @@ interface HeadingProps extends HeadingVariant {
   blockName?: string | null;
   blockType: 'heading';
   headingType?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  beforeHeading?: ReactNode;
 }
 
-const Heading: FC<HeadingProps> = ({ heading, subheading, doodle, badges, buttons, headingType, size, alignment }) => {
+const Heading: FC<HeadingProps> = ({
+  heading,
+  subheading,
+  doodle,
+  badges,
+  buttons,
+  headingType,
+  size,
+  alignment,
+  beforeHeading,
+}) => {
   const classes = headingStyles({ size, alignment });
   const Component = styled(headingType || 'h2');
 
   return (
     <>
       <div className={classes.root}>
+        {beforeHeading && beforeHeading}
         {badges && badges.map(badge => <Badge key={badge.id} {...badge} />)}
         {heading && (
           <Component className={classes.heading}>

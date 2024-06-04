@@ -27,7 +27,6 @@ export default defineConfig({
   outdir: 'src/theme',
   theme: {
     breakpoints,
-    keyframes,
     textStyles,
     tokens,
     semanticTokens,
@@ -35,6 +34,7 @@ export default defineConfig({
       recipes,
       slotRecipes,
       layerStyles,
+      keyframes,
     },
   },
   utilities,

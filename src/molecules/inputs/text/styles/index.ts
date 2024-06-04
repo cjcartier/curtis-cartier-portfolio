@@ -2,6 +2,20 @@ import { defineSlotRecipe } from '@pandacss/dev';
 
 import generateTransitions from 'utils/styles';
 
+import type { SlotRecipeVariantRecord } from 'theme/types';
+
+const textInputVariants = {
+  error: {
+    true: {
+      root: {
+        _after: {
+          backgroundColor: 'red.500',
+        },
+      },
+    },
+  },
+} as SlotRecipeVariantRecord<string>;
+
 const textInputRecipe = defineSlotRecipe({
   className: 'textInput',
   slots: ['root', 'input', 'resizeIcon'],
@@ -60,6 +74,8 @@ const textInputRecipe = defineSlotRecipe({
       },
     },
   },
+  variants: textInputVariants,
+  staticCss: ['*'],
 });
 
 export default textInputRecipe;

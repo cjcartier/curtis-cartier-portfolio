@@ -1,8 +1,18 @@
 import { defineSlotRecipe } from '@pandacss/dev';
 
+const formVariants = {
+  hasSubmitted: {
+    true: {
+      root: {
+        opacity: 0,
+      },
+    },
+  },
+};
+
 const formRecipe = defineSlotRecipe({
   className: 'form',
-  slots: ['root', 'title'],
+  slots: ['root', 'title', 'formSubmission', 'submissionTitle', 'submissionDescription'],
   base: {
     root: {
       display: 'flex',
@@ -13,7 +23,24 @@ const formRecipe = defineSlotRecipe({
       textStyle: 'display.xs',
       fontWeight: 'extraBold',
     },
+    formSubmission: {
+      absoluteCover: true,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '24',
+    },
+    submissionTitle: {
+      textStyle: 'display.lg',
+      fontWeight: 'extraBold',
+    },
+    submissionDescription: {
+      textStyle: 'text.xl',
+    },
   },
+  variants: formVariants,
+  staticCss: ['*'],
 });
 
 export default formRecipe;

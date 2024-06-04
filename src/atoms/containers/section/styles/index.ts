@@ -20,15 +20,18 @@ export const sectionSizing = {
 
 export const sectionVariants = {
   paddingTop: {
+    none: { root: { pt: '0' } },
     small: { root: { pt: '24' } },
     medium: { root: { pt: '32' } },
-    large: {},
+    large: { root: { pt: '48' } },
     xLarge: { root: { pt: '48', md: { pt: '88' }, lg: { pt: '136' } } },
   },
   paddingBottom: {
+    none: { root: { pb: '0' } },
     small: { root: { pb: '24' } },
     medium: { root: { pb: '32' } },
-    large: {},
+    large: { root: { pb: '48', lg: { pb: '96' } } },
+    xLarge: { root: { pb: '48', md: { pb: '88' }, lg: { pb: '136' } } },
   },
 } as SlotRecipeVariantRecord<string>;
 export const sectionRecipe = defineSlotRecipe({

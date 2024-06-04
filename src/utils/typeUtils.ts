@@ -37,5 +37,3 @@ export const keyExistsOnObject = <T extends Record<string, unknown>>(
 export type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[]
   ? ElementType
   : never;
-
-export type StripMaybe<T> = Exclude<T, undefined | null>;

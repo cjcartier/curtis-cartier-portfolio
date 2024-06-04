@@ -14,6 +14,7 @@ export interface Config {
     media: Media;
     pages: Page;
     person: Person;
+    portCo: PortCo;
     switchback: Switchback;
     testimonialComponent: TestimonialComponent;
     testimonials: Testimonial;
@@ -41,30 +42,28 @@ export interface Config {
 export interface Company {
   id: number;
   companyName?: string | null;
-  logo?: (number | null) | Media;
+  logoId?:
+    | (
+        | 'curative'
+        | 'retool'
+        | 'justworks'
+        | 'webstacks'
+        | 'juneshine'
+        | 'trustmachines'
+        | 'shopmonkey'
+        | 'pattern'
+        | 'lineup'
+        | 'sevenrooms'
+        | 'montucky'
+        | 'phs'
+        | 'elysian'
+        | 'leafly'
+        | 'pow'
+      )
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  caption?: string | null;
-  featuredColor?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -137,7 +136,7 @@ export interface ButtonBlock {
     link?: string | null;
     label: string;
     theme?: ('fill' | 'outline' | 'text') | null;
-    icon?: ('none' | 'mail' | 'gitHub' | 'linkedIn') | null;
+    icon?: ('none' | 'mail' | 'gitHub' | 'linkedIn' | 'externalLink') | null;
   };
   id?: string | null;
   blockName?: string | null;
@@ -348,6 +347,26 @@ export interface Hero {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  caption?: string | null;
+  featuredColor?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
@@ -361,6 +380,10 @@ export interface Page {
     | {
         relationTo: 'hero';
         value: number | Hero;
+      }
+    | {
+        relationTo: 'portCo';
+        value: number | PortCo;
       }
     | {
         relationTo: 'switchback';
@@ -388,6 +411,24 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "portCo".
+ */
+export interface PortCo {
+  id: number;
+  title?: string | null;
+  heading?: HeadingBlock[] | null;
+  brand?: (number | Company)[] | null;
+  section?: {
+    paddingTop?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    paddingBottom?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    backgroundImage?: 'home-curve' | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "switchback".
  */
 export interface Switchback {
@@ -398,7 +439,9 @@ export interface Switchback {
     | {
         title?: string | null;
         reversed?: boolean | null;
+        liveSite?: string | null;
         content: HeadingBlock[];
+        tools?: (number | Tool)[] | null;
         media: number | Media;
         id?: string | null;
       }[]
@@ -414,6 +457,36 @@ export interface Switchback {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: number;
+  tool?: string | null;
+  company?: (number | null) | Company;
+  logoId?:
+    | ('contentful' | 'dato' | 'figma' | 'gatsby' | 'github' | 'jira' | 'nextjs' | 'panda' | 'storybook' | 'tailwind')
+    | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonialComponent".
  */
 export interface TestimonialComponent {
@@ -421,6 +494,11 @@ export interface TestimonialComponent {
   title?: string | null;
   heading?: HeadingBlock[] | null;
   testimonials?: (number | Testimonial)[] | null;
+  section?: {
+    paddingTop?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    paddingBottom?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    backgroundImage?: 'home-curve' | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -477,36 +555,11 @@ export interface ToolsComponent {
   title?: string | null;
   heading?: HeadingBlock[] | null;
   tools?: (number | Tool)[] | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tools".
- */
-export interface Tool {
-  id: number;
-  tool?: string | null;
-  company?: (number | null) | Company;
-  logoId?:
-    | ('contentful' | 'dato' | 'figma' | 'gatsby' | 'github' | 'jira' | 'nextjs' | 'panda' | 'storybook' | 'tailwind')
-    | null;
-  description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  section?: {
+    paddingTop?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    paddingBottom?: ('none' | 'small' | 'medium' | 'large' | 'xLarge') | null;
+    backgroundImage?: 'home-curve' | null;
+  };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;

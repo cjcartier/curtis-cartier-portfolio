@@ -8,9 +8,10 @@ import type { SvgGradientTypes } from 'atoms/gradients/svgGradient';
 import type { ElementType, FC, ReactNode } from 'react';
 import type { SectionVariant } from 'theme/recipes';
 import type { HTMLStyledProps } from 'theme/types';
+import type { UndefinedProps } from 'types/global';
 
 interface SectionProps
-  extends SectionVariant,
+  extends UndefinedProps<SectionVariant>,
     Omit<HTMLStyledProps<'div'>, 'paddingBottom' | 'paddingTop' | 'backgroundImage'> {
   /**
    * An optional alternative HTML element type to render the section with.
@@ -27,7 +28,7 @@ interface SectionProps
   /**
    * The type of SVG gradient to use as the background image for the section.
    */
-  backgroundImage?: SvgGradientTypes;
+  backgroundImage?: SvgGradientTypes | null;
 }
 
 export const Section: FC<SectionProps> = ({
@@ -40,7 +41,10 @@ export const Section: FC<SectionProps> = ({
   className,
   ...props
 }) => {
-  const { root, grain, container } = section({ paddingTop, paddingBottom });
+  const { root, grain, container } = section({
+    paddingTop: paddingTop || 'medium',
+    paddingBottom: paddingBottom || 'medium',
+  });
   const Component = styled(as || 'section');
 
   return (

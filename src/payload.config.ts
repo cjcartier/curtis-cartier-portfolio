@@ -16,6 +16,7 @@ import Hero from 'payload/collections/hero';
 import Media from 'payload/collections/media';
 import Pages from 'payload/collections/pages/page';
 import Person from 'payload/collections/person';
+import PortCo from 'payload/collections/portco';
 import Switchback from 'payload/collections/switchback';
 import Testimonials from 'payload/collections/testimonial';
 import TestimonialComponent from 'payload/collections/testimonialComponent';
@@ -38,6 +39,7 @@ export default buildConfig({
     Media,
     Pages,
     Person,
+    PortCo,
     Switchback,
     TestimonialComponent,
     Testimonials,

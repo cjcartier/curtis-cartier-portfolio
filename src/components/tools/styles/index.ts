@@ -57,10 +57,6 @@ const toolsRecipe = defineSlotRecipe({
         h: '150px',
       },
 
-      _hover: {
-        transform: 'scale(1.05)',
-      },
-
       _after: {
         content: '""',
         borderRadius: 'lg',

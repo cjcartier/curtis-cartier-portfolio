@@ -22,6 +22,7 @@ const testimonialRecipe = defineSlotRecipe({
       borderRadius: 'lg',
       backdropFilter: 'blur(42px)',
       backgroundColor: { base: 'white/35', _dark: 'white/3' },
+
       _after: {
         content: '""',
         borderRadius: 'lg',
@@ -55,6 +56,11 @@ const testimonialRecipe = defineSlotRecipe({
       lg: {
         opacity: '0',
         transition: 'opacity 200ms ease-in-out',
+
+        _focusVisible: {
+          opacity: '1',
+        },
+
         _groupHover: {
           transitionDelay: '250ms',
           opacity: '1',

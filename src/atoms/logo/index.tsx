@@ -1,11 +1,11 @@
-import { logoSet } from 'atoms/logo/types/ids';
+import { logoSet } from 'atoms/logo/data';
 
 import { css, cx } from 'theme/css';
 
 import type { LogoProps } from 'atoms/logo/types';
 import type { FC } from 'react';
 
-const Logo: FC<LogoProps> = ({ logo, size, className, ...props }) =>
+const Logo: FC<LogoProps> = ({ logo, size, className, isIcon, ...props }) =>
   logoSet.has(logo) && (
     <svg
       focusable="false"
@@ -14,7 +14,7 @@ const Logo: FC<LogoProps> = ({ logo, size, className, ...props }) =>
       style={size && { width: size, height: size }}
       {...props}
     >
-      <use href={`/logos/sprites.svg#${logo}`} />
+      <use href={`/logos/sprites.svg#${logo}${isIcon ? '-icon' : ''}`} />
     </svg>
   );
 

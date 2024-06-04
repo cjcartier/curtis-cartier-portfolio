@@ -11,5 +11,3 @@ export const logoIds = [
   'tailwind',
 ];
 export const logoSet = new Set([...logoIds]);
-
-export type LogoIds = (typeof logoIds)[number];

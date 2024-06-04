@@ -13,7 +13,7 @@ import type { TextInputProps } from 'molecules/inputs/text';
 interface TextAreaProps extends TextInputProps {}
 
 // TODO: char count
-const TextArea: FC<TextAreaProps> = ({ label, name, required, control, placeholder, ...props }) => {
+const TextArea: FC<TextAreaProps> = ({ label, name, required, control, placeholder }) => {
   const classes = textInput();
   const [size, setSize] = useState(5);
 
@@ -23,6 +23,7 @@ const TextArea: FC<TextAreaProps> = ({ label, name, required, control, placehold
       <div className={cx(classes.root, 'group')}>
         <Icon icon="expand" className={classes.resizeIcon} size="16" onClick={() => setSize(size !== 5 ? 5 : 15)} />
         <textarea
+          id={name}
           name={name}
           className={classes.input}
           placeholder={placeholder}

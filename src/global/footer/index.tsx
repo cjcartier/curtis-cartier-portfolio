@@ -5,12 +5,12 @@ import configPromise from '@payload-config';
 import Logo from 'assets/svgs/logo';
 
 import Section from 'atoms/containers/section';
+import Glow from 'atoms/glows';
 
 import { footer } from 'theme/recipes';
 
 import type { FC } from 'react';
 import type { Footer as FooterProps } from 'types/payload-types';
-import Glow from 'atoms/glows';
 
 const MenuLinks: FC<{ menuLabel: string; links: FooterProps['mainLinks'] }> = ({ menuLabel, links }) => {
   const classes = footer();
@@ -20,7 +20,7 @@ const MenuLinks: FC<{ menuLabel: string; links: FooterProps['mainLinks'] }> = ({
       <h2>{menuLabel}</h2>
       <ul className={classes.menuList}>
         {links?.map(({ link }) => (
-          <li key={link.link} className={classes.menuItem}>
+          <li key={link.label} className={classes.menuItem}>
             <a href={`/${link.link}`}>{link.label}</a>
           </li>
         ))}

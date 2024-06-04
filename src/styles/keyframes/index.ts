@@ -25,6 +25,11 @@ export const keyframes = defineKeyframes({
     from: { transform: 'rotateY(270deg)' },
     to: { transform: 'rotateY(0deg)' },
   },
+  buttonLoading: {
+    '0%': { width: '45%' },
+    '50%': { width: '55%' },
+    '100%': { width: '45%' },
+  },
 });
 
 export default keyframes;

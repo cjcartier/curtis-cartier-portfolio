@@ -2,10 +2,12 @@ import { Section } from 'atoms/containers/section';
 
 import ConversionPanel from 'components/conversionPanel';
 import Hero from 'components/hero';
+import Portco from 'components/portco';
 import SwitchbackSection from 'components/switchbackSection';
 import Testimonials from 'components/testimonials';
 import Tools from 'components/tools';
 
+import payloadContentExists from 'utils/payloadContentExists';
 import { toKebabCase } from 'utils/strings';
 
 import type { FC } from 'react';
@@ -15,6 +17,7 @@ const components = {
   conversionPanel: ConversionPanel,
   hero: Hero,
   switchback: SwitchbackSection,
+  portCo: Portco,
   testimonialComponent: Testimonials,
   toolsComponent: Tools,
 } as const;
@@ -29,6 +32,8 @@ const getComponent = (component: keyof typeof components, props: HeroProps | Swi
       return <ConversionPanel {...props} />;
     case 'hero':
       return <Hero {...props} />;
+    case 'portCo':
+      return <Portco {...props} />;
     case 'switchback':
       return <SwitchbackSection {...props} />;
     case 'testimonialComponent':
@@ -48,21 +53,18 @@ const ComponentGenerator: FC<componentGeneratorProps> = ({ sections }) => {
       <>
         {sections.map((section, ind) => {
           const { value, relationTo } = section;
-          const { section: sectionProps, ...props } = value;
 
-          if (!(relationTo in components)) {
+          if (!payloadContentExists(value) || !(relationTo in components)) {
             return null;
           }
 
-          if (value && relationTo in components) {
-            return (
-              <Section key={value.id} id={toKebabCase(value.title || `${relationTo}-${ind}`)} {...sectionProps}>
-                {getComponent(relationTo, props)}
-              </Section>
-            );
-          }
+          const { section: sectionProps, ...props } = value;
 
-          return null;
+          return (
+            <Section key={value.id} id={toKebabCase(value.title || `${relationTo}-${ind}`)} {...sectionProps}>
+              {getComponent(relationTo, props)}
+            </Section>
+          );
         })}
       </>
     );

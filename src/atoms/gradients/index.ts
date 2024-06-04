@@ -13,6 +13,7 @@ const gradientsMap = {
   warmGlow: { value: 'linear-gradient(63.31deg, {colors.red.300} 22.15%, {colors.yellow.700} 81.34%)' },
   gentleBlue: { value: 'linear-gradient(84deg, rgba(63, 93, 255, 0) 0%, rgba(63, 93, 255, .09) 100%)' },
   mediumBlue: { value: 'linear-gradient(84deg, rgba(63, 93, 255, 0) 0%, rgba(63, 93, 255, .2) 100%)' },
+  overlay: { value: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)' },
 };
 
 const gradients = defineTokens.gradients(gradientsMap);

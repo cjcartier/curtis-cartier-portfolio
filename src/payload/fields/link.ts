@@ -49,6 +49,10 @@ const iconOptions = {
     label: 'LinkedIn',
     value: 'linkedIn',
   },
+  externalLink: {
+    label: 'External Link',
+    value: 'externalLink',
+  },
 };
 
 const linkIconOptions = Object.keys(iconOptions).map(iconOption => ({

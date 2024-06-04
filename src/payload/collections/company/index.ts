@@ -1,3 +1,5 @@
+import { brandIds } from 'atoms/brands/data';
+
 import defaultAccess from 'payload/utils/defaultAccess';
 
 import type { CollectionConfig } from 'payload/dist/collections/config/types';
@@ -14,9 +16,9 @@ const Company: CollectionConfig = {
       type: 'text',
     },
     {
-      name: 'logo',
-      type: 'relationship',
-      relationTo: 'media',
+      name: 'logoId',
+      type: 'select',
+      options: brandIds,
     },
   ],
 };

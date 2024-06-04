@@ -1,5 +1,10 @@
 import 'react';
 
+declare global {
+  type Maybe<T> = T | null | undefined;
+  type StripMaybe<T> = Exclude<T, undefined | null>;
+}
+
 declare module 'react' {
   interface CSSProperties {
     [key: `--${string}`]: string | number;
@@ -21,3 +26,15 @@ export interface ReactChildren {
 }
 
 export interface PassThroughProps extends ReactChildren, ClassStyles {}
+
+export type Value = unknown;
+
+export interface Property {
+  [key: string]: Value;
+}
+
+export interface Data {
+  [key: string]: Value | Property | Property[];
+}
+
+export type UndefinedProps<T> = { [K in keyof T]?: T[K] | null };

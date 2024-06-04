@@ -68,6 +68,26 @@ export const buttonVariants = {
       root: { w: '100%' },
     },
   },
+  loading: {
+    true: {
+      root: {
+        cursor: 'progress',
+        pointerEvents: 'none',
+
+        _before: {
+          content: '""',
+          position: 'absolute',
+          top: '0',
+          bottom: '0',
+          left: '0',
+          w: '0%',
+          backgroundColor: 'blue.300/15',
+          borderRadius: '6px',
+          animation: 'buttonLoading 1s ease-in-out infinite',
+        },
+      },
+    },
+  },
 } as SlotRecipeVariantRecord<string>;
 
 export const buttonRecipe = defineSlotRecipe({
@@ -87,6 +107,7 @@ export const buttonRecipe = defineSlotRecipe({
       outlineOffset: '2',
       fontWeight: 'bold',
       whiteSpace: 'nowrap',
+      cursor: 'pointer',
 
       sm: {
         w: 'fit-content',
@@ -98,6 +119,7 @@ export const buttonRecipe = defineSlotRecipe({
     },
     label: {
       color: { base: 'gray.900', _dark: 'white' },
+      zIndex: 10,
     },
     endIcon: {
       transition: 'transform ease-in-out 200ms',
