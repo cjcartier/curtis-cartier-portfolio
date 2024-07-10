@@ -1,7 +1,3 @@
-import { getPayload } from 'payload';
-
-import configPromise from '@payload-config';
-
 import Logo from 'assets/svgs/logo';
 
 import Section from 'atoms/containers/section';
@@ -32,12 +28,12 @@ const MenuLinks: FC<{ menuLabel: string; links: FooterProps['mainLinks'] }> = ({
 const Footer: FC<FooterProps> = async () => {
   const classes = footer();
 
-  const payload = await getPayload({ config: configPromise });
+  // const data = await payload.findGlobal({
+  //   slug: 'footer',
+  //   depth: 2,
+  // });
 
-  const data = await payload.findGlobal({
-    slug: 'footer',
-    depth: 2,
-  });
+  return null;
 
   return (
     <Section id="footer" className={classes.section}>
