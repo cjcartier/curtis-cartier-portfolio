@@ -8,7 +8,7 @@ const ToolsComponent = defineType({
   title: 'Component: Tools',
   type: 'document',
   fields: [
-    { name: 'title', title: 'Title', type: 'text' },
+    { name: 'title', title: 'Title', type: 'string' },
     heading,
     {
       name: 'tools',

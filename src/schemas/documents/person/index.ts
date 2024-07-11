@@ -29,7 +29,7 @@ const Person = defineType({
     },
     {
       name: 'position',
-      type: 'text',
+      type: 'string',
     },
     image({ fieldAdmin: { name: 'headshot', title: 'Headshot' } }),
     {

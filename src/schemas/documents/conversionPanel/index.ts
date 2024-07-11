@@ -14,12 +14,12 @@ const ConversionPanel = defineType({
       type: 'string',
     },
     heading,
-    // {
-    //   name: 'form',
-    //   type: 'relationship',
-    //   relationTo: 'forms',
-    //   hasMany: false,
-    // },
+    {
+      name: 'form',
+      title: 'Form',
+      type: 'reference',
+      to: [{ type: 'form' }],
+    },
     sectionField,
   ],
 });

@@ -5,7 +5,7 @@ import sectionField from 'schemas/fields/section';
 
 const PortCo = defineType({
   name: 'portCo',
-  title: 'Portfolio Company',
+  title: 'Component: PortCo',
   type: 'document',
   fields: [
     {
@@ -14,7 +14,12 @@ const PortCo = defineType({
       type: 'string',
     },
     heading,
-    { name: 'brand', type: 'reference', to: [{ type: 'company' }] },
+    {
+      name: 'brands',
+      title: 'Brands',
+      type: 'array',
+      of: [{ name: 'brand', title: 'Brand', type: 'reference', to: [{ type: 'company' }] }],
+    },
     sectionField,
   ],
 });
