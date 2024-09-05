@@ -7,62 +7,47 @@ import SwitchbackSection from 'components/switchbackSection';
 import Testimonials from 'components/testimonials';
 import Tools from 'components/tools';
 
-import payloadContentExists from 'utils/payloadContentExists';
+import { arrayValuesExist } from 'utils/arrays';
 import { toKebabCase } from 'utils/strings';
 
+import type { PAGE_QUERYResult } from 'lib/sanity/gen/sanity.types';
 import type { FC } from 'react';
-import type { Hero as HeroProps, Page, Switchback, TestimonialComponent } from 'types/payload-types';
 
-const components = {
-  conversionPanel: ConversionPanel,
-  hero: Hero,
-  switchback: SwitchbackSection,
-  portCo: Portco,
-  testimonialComponent: Testimonials,
-  toolsComponent: Tools,
-} as const;
+type Section = StripMaybe<PAGE_QUERYResult>['layout'];
 
 interface componentGeneratorProps {
-  sections: Page['layout'];
+  sections: Section;
 }
 
-const getComponent = (component: keyof typeof components, props: HeroProps | Switchback | TestimonialComponent) => {
-  switch (component) {
+const getComponent = (component: StripArray<Section>) => {
+  switch (component._type) {
     case 'conversionPanel':
-      return <ConversionPanel {...props} />;
+      return <ConversionPanel {...component} />;
     case 'hero':
-      return <Hero {...props} />;
+      return <Hero {...component} />;
     case 'portCo':
-      return <Portco {...props} />;
+      return <Portco {...component} />;
     case 'switchback':
-      return <SwitchbackSection {...props} />;
+      return <SwitchbackSection {...component} />;
     case 'testimonialComponent':
-      return <Testimonials {...props} />;
+      return <Testimonials {...component} />;
     case 'toolsComponent':
-      return <Tools {...props} />;
+      return <Tools {...component} />;
     default:
       return null;
   }
 };
 
 const ComponentGenerator: FC<componentGeneratorProps> = ({ sections }) => {
-  const hasSections = sections && Array.isArray(sections) && sections.length > 0;
-
-  if (hasSections) {
+  if (arrayValuesExist(sections)) {
     return (
       <>
-        {sections.map((section, ind) => {
-          const { value, relationTo } = section;
-
-          if (!payloadContentExists(value) || !(relationTo in components)) {
-            return null;
-          }
-
-          const { section: sectionProps, ...props } = value;
+        {sections.map(section => {
+          const { section: sectionProps, _type, _id, ...props } = section;
 
           return (
-            <Section key={value.id} id={toKebabCase(value.title || `${relationTo}-${ind}`)} {...sectionProps}>
-              {getComponent(relationTo, props)}
+            <Section key={_id} id={toKebabCase(props.title || _id)} {...sectionProps}>
+              {getComponent(section)}
             </Section>
           );
         })}

@@ -1,5 +1,5 @@
-import footerRecipe from 'global/footer/styles';
-import headerRecipe from 'global/header/style';
+import footerRecipe from 'layout/footer/styles';
+import headerRecipe from 'layout/header/style';
 
 export const globalSlotRecipes = {
   footer: footerRecipe,

@@ -7,22 +7,22 @@ import Logo from 'atoms/logo';
 
 import Heading from 'molecules/heading';
 import HoverCard from 'molecules/hoverCard';
+import RichText from 'molecules/richText';
 
 import updateToolArray from 'components/tools/utils/updateToolArray';
 
 import { getRandomInt } from 'utils/numbers';
-import richTextParser from 'utils/richTextParser';
 
 import { cx } from 'theme/css';
 import { toolsComponent } from 'theme/recipes';
 
-import type { Tool, ToolsComponent } from 'types/payload-types';
+import type { Tool, ToolsComponent } from 'lib/sanity/gen/sanity.types';
 
 const shownTools = 7;
 
 const Tools: FC<ToolsComponent> = ({ heading, tools }) => {
   const classes = toolsComponent();
-  const filteredTools = tools?.filter(tool => tool && typeof tool !== 'number') as Tool[];
+  const filteredTools = tools?.filter(tool => tool) as Tool[];
   const [currentTools, setCurrentTools] = useState<Tool[]>(filteredTools?.slice(0, shownTools) || []);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Tools: FC<ToolsComponent> = ({ heading, tools }) => {
 
   return (
     <div className={classes.root}>
-      {heading && <Heading headingType="h2" alignment="start" size="md" {...heading[0]} />}
+      {heading && <Heading headingType="h2" alignment="start" size="md" {...heading} />}
       <div className={classes.toolsContainer}>
         <Glow temperature="warm" />
         <div className={classes.hiddenTool} />
@@ -73,7 +73,7 @@ const Tools: FC<ToolsComponent> = ({ heading, tools }) => {
               <Logo logo={tool.logoId} className={classes.toolLogo} />
               <HoverCard id={tool.logoId || String(ind)} iconId="info-circle" iconClassName={classes.hoverCardIcon}>
                 <h4>{tool.tool}</h4>
-                {tool.description && <p>{richTextParser(tool.description.root.children)}</p>}
+                {tool.description && <RichText blocks={tool.description} />}
               </HoverCard>
             </div>
           );

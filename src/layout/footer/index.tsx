@@ -1,3 +1,7 @@
+import { defineQuery } from 'next-sanity';
+
+import { sanityFetch } from 'lib/sanity/client';
+
 import Logo from 'assets/svgs/logo';
 
 import Section from 'atoms/containers/section';
@@ -5,9 +9,13 @@ import Glow from 'atoms/glows';
 
 import { footer } from 'theme/recipes';
 
+import type { FOOTER_QUERYResult, Footer as FooterProps } from 'lib/sanity/gen/sanity.types.d.ts';
 import type { FC } from 'react';
-import type { Footer as FooterProps } from 'types/payload-types';
+import type { ClassStyles } from 'types/global';
 
+const FOOTER_QUERY = defineQuery('*[_type == "footer"][0]{_id,_type,contactLinks[],resourceLinks[],mainLinks[]}');
+
+// TODO: Add Link
 const MenuLinks: FC<{ menuLabel: string; links: FooterProps['mainLinks'] }> = ({ menuLabel, links }) => {
   const classes = footer();
 
@@ -15,9 +23,9 @@ const MenuLinks: FC<{ menuLabel: string; links: FooterProps['mainLinks'] }> = ({
     <div className={classes.menuWrapper}>
       <h2>{menuLabel}</h2>
       <ul className={classes.menuList}>
-        {links?.map(({ link }) => (
-          <li key={link.label} className={classes.menuItem}>
-            <a href={`/${link.link}`}>{link.label}</a>
+        {links?.map(({ link, label }) => (
+          <li key={link} className={classes.menuItem}>
+            <a href={`/${link}`}>{label}</a>
           </li>
         ))}
       </ul>
@@ -25,15 +33,22 @@ const MenuLinks: FC<{ menuLabel: string; links: FooterProps['mainLinks'] }> = ({
   );
 };
 
-const Footer: FC<FooterProps> = async () => {
+const FooterLinks: FC<StripMaybe<FOOTER_QUERYResult> & ClassStyles> = ({
+  mainLinks,
+  resourceLinks,
+  contactLinks,
+  className,
+}) => (
+  <nav className={className}>
+    {mainLinks && <MenuLinks menuLabel="Main" links={mainLinks} />}
+    {resourceLinks && <MenuLinks menuLabel="Resources" links={resourceLinks} />}
+    {contactLinks && <MenuLinks menuLabel="Contact" links={contactLinks} />}
+  </nav>
+);
+
+const Footer = async () => {
   const classes = footer();
-
-  // const data = await payload.findGlobal({
-  //   slug: 'footer',
-  //   depth: 2,
-  // });
-
-  return null;
+  const data = await sanityFetch<FOOTER_QUERYResult>({ query: FOOTER_QUERY });
 
   return (
     <Section id="footer" className={classes.section}>
@@ -48,11 +63,7 @@ const Footer: FC<FooterProps> = async () => {
           <Logo className={classes.logo} />
           Curtis Cartier
         </div>
-        <nav className={classes.menuContainer}>
-          <MenuLinks menuLabel="Main" links={data.mainLinks} />
-          <MenuLinks menuLabel="Resources" links={data.resourceLinks} />
-          <MenuLinks menuLabel="Contact" links={data.contactLinks} />
-        </nav>
+        {data && <FooterLinks className={classes.menuContainer} {...data} />}
         <div className={classes.legalContainer}>
           <span className={classes.copyright}>© {new Date().getFullYear()} Curtis Cartier. All Rights Reserved.</span>
         </div>

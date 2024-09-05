@@ -12,12 +12,12 @@ import { arrayValuesExist } from 'utils/arrays';
 import { cx } from 'theme/css';
 import { carousel } from 'theme/recipes';
 
+import type { Testimonial as TestimonialProps } from 'lib/sanity/gen/sanity.types';
 import type { FC } from 'react';
 import type { ClassStyles } from 'types/global';
-import type { Testimonial as TestimonialProps } from 'types/payload-types';
 
 interface CarouselProps extends ClassStyles {
-  id: string | number;
+  id: string;
   itemComponent: 'testimonial';
   items: (number | TestimonialProps)[];
 }
@@ -25,22 +25,22 @@ interface CarouselProps extends ClassStyles {
 const getComponent = (componentName: string, props: TestimonialProps, active: boolean) => {
   switch (componentName) {
     case 'testimonial':
-      return <Testimonial key={props.id} active={active} {...props} />;
+      return <Testimonial key={props._id} active={active} {...props} />;
     default:
       return null;
   }
 };
 
 const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) => {
-  const [state, send] = useMachine(carouselMachine.machine({ id: `${id}`, loop: true, spacing: '32px' }));
+  const [state, send] = useMachine(carouselMachine.machine({ id, loop: true, spacing: '32px' }));
   const classes = carousel();
 
   const api = carouselMachine.connect(state, send, normalizeProps);
 
   return (
-    <div className={cx(className, classes.root)} {...api.rootProps}>
-      <div {...api.viewportProps}>
-        <div {...api.itemGroupProps}>
+    <div className={cx(className, classes.root)} {...api.getRootProps()}>
+      <div {...api.getViewportProps()}>
+        <div {...api.getItemGroupProps()}>
           {arrayValuesExist(items) &&
             items.map((item, index) => {
               if (typeof item === 'number') {
@@ -48,7 +48,7 @@ const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) =>
               }
 
               return (
-                <div key={item.id} {...api.getItemProps({ index })}>
+                <div key={item._id} {...api.getItemProps({ index })}>
                   {getComponent(itemComponent, item, api.index === index)}
                 </div>
               );
@@ -56,19 +56,19 @@ const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) =>
         </div>
       </div>
       <div className={classes.navigationContainer}>
-        <button className={classes.navigationArrows} tabIndex={0} {...api.prevTriggerProps}>
+        <button className={classes.navigationArrows} tabIndex={0} {...api.getPrevTriggerProps()}>
           <Icon icon="chevron-left" />
         </button>
-        <div className={classes.indicatorGroup} {...api.indicatorGroupProps}>
+        <div className={classes.indicatorGroup} {...api.getIndicatorGroupProps()}>
           {items.map((item, index) => {
             if (typeof item === 'number') {
               return null;
             }
 
-            return <button key={item.id} className={classes.indicator} {...api.getIndicatorProps({ index })} />;
+            return <button key={item._id} className={classes.indicator} {...api.getIndicatorProps({ index })} />;
           })}
         </div>
-        <button className={classes.navigationArrows} tabIndex={0} {...api.nextTriggerProps}>
+        <button className={classes.navigationArrows} tabIndex={0} {...api.getNextTriggerProps()}>
           <Icon icon="chevron-right" />
         </button>
       </div>

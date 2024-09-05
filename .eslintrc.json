@@ -12,6 +12,7 @@
     "plugin:jsx-a11y/recommended",
     "prettier",
     "next"
+    // "@sanity/eslint-config-studio"
     // "plugin:vitest/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -41,7 +42,7 @@
     "mdx/code-blocks": false,
     "mdx/language-mapper": {}
   },
-  "ignorePatterns": ["next-env.d.ts", "src/lib/types.ts", "src/lib/sdk.ts"],
+  "ignorePatterns": ["next-env.d.ts", "src/lib/sanity/gen/sanity.types.ts"],
   "rules": {
     "curly": "error",
     "eqeqeq": ["error", "smart"],
@@ -73,7 +74,6 @@
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/member-delimiter-style": "warn",
     "import/first": "error",
     "import/default": "error",
     "import/prefer-default-export": "warn",
@@ -106,7 +106,7 @@
             "position": "after"
           },
           {
-            "pattern": "global/**",
+            "pattern": "layout/**",
             "group": "internal",
             "position": "after"
           },

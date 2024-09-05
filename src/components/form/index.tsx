@@ -9,10 +9,10 @@ import fieldGenerator from 'components/form/utils/fieldGenerator';
 
 import { form } from 'theme/recipes';
 
+import type { Form as FormProps } from 'lib/sanity/gen/sanity.types';
 import type { Data } from 'types/global';
-import type { Form as FormProps } from 'types/payload-types';
 
-const Form: FC<FormProps> = ({ id: formID, title, fields, submitButtonLabel }) => {
+const Form: FC<FormProps> = ({ _id: formID, title, formFields, submitButtonLabel }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState<boolean>();
   const [error, setError] = useState<{ status?: string; message: string } | undefined>();
@@ -86,7 +86,7 @@ const Form: FC<FormProps> = ({ id: formID, title, fields, submitButtonLabel }) =
     <>
       <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
         <h3 className={classes.title}>{title}</h3>
-        {fieldGenerator(fields, control, errors)}
+        {fieldGenerator(formFields, control, errors)}
         <Button
           label={submitButtonLabel || 'Submit'}
           type="submit"

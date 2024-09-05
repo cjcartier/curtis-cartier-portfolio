@@ -4,23 +4,21 @@ import { type FC, useEffect, useRef, useState } from 'react';
 
 import Button from 'molecules/button';
 import Image from 'molecules/image';
-
-import payloadContentExists from 'utils/payloadContentExists';
-import richTextParser from 'utils/richTextParser';
+import RichText from 'molecules/richText';
 
 import { cx } from 'theme/css';
 import { testimonial } from 'theme/recipes';
 
-import type { Testimonial as TestimonialPayloadProps } from 'types/payload-types';
+import type { Testimonial as TestimonialSanityProps } from 'lib/sanity/gen/sanity.types';
 
-interface TestimonialProps extends TestimonialPayloadProps {
+interface TestimonialProps extends TestimonialSanityProps {
   /**
    * optional prop if being used in a carousel.
    */
   active?: boolean;
 }
 
-const Testimonial: FC<TestimonialProps> = ({ id, author, content, active }) => {
+const Testimonial: FC<TestimonialProps> = ({ _id, author, content, active }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [truncated, setTruncated] = useState(true);
   const [copyMaxHeight, setCopyMaxHeight] = useState(0);
@@ -35,16 +33,16 @@ const Testimonial: FC<TestimonialProps> = ({ id, author, content, active }) => {
   }, []);
 
   return (
-    <div id={`${id}`} className={cx(classes.root, 'group')}>
+    <div id={_id} className={cx(classes.root, 'group')}>
       <div className={classes.topContainer}>
-        {payloadContentExists(author) && (
+        {author && (
           <div className={classes.authorContainer}>
-            {payloadContentExists(author?.headshot) && author?.headshot?.url && (
-              <Image src={author?.headshot?.url} alt={author?.headshot?.alt} noFrame className={classes.headshot} />
+            {author?.headshot && author?.headshot?.asset && (
+              <Image image={author?.headshot?.asset} alt={author?.headshot?.alt} noFrame className={classes.headshot} />
             )}
             <div className={classes.authorDetails}>
               <h3 className={classes.authorName}>{author.displayName}</h3>
-              {payloadContentExists(author?.company) && (
+              {author?.company && (
                 <div
                   className={classes.position}
                 >{`${author.position}${author?.company?.companyName ? ` @ ${author?.company?.companyName}` : ''}`}</div>
@@ -71,7 +69,7 @@ const Testimonial: FC<TestimonialProps> = ({ id, author, content, active }) => {
               '--copy-min-height': `${copyMinHeight}px`,
             }}
           >
-            {richTextParser(content.root.children)}
+            <RichText blocks={content} />
           </div>
         </>
       )}

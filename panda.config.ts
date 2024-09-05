@@ -9,7 +9,7 @@ import moleculeSlotRecipes, { moleculeRecipes } from 'molecules/moleculeRecipes'
 
 import { componentRecipes, componentSlotRecipes } from 'components/componentRecipes';
 
-import globalSlotRecipes from 'global/globalRecipes';
+import globalSlotRecipes from 'layout/globalRecipes';
 
 import globalCss from 'styles/global';
 import keyframes from 'styles/keyframes';

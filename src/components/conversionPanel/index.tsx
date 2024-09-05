@@ -5,13 +5,11 @@ import Heading from 'molecules/heading';
 
 import Form from 'components/form';
 
-import payloadContentExists from 'utils/payloadContentExists';
-
 import { cx } from 'theme/css';
 import { conversionPanel } from 'theme/recipes';
 
+import type { ConversionPanel as ConversionPanelProps } from 'lib/sanity/gen/sanity.types';
 import type { FC } from 'react';
-import type { ConversionPanel as ConversionPanelProps } from 'types/payload-types';
 
 const ConversionPanel: FC<ConversionPanelProps> = ({ heading, form }) => {
   const classes = conversionPanel();
@@ -24,10 +22,10 @@ const ConversionPanel: FC<ConversionPanelProps> = ({ heading, form }) => {
         <div className={classes.headingFrame}>
           <Doodle doodle="hard" className={cx(classes.doodle, classes.doodleThree)} />
         </div>
-        {heading && <Heading headingType="h2" alignment="start" size="md" {...heading[0]} />}
+        {heading && <Heading headingType="h2" alignment="start" size="md" {...heading} />}
         <Doodle doodle="squiggle" className={cx(classes.doodle, classes.doodleTwo)} />
       </div>
-      {payloadContentExists(form) && (
+      {form && (
         <div className={classes.formWrapper}>
           <Glow temperature="warm" />
           <Form {...form} />

@@ -3,39 +3,19 @@ import Doodle from 'atoms/doodle';
 import Badge from 'molecules/badge';
 import Button from 'molecules/button';
 import ButtonWrapper from 'molecules/button/components/ButtonWrapper';
+import RichText from 'molecules/richText';
 
-import richTextParser from 'utils/richTextParser';
+import { arrayValuesExist } from 'utils/arrays';
 
 import { styled } from 'theme/jsx';
 import { heading as headingStyles } from 'theme/recipes';
 
+import type { Hero } from 'lib/sanity/gen/sanity.types';
 import type { FC, ReactNode } from 'react';
 import type { HeadingVariant } from 'theme/recipes';
-import type { Badge as BadgeProps, ButtonBlock } from 'types/payload-types';
+import type { ExtractKey } from 'types/global';
 
-interface HeadingProps extends HeadingVariant {
-  badges?: BadgeProps[] | null;
-  doodle?: ('hard' | 'half-hard' | 'squiggle') | null;
-  heading: string;
-  subheading?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  buttons?: ButtonBlock[] | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'heading';
+interface HeadingProps extends ExtractKey<Hero, 'heading'>, HeadingVariant {
   headingType?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   beforeHeading?: ReactNode;
 }
@@ -58,18 +38,22 @@ const Heading: FC<HeadingProps> = ({
     <>
       <div className={classes.root}>
         {beforeHeading && beforeHeading}
-        {badges && badges.map(badge => <Badge key={badge.id} {...badge} />)}
+        {arrayValuesExist(badges) && badges.map(badge => <Badge key={badge._key} {...badge} />)}
         {heading && (
           <Component className={classes.heading}>
             {doodle && <Doodle doodle={doodle} className={classes.doodle} />}
             {heading}
           </Component>
         )}
-        {subheading && <div className={classes?.subheading}>{richTextParser(subheading.root.children)}</div>}
-        {buttons && (
+        {subheading && (
+          <div className={classes?.subheading}>
+            <RichText blocks={subheading} />
+          </div>
+        )}
+        {arrayValuesExist(buttons) && (
           <ButtonWrapper>
             {buttons.map(button => (
-              <Button key={button.id} {...button.button} />
+              <Button key={button._key} {...button.button} />
             ))}
           </ButtonWrapper>
         )}

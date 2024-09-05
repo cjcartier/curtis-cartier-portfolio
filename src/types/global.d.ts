@@ -3,6 +3,7 @@ import 'react';
 declare global {
   type Maybe<T> = T | null | undefined;
   type StripMaybe<T> = Exclude<T, undefined | null>;
+  type StripArray<T> = T extends Array<infer U> ? U : T;
 }
 
 declare module 'react' {
@@ -38,3 +39,5 @@ export interface Data {
 }
 
 export type UndefinedProps<T> = { [K in keyof T]?: T[K] | null };
+
+export type ExtractKey<T, K extends string> = T extends { [P in K]?: infer U } ? NonNullable<U> : never;

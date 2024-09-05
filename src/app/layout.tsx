@@ -2,14 +2,11 @@ import ThemeScript from 'lib/ThemeScript';
 
 import { robotoMono, sharpGrotesk, sharpSans } from 'assets/fonts';
 
-import Footer from 'global/footer';
-import Header from 'global/header';
-
 import { cx } from 'theme/css';
 
 import type { Metadata } from 'next';
 
-import 'app/(app)/globals.css';
+import 'app/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,15 +14,11 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang="en" suppressHydrationWarning>
+  <html lang="en">
     <head>
       <ThemeScript />
     </head>
-    <body className={cx(sharpGrotesk.variable, sharpSans.variable, robotoMono.variable)}>
-      <Header />
-      {children}
-      <Footer />
-    </body>
+    <body className={cx(sharpGrotesk.variable, sharpSans.variable, robotoMono.variable)}>{children}</body>
   </html>
 );
 
