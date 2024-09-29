@@ -33,7 +33,7 @@ const parseUrl = (href: string) => {
   try {
     url = new URL(href);
   } catch (error) {
-    throw new Error(`Invalid URL: ${href}`);
+    throw new Error(`Invalid URL: ${href}, error: ${error}`);
   }
 
   const isInternal = url.hostname === `www.${domain}` || url.hostname === domain;

@@ -32,26 +32,26 @@ export const sectionField = defineField({
   title: 'Section Props',
   type: 'object',
   fields: [
-    {
+    defineField({
       name: 'paddingTop',
       title: 'Padding Top',
       type: 'string',
       options: { list: paddingOptions },
-    },
-    {
+    }),
+    defineField({
       name: 'paddingBottom',
       title: 'Padding Bottom',
       type: 'string',
       options: { list: paddingOptions },
-    },
-    {
+    }),
+    defineField({
       name: 'backgroundImage',
       title: 'Background Image',
       type: 'string',
       options: {
         list: Object.keys(svgGradients).map(gradient => ({ title: deKebabString(gradient), value: gradient })),
       },
-    },
+    }),
   ],
 });
 

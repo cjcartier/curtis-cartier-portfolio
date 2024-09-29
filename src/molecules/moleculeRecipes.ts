@@ -1,3 +1,4 @@
+import attributionRecipe from 'molecules/attribution/styles';
 import badgeRecipe from 'molecules/badge/styles';
 import buttonRecipe from 'molecules/button/styles';
 import carouselRecipe from 'molecules/carousel/styles';
@@ -21,6 +22,7 @@ export const moleculeRecipes = {
 };
 
 export const moleculeSlotRecipes = {
+  attribution: attributionRecipe,
   button: buttonRecipe,
   carousel: carouselRecipe,
   heading: headingRecipe,

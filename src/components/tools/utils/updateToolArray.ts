@@ -1,6 +1,6 @@
 import { getRandomInt } from 'utils/numbers';
 
-import type { Tool } from 'types/payload-types';
+import type { Tool } from 'components/tools/components/toolsSwitcher';
 
 /**
  * Updates the current tools array by randomly replacing one tool with a new tool from the list of all tools.

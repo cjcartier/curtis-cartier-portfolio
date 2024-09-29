@@ -7,12 +7,12 @@ import Icon from 'atoms/icon';
 
 import Testimonial from 'molecules/testimonial';
 
-import { arrayValuesExist } from 'utils/arrays';
+import { hasArrayValues } from 'utils/arrays';
 
 import { cx } from 'theme/css';
 import { carousel } from 'theme/recipes';
 
-import type { Testimonial as TestimonialProps } from 'lib/sanity/gen/sanity.types';
+import type { TestimonialProps } from 'molecules/testimonial';
 import type { FC } from 'react';
 import type { ClassStyles } from 'types/global';
 
@@ -41,7 +41,7 @@ const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) =>
     <div className={cx(className, classes.root)} {...api.getRootProps()}>
       <div {...api.getViewportProps()}>
         <div {...api.getItemGroupProps()}>
-          {arrayValuesExist(items) &&
+          {hasArrayValues(items) &&
             items.map((item, index) => {
               if (typeof item === 'number') {
                 return null;

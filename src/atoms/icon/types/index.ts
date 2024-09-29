@@ -1,12 +1,12 @@
 import { iconSet } from 'atoms/icon/data';
 
 import type { ColorToken, SpacingToken } from 'theme/tokens';
-import type { HTMLStyledProps } from 'theme/types';
+import type { ClassStyles } from 'types/global';
 
 export const iconIds = Array.from(iconSet);
 export type IconIds = (typeof iconIds)[number];
 
-export interface IconProps extends HTMLStyledProps<'svg'> {
+export interface IconProps extends ClassStyles {
   /**
    * Defines the props for an icon component.
    */
@@ -23,4 +23,8 @@ export interface IconProps extends HTMLStyledProps<'svg'> {
    * Defines an optional aria-label attribute for the icon component.
    */
   ariaLabel?: string;
+  /**
+   * Defines an optional click handler for the icon component.
+   */
+  onClick?: () => void;
 }

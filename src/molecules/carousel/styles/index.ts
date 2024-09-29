@@ -28,12 +28,12 @@ const carouselRecipe = defineSlotRecipe({
       gap: '16',
     },
     indicator: {
-      w: '12',
-      h: '12',
-      borderRadius: '12px',
-      backgroundColor: { base: 'black/15', _dark: 'white/15' },
-      cursor: 'pointer',
-      transition: generateTransitions(['backgroundColor', 'width'], 200),
+      'w': '12',
+      'h': '12',
+      'borderRadius': '12px',
+      'backgroundColor': { base: 'black/15', _dark: 'white/15' },
+      'cursor': 'pointer',
+      'transition': generateTransitions(['backgroundColor', 'width'], 200),
 
       '&[data-current]': {
         w: '36',

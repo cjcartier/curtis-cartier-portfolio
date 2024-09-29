@@ -1,7 +1,7 @@
 'use client';
 
-import { embeddingsIndexDashboard } from '@sanity/embeddings-index-ui';
 import { visionTool } from '@sanity/vision';
+import { groqdPlaygroundTool } from 'groqd-playground';
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { iconPicker } from 'sanity-plugin-icon-picker';
@@ -19,7 +19,7 @@ const plugins = [
   visionTool({ defaultApiVersion: apiVersion }),
   simplerColorInput(),
   iconPicker(),
-  embeddingsIndexDashboard(),
+  groqdPlaygroundTool(),
 ] as PluginOptions[];
 
 const config = defineConfig({

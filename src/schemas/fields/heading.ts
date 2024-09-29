@@ -1,5 +1,6 @@
 import { defineField } from 'sanity';
 
+import link from 'schemas/fields/link';
 import { generateValueListFromArray } from 'schemas/utils/schemaFunctions';
 
 const heading = defineField({
@@ -13,12 +14,14 @@ const heading = defineField({
       type: 'array',
       of: [
         {
+          name: 'badge',
+          title: 'Badge',
           type: 'object',
           fields: [
             {
-              name: 'badge',
-              type: 'reference',
-              to: [{ type: 'badge' }],
+              name: 'label',
+              title: 'Label',
+              type: 'string',
             },
           ],
         },
@@ -47,17 +50,11 @@ const heading = defineField({
       title: 'Buttons',
       type: 'array',
       of: [
-        {
-          type: 'object',
-          fields: [
-            {
-              name: 'button',
-              title: 'Button',
-              type: 'reference',
-              to: [{ type: 'button' }],
-            },
-          ],
-        },
+        link({
+          theme: ['fill', 'outline', 'text'],
+          hasIcon: true,
+          fieldAdmin: { name: 'button', title: 'Button' },
+        }),
       ],
     },
   ],

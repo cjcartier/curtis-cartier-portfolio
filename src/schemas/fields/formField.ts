@@ -28,6 +28,7 @@ const formField = defineField({
       title: 'Field ID',
       type: 'slug',
       options: {
+        // @ts-expect-error - fieldName does exist but option does not parse fields
         source: (doc, options) => options.parent.fieldName,
         maxLength: 200,
       },

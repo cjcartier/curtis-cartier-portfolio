@@ -2,7 +2,6 @@ import { defineField } from 'sanity';
 
 import { objectKeys } from 'utils/typeUtils';
 
-
 export const iconOptions = {
   none: {
     label: 'None',

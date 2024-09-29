@@ -5,14 +5,14 @@ const hoverCardRecipe = defineSlotRecipe({
   slots: ['content', 'icon'],
   base: {
     content: {
-      position: 'relative',
-      background: { base: 'white/30', _dark: 'white/8' },
-      padding: '12px',
-      borderRadius: 'md',
-      zIndex: '10',
-      backdropFilter: 'blur(20px)',
+      'position': 'relative',
+      'background': { base: 'white/30', _dark: 'white/8' },
+      'padding': '12px',
+      'borderRadius': 'md',
+      'zIndex': '10',
+      'backdropFilter': 'blur(20px)',
 
-      _after: {
+      '_after': {
         content: '""',
         borderRadius: 'md',
         layerStyle: 'frame',

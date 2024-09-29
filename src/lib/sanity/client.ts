@@ -1,3 +1,4 @@
+import { makeSafeQueryRunner } from 'groqd';
 import { createClient } from 'next-sanity';
 
 import { apiVersion, dataset, projectId } from 'lib/sanity/env';
@@ -12,6 +13,9 @@ export const client = createClient({
   perspective: 'published',
 });
 
+export const runQuery = makeSafeQueryRunner((query, params: Record<string, unknown> = {}) =>
+  client.fetch(query, params),
+);
 export const sanityFetch = async <T>({
   query,
   params = {},

@@ -27,10 +27,11 @@ export const Header = defineType({
       title: 'Buttons',
       type: 'array',
       of: [
-        {
-          type: 'reference',
-          to: [{ type: 'button' }],
-        },
+        link({
+          theme: ['fill', 'outline', 'text'],
+          hasIcon: true,
+          fieldAdmin: { name: 'button', title: 'Button' },
+        }),
       ],
     },
   ],

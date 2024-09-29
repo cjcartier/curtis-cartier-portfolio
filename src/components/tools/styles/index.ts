@@ -41,32 +41,32 @@ const toolsRecipe = defineSlotRecipe({
       },
     },
     tool: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      w: '100px',
-      h: '100px',
-      borderRadius: 'lg',
-      backgroundColor: { base: 'white/35', _dark: 'white/10' },
-      transition: 'transform 150ms ease-in-out, backgroundColor 250ms ease-in-out',
-      perspective: '1000px',
+      'position': 'relative',
+      'display': 'flex',
+      'alignItems': 'center',
+      'justifyContent': 'center',
+      'w': '100px',
+      'h': '100px',
+      'borderRadius': 'lg',
+      'backgroundColor': { base: 'white/35', _dark: 'white/10' },
+      'transition': 'transform 150ms ease-in-out, backgroundColor 250ms ease-in-out',
+      'perspective': '1000px',
 
-      sm: {
+      'sm': {
         w: '150px',
         h: '150px',
       },
 
-      _after: {
+      '_after': {
         content: '""',
         borderRadius: 'lg',
         layerStyle: 'frame',
       },
 
       '&.flip-out-right': {
-        animation: 'flipOutRight',
-        animationDuration: '300ms',
-        animationTimingFunction: 'ease-in-out',
+        'animation': 'flipOutRight',
+        'animationDuration': '300ms',
+        'animationTimingFunction': 'ease-in-out',
 
         '& svg': {
           animation: 'fadeOut',
@@ -76,9 +76,9 @@ const toolsRecipe = defineSlotRecipe({
       },
 
       '&.flip-in-right': {
-        animation: 'flipInRight',
-        animationDuration: '300ms',
-        animationTimingFunction: 'ease-in-out',
+        'animation': 'flipInRight',
+        'animationDuration': '300ms',
+        'animationTimingFunction': 'ease-in-out',
 
         '& svg': {
           animation: 'fadeIn',
@@ -97,12 +97,12 @@ const toolsRecipe = defineSlotRecipe({
       },
     },
     hoverCardIcon: {
-      position: 'absolute',
-      top: '12',
-      right: '12',
-      opacity: '0',
-      transition: 'opacity 250ms ease-in-out',
-      _groupHover: {
+      'position': 'absolute',
+      'top': '12',
+      'right': '12',
+      'opacity': '0',
+      'transition': 'opacity 250ms ease-in-out',
+      '_groupHover': {
         opacity: '1',
       },
       '&[data-state="open"]': {

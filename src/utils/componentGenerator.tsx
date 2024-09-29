@@ -1,22 +1,24 @@
-import { Section } from 'atoms/containers/section';
+import { type Selection, type TypeFromSelection, q } from 'groqd';
+import dynamic from 'next/dynamic';
 
-import ConversionPanel from 'components/conversionPanel';
-import Hero from 'components/hero';
-import Portco from 'components/portco';
-import SwitchbackSection from 'components/switchbackSection';
-import Testimonials from 'components/testimonials';
-import Tools from 'components/tools';
+import { Section, sectionSelection } from 'atoms/containers/section';
 
-import { arrayValuesExist } from 'utils/arrays';
+import { hasArrayValues } from 'utils/arrays';
 import { toKebabCase } from 'utils/strings';
 
-import type { PAGE_QUERYResult } from 'lib/sanity/gen/sanity.types';
 import type { FC } from 'react';
 
-type Section = StripMaybe<PAGE_QUERYResult>['layout'];
+const ConversionPanel = dynamic(() => import('components/conversionPanel'));
+const Hero = dynamic(() => import('components/hero'));
+const Portco = dynamic(() => import('components/portco'));
+const SwitchbackSection = dynamic(() => import('components/switchbackSection'));
+const Testimonials = dynamic(() => import('components/testimonials'));
+const Tools = dynamic(() => import('components/tools'));
+
+type Section = TypeFromSelection<typeof componentGeneratorSelection>;
 
 interface componentGeneratorProps {
-  sections: Section;
+  sections: Section[];
 }
 
 const getComponent = (component: StripArray<Section>) => {
@@ -39,7 +41,7 @@ const getComponent = (component: StripArray<Section>) => {
 };
 
 const ComponentGenerator: FC<componentGeneratorProps> = ({ sections }) => {
-  if (arrayValuesExist(sections)) {
+  if (hasArrayValues(sections)) {
     return (
       <>
         {sections.map(section => {
@@ -57,5 +59,19 @@ const ComponentGenerator: FC<componentGeneratorProps> = ({ sections }) => {
 
   return null;
 };
+
+export const componentGeneratorSelection = {
+  _id: q.string(),
+  title: q.string().optional(),
+  _type: q.union([
+    q.literal('conversionPanel'),
+    q.literal('hero'),
+    q.literal('portCo'),
+    q.literal('switchback'),
+    q.literal('testimonialComponent'),
+    q.literal('toolsComponent'),
+  ]),
+  section: q.object(sectionSelection).optional(),
+} satisfies Selection;
 
 export default ComponentGenerator;

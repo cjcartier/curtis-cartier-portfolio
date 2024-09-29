@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineField } from 'sanity';
 
 import { buttonThemeField } from 'schemas/fields/link/buttonThemes';
 import { linkIconField } from 'schemas/fields/link/iconOptions';
@@ -30,16 +30,23 @@ const link = ({ theme, hasIcon, fieldAdmin }: LinkType = {}) => {
         type: 'url',
         validation: Rule =>
           Rule.required().uri({
+            allowRelative: true,
+            relativeOnly: false,
             scheme: ['http', 'https', 'mailto', 'tel', '/'],
           }),
       },
     ],
   });
 
-  hasIcon && linkField.fields.push(linkIconField);
-  theme && linkField.fields.push(buttonThemeField(theme));
+  if (hasIcon) {
+    linkField.fields.push(linkIconField);
+  }
 
-  return defineType(linkField);
+  if (theme) {
+    linkField.fields.push(buttonThemeField(theme));
+  }
+
+  return defineField(linkField);
 };
 
 export default link;

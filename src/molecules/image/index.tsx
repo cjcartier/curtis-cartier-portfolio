@@ -72,7 +72,7 @@ const Image: FC<ImageProps> = ({
       style={{ aspectRatio: aspectRatio || `${width} / ${height}` }}
     >
       <NextImage
-        src={src || urlFor(image)?.auto('format').url()}
+        src={src || urlFor(image)?.auto('format').url() || ''}
         alt={alt}
         fill
         priority={priority}
