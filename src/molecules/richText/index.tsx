@@ -1,7 +1,8 @@
-import { PortableText, PortableTextComponents } from 'next-sanity';
+import { PortableText } from 'next-sanity';
 
-import { PortableTextBlock } from '@portabletext/types';
-import { FC } from 'react';
+import type { PortableTextBlock } from '@portabletext/types';
+import type { PortableTextComponents } from 'next-sanity';
+import type { FC } from 'react';
 
 interface RichTextProps {
   blocks: PortableTextBlock[];
@@ -20,13 +21,7 @@ const RichText: FC<RichTextProps> = ({ blocks }) => (
     value={blocks}
     components={portableTextOptions}
     onMissingComponent={(message, options) => {
-      throw new Error(message, {
-        // eg `someUnknownType`
-        type: options.type,
-
-        // 'block' | 'mark' | 'blockStyle' | 'listStyle' | 'listItemStyle'
-        nodeType: options.nodeType,
-      });
+      throw new Error(`Error rendering PortableText: ${message}. Type: ${options.type}. NodeType: ${options.nodeType}`);
     }}
   />
 );

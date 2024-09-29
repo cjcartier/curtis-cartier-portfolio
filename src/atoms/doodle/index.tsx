@@ -10,7 +10,7 @@ import type { Token } from 'theme/tokens';
 import type { ColorToken, SpacingToken } from 'theme/tokens';
 
 export const doodles = {
-  hard: {
+  'hard': {
     base: 'teal.700',
     dark: 'yellow.700',
   },
@@ -18,7 +18,7 @@ export const doodles = {
     base: 'red.300',
     dark: 'red.300',
   },
-  squiggle: {
+  'squiggle': {
     base: 'blue.300',
     dark: 'blue.300',
   },

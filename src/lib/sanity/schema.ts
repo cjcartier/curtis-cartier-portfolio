@@ -1,5 +1,3 @@
-import Badge from 'schemas/documents/badge';
-import Button from 'schemas/documents/button';
 import Company from 'schemas/documents/company';
 import ConversionPanel from 'schemas/documents/conversionPanel';
 import Footer from 'schemas/documents/footer';
@@ -10,6 +8,7 @@ import Pages from 'schemas/documents/pages/page';
 import Person from 'schemas/documents/person';
 import PortCo from 'schemas/documents/portco';
 import Switchback from 'schemas/documents/switchback';
+import CaseStudySwitchBack from 'schemas/documents/switchback/caseStudy';
 import Testimonials from 'schemas/documents/testimonial';
 import TestimonialComponent from 'schemas/documents/testimonialComponent';
 import Tools from 'schemas/documents/tools';
@@ -19,12 +18,11 @@ import type { SchemaTypeDefinition } from 'sanity';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    CaseStudySwitchBack,
     Company,
     Person,
     Testimonials,
     Tools,
-    Badge,
-    Button,
     Form,
     ConversionPanel,
     Hero,

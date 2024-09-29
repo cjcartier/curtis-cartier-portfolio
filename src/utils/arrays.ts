@@ -4,7 +4,7 @@
  * @param e - The value to check.
  * @returns `true` if `e` is a non-empty array, `false` otherwise.
  */
-export const arrayValuesExist = (e: unknown): e is unknown[] => !!(e && Array.isArray(e) && e.length > 0);
+export const hasArrayValues = <T>(e: T): e is StripMaybe<T> => Boolean(Array.isArray(e) && e.length > 0);
 
 /**
  * Generates an array of numbers within the specified range, with the given step size.

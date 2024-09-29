@@ -1,29 +1,31 @@
 'use client';
 
+import { q } from 'groqd';
 import { type FC, useEffect, useRef, useState } from 'react';
 
+import Attribution, { personSelection } from 'molecules/attribution';
 import Button from 'molecules/button';
-import Image from 'molecules/image';
 import RichText from 'molecules/richText';
 
 import { cx } from 'theme/css';
 import { testimonial } from 'theme/recipes';
 
-import type { Testimonial as TestimonialSanityProps } from 'lib/sanity/gen/sanity.types';
+import type { Selection, TypeFromSelection } from 'groqd';
 
-interface TestimonialProps extends TestimonialSanityProps {
+export interface TestimonialProps extends TypeFromSelection<typeof testimonialSelection> {
   /**
    * optional prop if being used in a carousel.
    */
   active?: boolean;
 }
 
+// TODO: Is there a Radix component to handle state?
 const Testimonial: FC<TestimonialProps> = ({ _id, author, content, active }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [truncated, setTruncated] = useState(true);
-  const [copyMaxHeight, setCopyMaxHeight] = useState(0);
-  const [copyMinHeight, setCopyMinHeight] = useState(0);
-  const classes = testimonial();
+  const ref = useRef<HTMLDivElement>(null),
+    [truncated, setTruncated] = useState(true),
+    [copyMaxHeight, setCopyMaxHeight] = useState(0),
+    [copyMinHeight, setCopyMinHeight] = useState(0),
+    classes = testimonial();
 
   useEffect(() => {
     if (ref?.current) {
@@ -35,21 +37,7 @@ const Testimonial: FC<TestimonialProps> = ({ _id, author, content, active }) => 
   return (
     <div id={_id} className={cx(classes.root, 'group')}>
       <div className={classes.topContainer}>
-        {author && (
-          <div className={classes.authorContainer}>
-            {author?.headshot && author?.headshot?.asset && (
-              <Image image={author?.headshot?.asset} alt={author?.headshot?.alt} noFrame className={classes.headshot} />
-            )}
-            <div className={classes.authorDetails}>
-              <h3 className={classes.authorName}>{author.displayName}</h3>
-              {author?.company && (
-                <div
-                  className={classes.position}
-                >{`${author.position}${author?.company?.companyName ? ` @ ${author?.company?.companyName}` : ''}`}</div>
-              )}
-            </div>
-          </div>
-        )}
+        {author && <Attribution {...author} />}
         <Button
           icon="expand"
           className={classes.expandButton}
@@ -76,5 +64,11 @@ const Testimonial: FC<TestimonialProps> = ({ _id, author, content, active }) => 
     </div>
   );
 };
+
+export const testimonialSelection = {
+  _id: q.string(),
+  author: q('author').deref().grab(personSelection),
+  content: q.contentBlocks().optional(),
+} satisfies Selection;
 
 export default Testimonial;

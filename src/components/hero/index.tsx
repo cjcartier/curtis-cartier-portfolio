@@ -1,15 +1,26 @@
+import { q } from 'groqd';
+
+import { runQuery } from 'lib/sanity/client';
+import { getComponent } from 'lib/sanity/utils/groq';
+
 import Doodle from 'atoms/doodle';
 
-import Heading from 'molecules/heading';
+import Heading, { headingSelection } from 'molecules/heading';
 
 import { cx } from 'theme/css';
 import { hero as heroStyles } from 'theme/recipes';
 
-import type { Hero as HeroProps } from 'lib/sanity/gen/sanity.types';
 import type { FC } from 'react';
+import type { ComponentId } from 'types/global';
 
-const Hero: FC<HeroProps> = ({ heading }) => {
+const Hero: FC<ComponentId> = async ({ _id }) => {
   const { root, doodle, doodleOne, doodleTwo } = heroStyles();
+
+  const query = getComponent(_id, 'hero').grab$({
+    heading: q.object(headingSelection),
+  });
+
+  const { heading } = (await runQuery(query))[0];
 
   return (
     <div className={root}>

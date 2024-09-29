@@ -1,21 +1,24 @@
 'use client';
 
+import { q } from 'groqd';
 import { type FC, useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Button from 'molecules/button';
 
-import fieldGenerator from 'components/form/utils/fieldGenerator';
+import fieldGenerator, { fieldSelection } from 'components/form/components/fieldGenerator';
 
 import { form } from 'theme/recipes';
 
-import type { Form as FormProps } from 'lib/sanity/gen/sanity.types';
+import type { Selection, TypeFromSelection } from 'groqd';
 import type { Data } from 'types/global';
 
-const Form: FC<FormProps> = ({ _id: formID, title, formFields, submitButtonLabel }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasSubmitted, setHasSubmitted] = useState<boolean>();
-  const [error, setError] = useState<{ status?: string; message: string } | undefined>();
+interface FormProps extends TypeFromSelection<typeof formSelection> {}
+
+const Form: FC<FormProps> = ({ _id: formID, title, formFields }) => {
+  const [isLoading, setIsLoading] = useState(false),
+    [hasSubmitted, setHasSubmitted] = useState<boolean>(),
+    [error, setError] = useState<{ status?: string; message: string } | undefined>();
 
   const classes = form({ hasSubmitted });
 
@@ -86,15 +89,8 @@ const Form: FC<FormProps> = ({ _id: formID, title, formFields, submitButtonLabel
     <>
       <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
         <h3 className={classes.title}>{title}</h3>
-        {fieldGenerator(formFields, control, errors)}
-        <Button
-          label={submitButtonLabel || 'Submit'}
-          type="submit"
-          disabled={isSubmitting}
-          size="lg"
-          fullWidth
-          loading={isLoading}
-        />
+        {formFields && fieldGenerator(formFields, control, errors)}
+        <Button label="Submit" type="submit" disabled={isSubmitting} size="lg" fullWidth loading={isLoading} />
         {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
       </form>
       {hasSubmitted && (
@@ -106,5 +102,11 @@ const Form: FC<FormProps> = ({ _id: formID, title, formFields, submitButtonLabel
     </>
   );
 };
+
+export const formSelection = {
+  _id: q.string(),
+  title: q.string(),
+  formFields: q('formFields').filter().deref().grab(fieldSelection),
+} as Selection;
 
 export default Form;

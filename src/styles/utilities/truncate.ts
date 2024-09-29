@@ -10,10 +10,10 @@ export const truncate: UtilityConfig = {
       }
 
       return {
-        display: '-webkit-box',
+        'display': '-webkit-box',
         '-webkit-line-clamp': value,
         '-webkit-box-orient': 'vertical',
-        overflow: 'hidden',
+        'overflow': 'hidden',
       };
     },
   },

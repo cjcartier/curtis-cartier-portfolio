@@ -8,9 +8,9 @@ export const buttonVariants = {
   size: {
     md: {
       root: {
-        gap: '8',
-        paddingX: '20',
-        paddingY: '10',
+        'gap': '8',
+        'paddingX': '20',
+        'paddingY': '10',
 
         '&[data-icon-only]': {
           paddingX: '10',

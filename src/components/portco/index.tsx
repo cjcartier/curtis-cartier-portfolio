@@ -1,33 +1,45 @@
+import { q } from 'groqd';
+
+import { runQuery } from 'lib/sanity/client';
+import { getComponent } from 'lib/sanity/utils/groq';
+
 import Brand from 'atoms/brands';
 
-import Heading from 'molecules/heading';
+import Heading, { headingSelection } from 'molecules/heading';
 
-import { arrayValuesExist } from 'utils/arrays';
+import { hasArrayValues } from 'utils/arrays';
 
 import { portco } from 'theme/recipes';
 
-import type { PortCo } from 'lib/sanity/gen/sanity.types';
 import type { FC } from 'react';
+import type { ComponentId } from 'types/global';
 
-const Portco: FC<PortCo> = ({ heading, brands }) => {
+const Portco: FC<ComponentId> = async ({ _id }) => {
   const classes = portco();
+
+  const query = getComponent(_id, 'portCo').grab$({
+    heading: q.object(headingSelection),
+    brands: q('brands').filter().deref().grab$({
+      _id: q.string(),
+      logoId: q.string(),
+    }),
+  });
+
+  const data = (await runQuery(query))[0];
 
   return (
     <div className={classes.root}>
-      {heading && (
+      {data?.heading && (
         <div className={classes.headingContainer}>
-          <Heading headingType="h2" size="md" alignment="start" {...heading} />
+          <Heading headingType="h2" size="md" alignment="start" {...data.heading} />
         </div>
       )}
-      {arrayValuesExist(brands) && (
+      {hasArrayValues(data?.brands) && (
         <div className={classes.brandContainer}>
-          {brands.map(brand => {
-            if (!brand) {
-              return null;
-            }
-
-            return <Brand key={brand._key} brand={brand.logoId || ''} height="30px" className={classes.brand} />;
-          })}
+          {data.brands.map(
+            brand =>
+              brand && <Brand key={brand._id} brand={brand.logoId || ''} height="30px" className={classes.brand} />,
+          )}
         </div>
       )}
     </div>

@@ -1,18 +1,11 @@
-import { groq } from 'next-sanity';
+import { q, sanityImage } from 'groqd';
 
-export const referenceFragment = (name: string, isArray = false, ext: Array<string> = []) => groq`
-  defined(${name})=>{
-    ${name}${isArray ? '[]->' : '->'}{
-      ...,
-      ${ext.join(',')}
-    }
-  }
-  `;
+export const getComponent = (_id: string, _type: string) => q('*').filterByType(_type).filter(`_id == "${_id}"`);
 
-export const fragment = (name: string, isArray = false, ext: Array<string> = []) =>
-  `defined(${name})=>{
-    ${name}${isArray ? '[]' : ''}{
-      ...,
-      ${ext.join(',')}
-    }
-  }`;
+export const getSanityImage = (imageName: string) =>
+  sanityImage(imageName, {
+    additionalFields: {
+      alt: q.string().optional(),
+      featuredColor: q.string().optional().nullable(),
+    },
+  });

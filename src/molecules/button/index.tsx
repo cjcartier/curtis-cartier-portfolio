@@ -1,3 +1,5 @@
+import { type Selection, q } from 'groqd';
+
 import Icon from 'atoms/icon';
 
 import parseUrl from 'utils/parseUrl';
@@ -29,7 +31,7 @@ export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps,
   /**
    * The ID of the icon to be used in the button.
    */
-  icon?: IconIds | 'none' | null;
+  icon?: string | null;
   /**
    * If true, this will remove the label visibly but include it for screen readers
    */
@@ -78,9 +80,16 @@ const Button: FC<ButtonProps> = ({
           {label}
         </Label>
       )}
-      {icon && icon !== 'none' && <Icon icon={icon} className={classes.endIcon} />}
+      {icon && icon !== 'none' && <Icon icon={icon as IconIds} className={classes.endIcon} />}
     </Component>
   );
 };
+
+export const buttonArraySelection = {
+  _key: q.string(),
+  label: q.string().optional(),
+  link: q.string().optional(),
+  icon: q.union([q.literal('none'), q.literal('arrow-right'), q.literal('arrow-left')]).optional(),
+} satisfies Selection;
 
 export default Button;

@@ -42,7 +42,7 @@
     "mdx/code-blocks": false,
     "mdx/language-mapper": {}
   },
-  "ignorePatterns": ["next-env.d.ts", "src/lib/sanity/gen/sanity.types.ts"],
+  "ignorePatterns": ["next-env.d.ts", "src/lib/sanity/gen/*"],
   "rules": {
     "curly": "error",
     "eqeqeq": ["error", "smart"],
@@ -74,9 +74,10 @@
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-object-type": "off",
+    "@typescript-eslint/no-require-imports": "off",
     "import/first": "error",
     "import/default": "error",
-    "import/prefer-default-export": "warn",
     "import/no-named-as-default-member": "warn",
     "import/no-named-default": "error",
     "import/newline-after-import": "warn",

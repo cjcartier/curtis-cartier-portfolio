@@ -1,3 +1,5 @@
+import { type Selection, q } from 'groqd';
+
 import Backgrounds from 'atoms/backgrounds';
 
 import { cx } from 'theme/css';
@@ -57,5 +59,15 @@ export const Section: FC<SectionProps> = ({
     </Component>
   );
 };
+
+export const sectionSelection = {
+  backgroundImage: q.literal('home-curve').optional(),
+  paddingTop: q
+    .union([q.literal('none'), q.literal('small'), q.literal('medium'), q.literal('large'), q.literal('xLarge')])
+    .optional(),
+  paddingBottom: q
+    .union([q.literal('none'), q.literal('small'), q.literal('medium'), q.literal('large'), q.literal('xLarge')])
+    .optional(),
+} satisfies Selection;
 
 export default Section;

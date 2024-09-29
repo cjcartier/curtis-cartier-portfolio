@@ -1,18 +1,30 @@
+import { q } from 'groqd';
+
+import { runQuery } from 'lib/sanity/client';
+import { getComponent } from 'lib/sanity/utils/groq';
+
 import Doodle from 'atoms/doodle';
 import Glow from 'atoms/glows';
 
-import Heading from 'molecules/heading';
+import Heading, { headingSelection } from 'molecules/heading';
 
-import Form from 'components/form';
+import Form, { formSelection } from 'components/form';
 
 import { cx } from 'theme/css';
 import { conversionPanel } from 'theme/recipes';
 
-import type { ConversionPanel as ConversionPanelProps } from 'lib/sanity/gen/sanity.types';
 import type { FC } from 'react';
+import type { ComponentId } from 'types/global';
 
-const ConversionPanel: FC<ConversionPanelProps> = ({ heading, form }) => {
+const ConversionPanel: FC<ComponentId> = async ({ _id }) => {
   const classes = conversionPanel();
+
+  const query = getComponent(_id, 'conversionPanel').grab$({
+    heading: q.object(headingSelection),
+    form: q('form').deref().grab(formSelection),
+  });
+
+  const { heading, form } = (await runQuery(query))[0];
 
   return (
     <div className={classes.root}>
@@ -28,7 +40,7 @@ const ConversionPanel: FC<ConversionPanelProps> = ({ heading, form }) => {
       {form && (
         <div className={classes.formWrapper}>
           <Glow temperature="warm" />
-          <Form {...form} />
+          {form && <Form {...form} />}
         </div>
       )}
     </div>

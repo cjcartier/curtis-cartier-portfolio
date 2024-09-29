@@ -1,11 +1,17 @@
+import { q } from 'groqd';
+
 import Logo from 'atoms/logo';
 
 import { toolsEyebrow } from 'theme/recipes';
 
-import type { Tool } from 'lib/sanity/gen/sanity.types';
+import type { TypeFromSelection } from 'groqd';
 import type { FC } from 'react';
 
-const ToolsEyebrow: FC<{ tools: Tool[] }> = ({ tools }) => {
+interface ToolsEyebrowProps {
+  tools: TypeFromSelection<typeof toolsEyebrowSelection>[];
+}
+
+const ToolsEyebrow: FC<ToolsEyebrowProps> = ({ tools }) => {
   const classes = toolsEyebrow();
 
   return (
@@ -15,6 +21,11 @@ const ToolsEyebrow: FC<{ tools: Tool[] }> = ({ tools }) => {
       )}
     </div>
   );
+};
+
+export const toolsEyebrowSelection = {
+  _id: q.string().optional(),
+  logoId: q.string().optional(),
 };
 
 export default ToolsEyebrow;

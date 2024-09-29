@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'vitest';
 
-import { arrayRange, arrayValuesExist } from 'utils/arrays';
+import { arrayRange, hasArrayValues } from 'utils/arrays';
 
-describe('arrayValuesExist', () => {
+describe('hasArrayValues', () => {
   it('returns true for array with values', () => {
-    expect(arrayValuesExist([1, 2, 3])).toBe(true);
+    expect(hasArrayValues([1, 2, 3])).toBe(true);
   });
 
   it('returns false for empty array', () => {
-    expect(arrayValuesExist([])).toBe(false);
+    expect(hasArrayValues([])).toBe(false);
   });
 
   it('returns false for non-array value', () => {
-    expect(arrayValuesExist('hello')).toBe(false);
+    expect(hasArrayValues('hello')).toBe(false);
   });
 });
 

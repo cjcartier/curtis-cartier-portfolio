@@ -1,13 +1,33 @@
+import { q } from 'groqd';
+
+import { runQuery } from 'lib/sanity/client';
+import { getComponent } from 'lib/sanity/utils/groq';
+
+import { personSelection } from 'molecules/attribution';
 import Carousel from 'molecules/carousel';
-import Heading from 'molecules/heading';
+import Heading, { headingSelection } from 'molecules/heading';
 
 import { testimonialComponent } from 'theme/recipes';
 
-import type { TestimonialComponent } from 'lib/sanity/gen/sanity.types';
+import type { Selection } from 'groqd';
 import type { FC } from 'react';
+import type { ComponentId } from 'types/global';
 
-const Testimonials: FC<TestimonialComponent> = ({ _id, heading, testimonials }) => {
+const testimonialSelection = {
+  _id: q.string(),
+  author: q('author').deref().grab$(personSelection),
+  content: q.contentBlocks().optional(),
+} satisfies Selection;
+
+const Testimonials: FC<ComponentId> = async ({ _id }) => {
   const classes = testimonialComponent();
+
+  const query = getComponent(_id, 'testimonialComponent').grab({
+    heading: q.object(headingSelection),
+    testimonials: q('testimonials').filter().deref().grab$(testimonialSelection),
+  });
+
+  const { heading, testimonials } = (await runQuery(query))[0];
 
   return (
     <div className={classes.root}>

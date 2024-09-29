@@ -4,7 +4,7 @@ const globalCss = defineGlobalStyles({
   'html, body': {
     overflowX: 'hidden',
   },
-  body: {
+  'body': {
     colorScheme: { base: 'light', _dark: 'dark' },
     bgColor: { base: 'white', _dark: 'black' },
     transition: 'background-color 100ms ease-in-out',
