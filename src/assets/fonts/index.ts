@@ -97,7 +97,7 @@ export const sharpSans = localFont({
 export const robotoMono = localFont({
   src: [
     {
-      path: './RobotoMono-Regular.woff2',
+      path: './RobotoMono-regular.woff2',
       weight: '400',
       style: 'normal',
     },
