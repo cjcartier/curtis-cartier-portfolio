@@ -1,0 +1,35 @@
+{
+  "name": "@iamcurtis/studio",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": ["sanity"],
+  "main": "package.json",
+  "scripts": {
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "dev": "sanity dev",
+    "start": "sanity start"
+  },
+  "dependencies": {
+    "@packages/config": "*",
+    "@packages/tsconfig": "*",
+    "@sanity/embeddings-index-ui": "^1.1.8",
+    "@sanity/icons": "^2.4.1",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.57.0",
+    "groqd-playground": "^0.0.20",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sanity": "^3.57.0",
+    "sanity-plugin-icon-picker": "^3.3.0",
+    "sanity-plugin-media": "^2.3.2",
+    "sanity-plugin-simpler-color-input": "^2.2.2",
+    "styled-components": "^6.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "typescript": "^5.1.6"
+  },
+  "packageManager": "yarn@4.5.0"
+}

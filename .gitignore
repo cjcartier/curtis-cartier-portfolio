@@ -2,15 +2,9 @@
 
 # dependencies
 /node_modules
-/.pnp
-.pnp.js
 
 # testing
 /coverage
-
-# next.js
-/.next/
-/out/
 
 # production
 /build
@@ -27,8 +21,6 @@
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
-## Panda
-src/theme
-src/theme-studio
+#turbo
+.turbo

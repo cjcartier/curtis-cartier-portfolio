@@ -1,0 +1,9 @@
+{
+  "extends": "@packages/tsconfig/studio.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "preserve"
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+## Panda
+src/theme
+src/theme-studio
+
+# local env files
+.env*
+
+# vercel
+.vercel
+
+# typescript
+next-env.d.ts
