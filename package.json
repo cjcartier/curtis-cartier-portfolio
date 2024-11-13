@@ -1,21 +1,19 @@
 {
-  "name": "curtis-cartier-portfolio",
+  "name": "iamcurtis",
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "build": "tsc & next build",
-    "dev": "next dev",
-    "format": "prettier --write  --loglevel silent \"src/**/*.{js,jsx,ts,tsx,mdx}\"",
-    "generate": "pnpm generate:css && pnpm typegen",
-    "generate:css": "panda codegen",
-    "generate:schema": "sanity schema extract --path=src/lib/sanity/gen/extract.json --enforce-required-fields",
-    "generate:typegen": "sanity typegen generate",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,mdx}\" --fix",
-    "prepare": "pnpm generate:css",
-    "start": "next start",
-    "test": "vitest",
-    "typegen": "pnpm generate:schema && pnpm generate:typegen"
+    "build": "dotenv -- turbo run build",
+    "dev": "dotenv -- turbo run dev",
+    "dev:cms": "dotenv -- turbo run dev --filter=studio",
+    "dev:web": "dotenv -- turbo run dev --filter=web",
+    "format-and-lint": "biome check . --fix",
+    "lint": "turbo run lint"
   },
   "husky": {
     "hooks": {
@@ -23,71 +21,16 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,mdx}": [
-      "eslint --fix",
-      "prettier --write --loglevel silent"
+    "*.{js,jsx,ts,tsx}": [
+      "biome check --write --no-errors-on-unmatched"
     ]
   },
-  "dependencies": {
-    "@portabletext/react": "^3.1.0",
-    "@sanity/embeddings-index-ui": "^1.1.8",
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.57.0",
-    "@zag-js/carousel": "^0.65.1",
-    "@zag-js/hover-card": "^0.65.1",
-    "@zag-js/react": "^0.65.1",
-    "escape-html": "^1.0.3",
-    "groqd": "^0.15.12",
-    "groqd-playground": "^0.0.20",
-    "next": "14.2.8",
-    "next-sanity": "^9.4.7",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-hook-form": "^7.53.0",
-    "sanity": "^3.57.0",
-    "sanity-plugin-icon-picker": "^3.3.0",
-    "sanity-plugin-media": "^2.3.2",
-    "sanity-plugin-simpler-color-input": "^2.2.2",
-    "zustand": "^4.5.5"
-  },
   "devDependencies": {
-    "@pandacss/dev": "^0.45.2",
-    "@pandacss/types": "^0.45.2",
-    "@portabletext/types": "^2.0.13",
-    "@sanity/eslint-config-studio": "^4.0.0",
-    "@sanity/prettier-config": "^1.0.3",
-    "@testing-library/react": "^16.0.1",
-    "@types/escape-html": "^1.0.4",
-    "@types/node": "^22.5.4",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.2.25",
-    "@typescript-eslint/eslint-plugin": "^8.4.0",
-    "@typescript-eslint/parser": "^8.4.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.20",
-    "cssnano": "^7.0.6",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "14.2.8",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-absolute-only": "^1.0.0",
-    "eslint-plugin-import": "^2.30.0",
-    "eslint-plugin-jsx-a11y": "^6.10.0",
-    "eslint-plugin-mdx": "^3.1.5",
-    "eslint-plugin-no-inline-styles": "^1.0.5",
-    "eslint-plugin-no-relative-import-paths": "^1.5.5",
-    "eslint-plugin-prefer-arrow": "^1.2.3",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.35.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.11",
-    "eslint-plugin-vitest": "0.5.4",
+    "@biomejs/biome": "1.9.3",
+    "dotenv-cli": "^7.4.2",
     "husky": "^9.1.5",
-    "jsdom": "^25.0.0",
     "lint-staged": "^15.2.10",
-    "prettier": "^3.3.3",
-    "typescript": "^5.5.4",
-    "vite-tsconfig-paths": "^5.0.1",
-    "vitest": "^2.0.5"
+    "turbo": "^2.1.3"
   },
-  "packageManager": "pnpm@9.9.0"
+  "packageManager": "yarn@4.5.0"
 }
