@@ -1,6 +1,6 @@
 import { defineSlotRecipe } from '@pandacss/dev';
 
-import generateTransitions from 'utils/styles';
+import generateTransitions from '@/utils/styles';
 
 import type { SlotRecipeVariantRecord } from 'theme/types';
 

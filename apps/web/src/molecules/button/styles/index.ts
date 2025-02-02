@@ -1,6 +1,6 @@
 import { defineSlotRecipe } from '@pandacss/dev';
 
-import generateTransitions from 'utils/styles';
+import generateTransitions from '@/utils/styles';
 
 import type { SlotRecipeVariantRecord } from 'theme/types';
 
@@ -38,7 +38,10 @@ export const buttonVariants = {
       root: {
         bg: { base: 'white/55', _dark: 'white/10' },
         color: { base: 'gray.900', _dark: 'white' },
-        _hover: { bg: { base: 'white/65', _dark: 'white/18' }, _after: { backgroundSize: '200%' } },
+        _hover: {
+          bg: { base: 'white/65', _dark: 'white/18' },
+          _after: { backgroundSize: '200%' },
+        },
         _after: {
           content: '""',
           borderRadius: '6px',

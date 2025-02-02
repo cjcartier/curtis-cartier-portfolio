@@ -1,6 +1,4 @@
-// @ts-expect-error need mjs extension
 import { css } from 'theme/css/index.mjs';
-// @ts-expect-error need mjs extension
 import { token } from 'theme/tokens/index.mjs';
 
 import type { FC } from 'react';

@@ -3,14 +3,14 @@
 import { q } from 'groqd';
 import { type FC, useEffect, useState } from 'react';
 
-import Logo from 'atoms/logo';
+import Logo from '@/atoms/logo';
 
 import HoverCard from 'molecules/hoverCard';
 import RichText from 'molecules/richText';
 
 import updateToolArray from 'components/tools/utils/updateToolArray';
 
-import { getRandomInt } from 'utils/numbers';
+import { getRandomInt } from '@/utils/numbers';
 
 import { cx } from 'theme/css';
 import { toolsComponent } from 'theme/recipes';
@@ -27,8 +27,10 @@ const SHOWN_TOOLS = 7;
 
 const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
   const classes = toolsComponent(),
-    filteredTools = tools?.filter(tool => tool),
-    [currentTools, setCurrentTools] = useState(filteredTools?.slice(0, SHOWN_TOOLS) || []);
+    filteredTools = tools?.filter((tool) => tool),
+    [currentTools, setCurrentTools] = useState(
+      filteredTools?.slice(0, SHOWN_TOOLS) || []
+    );
 
   useEffect(() => {
     if (!tools) {
@@ -36,7 +38,9 @@ const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
     }
 
     const interval = setInterval(() => {
-      const hoveredCard = document.querySelector('.tools__tool[data-hovered="true"]'),
+      const hoveredCard = document.querySelector(
+          '.tools__tool[data-hovered="true"]'
+        ),
         excludedIndex = hoveredCard?.getAttribute('data-index'),
         updatedInd = getRandomInt(SHOWN_TOOLS, Number(excludedIndex)),
         card = document.getElementById(`tool-${updatedInd}`);
@@ -44,7 +48,9 @@ const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
       card?.classList.add('flip-out-right');
 
       setTimeout(() => {
-        setCurrentTools(updateToolArray(currentTools, filteredTools, updatedInd));
+        setCurrentTools(
+          updateToolArray(currentTools, filteredTools, updatedInd)
+        );
       }, 300);
 
       setTimeout(() => {
@@ -69,11 +75,19 @@ const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
             id={`tool-${ind}`}
             className={cx(classes.tool, 'group')}
             data-index={ind}
-            onMouseEnter={e => (e.target as HTMLDivElement).setAttribute('data-hovered', 'true')}
-            onMouseLeave={e => (e.target as HTMLDivElement).removeAttribute('data-hovered')}
+            onMouseEnter={(e) =>
+              (e.target as HTMLDivElement).setAttribute('data-hovered', 'true')
+            }
+            onMouseLeave={(e) =>
+              (e.target as HTMLDivElement).removeAttribute('data-hovered')
+            }
           >
             <Logo logo={tool.logoId} className={classes.toolLogo} />
-            <HoverCard id={tool.logoId || String(ind)} iconId="info-circle" iconClassName={classes.hoverCardIcon}>
+            <HoverCard
+              id={tool.logoId || String(ind)}
+              iconId='info-circle'
+              iconClassName={classes.hoverCardIcon}
+            >
               <h4>{tool.tool}</h4>
               {tool.description && <RichText blocks={tool.description} />}
             </HoverCard>

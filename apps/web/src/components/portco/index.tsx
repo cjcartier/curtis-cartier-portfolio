@@ -1,15 +1,15 @@
-import { q } from 'groqd';
+import { q, Selection } from 'groqd';
 
 import { runQuery } from 'lib/client';
 import { getComponent } from 'lib/groq';
 
-import Brand from 'atoms/brands';
+import Brand from '@/atoms/brands';
 
 import Heading, { headingSelection } from 'molecules/heading';
 
-import { hasArrayValues } from 'utils/arrays';
+import { hasArrayValues } from '@/utils/arrays';
 
-import { portco } from 'theme/recipes';
+import { heading, portco } from 'theme/recipes';
 
 import type { FC } from 'react';
 import type { ComponentId } from 'types/global';
@@ -31,19 +31,39 @@ const Portco: FC<ComponentId> = async ({ _id }) => {
     <div className={classes.root}>
       {data?.heading && (
         <div className={classes.headingContainer}>
-          <Heading headingType="h2" size="md" alignment="start" {...data.heading} />
+          <Heading
+            headingType='h2'
+            size='md'
+            alignment='start'
+            {...data.heading}
+          />
         </div>
       )}
       {hasArrayValues(data?.brands) && (
         <div className={classes.brandContainer}>
           {data.brands.map(
-            brand =>
-              brand && <Brand key={brand._id} brand={brand.logoId || ''} height="30px" className={classes.brand} />,
+            (brand) =>
+              brand && (
+                <Brand
+                  key={brand._id}
+                  brand={brand.logoId || ''}
+                  height='30px'
+                  className={classes.brand}
+                />
+              )
           )}
         </div>
       )}
     </div>
   );
 };
+
+export const portcoSelection = {
+  heading: q('heading').grab$(headingSelection),
+  brands: q('brands')
+    .filter()
+    .deref()
+    .grab$({ _id: q.string(), logoId: q.string() }),
+} satisfies Selection;
 
 export default Portco;

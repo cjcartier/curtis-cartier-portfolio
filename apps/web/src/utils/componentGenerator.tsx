@@ -1,19 +1,25 @@
 import { type Selection, type TypeFromSelection, q } from 'groqd';
 import dynamic from 'next/dynamic';
 
-import { Section, sectionSelection } from 'atoms/containers/section';
+import { Section, sectionSelection } from '@/atoms/containers/section';
 
-import { hasArrayValues } from 'utils/arrays';
-import { toKebabCase } from 'utils/strings';
+import { hasArrayValues } from '@/utils/arrays';
+import { toKebabCase } from '@/utils/strings';
 
 import type { FC } from 'react';
+import { conversionPanelSelection } from 'components/conversionPanel';
+import { heroSelection } from 'components/hero';
+import { portcoSelection } from 'components/portco';
+import { switchbackSelection } from 'components/switchbackSection';
+import { testimonialComponentSelection } from 'components/testimonials';
+import { toolsComponentSelection } from 'components/tools';
 
-const ConversionPanel = dynamic(() => import('components/conversionPanel'));
-const Hero = dynamic(() => import('components/hero'));
-const Portco = dynamic(() => import('components/portco'));
-const SwitchbackSection = dynamic(() => import('components/switchbackSection'));
-const Testimonials = dynamic(() => import('components/testimonials'));
-const Tools = dynamic(() => import('components/tools'));
+const ConversionPanel = dynamic(() => import('components/conversionPanel')),
+  Hero = dynamic(() => import('components/hero')),
+  Portco = dynamic(() => import('components/portco')),
+  SwitchbackSection = dynamic(() => import('components/switchbackSection')),
+  Testimonials = dynamic(() => import('components/testimonials')),
+  Tools = dynamic(() => import('components/tools'));
 
 type Section = TypeFromSelection<typeof componentGeneratorSelection>;
 
@@ -44,11 +50,15 @@ const ComponentGenerator: FC<componentGeneratorProps> = ({ sections }) => {
   if (hasArrayValues(sections)) {
     return (
       <>
-        {sections.map(section => {
+        {sections.map((section) => {
           const { section: sectionProps, _type, _id, ...props } = section;
 
           return (
-            <Section key={_id} id={toKebabCase(props.title || _id)} {...sectionProps}>
+            <Section
+              key={_id}
+              id={toKebabCase(props.title || _id)}
+              {...sectionProps}
+            >
               {getComponent(section)}
             </Section>
           );
@@ -58,6 +68,19 @@ const ComponentGenerator: FC<componentGeneratorProps> = ({ sections }) => {
   }
 
   return null;
+};
+
+export const componentGeneratorCondition = {
+  '_type == "conversionPanel"': conversionPanelSelection,
+  '_type == "hero"': heroSelection,
+  '_type == "portCo"': portcoSelection,
+  '_type == "switchback"': switchbackSelection,
+  '_type == "testimonialComponent"': testimonialComponentSelection,
+  '_type == "toolsComponent"': toolsComponentSelection,
+  default: {
+    _type: q.literal('default'),
+    _key: q.string(),
+  },
 };
 
 export const componentGeneratorSelection = {

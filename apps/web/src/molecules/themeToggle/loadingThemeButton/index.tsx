@@ -1,4 +1,4 @@
-import Icon from 'atoms/icon';
+import Icon from '@/atoms/icon';
 
 import { themeToggle } from 'theme/recipes';
 
@@ -7,7 +7,7 @@ const LoadingThemeToggle = () => {
 
   return (
     <div className={classes}>
-      <Icon icon="mail" />
+      <Icon icon='mail' />
     </div>
   );
 };

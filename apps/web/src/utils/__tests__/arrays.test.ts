@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { arrayRange, hasArrayValues } from 'utils/arrays';
+import { arrayRange, hasArrayValues } from '@/utils/arrays';
 
 describe('hasArrayValues', () => {
   it('returns true for array with values', () => {

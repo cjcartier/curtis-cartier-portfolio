@@ -1,28 +1,28 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
-const Testimonials = defineType({
+const testimonials = defineType({
   name: 'testimonial',
-  title: 'Entity: Testimonials',
+  title: 'Testimonials',
   type: 'document',
   fields: [
-    {
+    defineField({
       name: 'authorName',
       title: 'Author Name',
       type: 'string',
-    },
-    {
+    }),
+    defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: [{ type: 'person' }],
-    },
-    {
+    }),
+    defineField({
       name: 'content',
       title: 'Content',
       type: 'array',
       of: [{ type: 'block' }],
-    },
+    }),
   ],
 });
 
-export default Testimonials;
+export default testimonials;

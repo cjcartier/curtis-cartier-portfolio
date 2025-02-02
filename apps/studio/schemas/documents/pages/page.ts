@@ -1,42 +1,42 @@
-import { defineType } from 'sanity';
+import { EditIcon, HashIcon, WrenchIcon } from '@sanity/icons';
+import { defineField, defineType } from 'sanity';
 
-export const Pages = defineType({
+import { pageBody } from '@/schemas/fields/pageBody';
+import { seo } from '@/schemas/fields/seo';
+
+export const pages = defineType({
   name: 'pages',
-  title: 'Template: Pages',
+  title: 'Pages',
   type: 'document',
-  fields: [
+  groups: [
     {
+      name: 'content',
+      title: 'Content',
+      icon: EditIcon,
+      default: true,
+    },
+    {
+      name: 'seo',
+      title: 'SEO',
+      icon: HashIcon,
+    },
+    {
+      name: 'settings',
+      title: 'Settings',
+      icon: WrenchIcon,
+    },
+  ],
+  fields: [
+    seo(),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'layout',
-      title: 'Content',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            { type: 'conversionPanel' },
-            { type: 'hero' },
-            { type: 'portCo' },
-            { type: 'switchback' },
-            { type: 'testimonialComponent' },
-            { type: 'toolsComponent' },
-          ],
-        },
-      ],
-      validation: Rule => Rule.required(),
-    },
-    { name: 'slug', type: 'slug', title: 'Slug', validation: Rule => Rule.required() },
-    {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'date',
-    },
+      validation: rule => rule.required(),
+      group: 'content',
+    }),
+    pageBody,
   ],
 });
 
-export default Pages;
+export default pages;

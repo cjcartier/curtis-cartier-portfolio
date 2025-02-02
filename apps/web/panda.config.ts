@@ -1,12 +1,22 @@
 import { defineConfig } from '@pandacss/dev';
-import { atomicRecipes, atomicSlotRecipes, semanticTokens, tokens } from 'atoms';
+import {
+  atomicRecipes,
+  atomicSlotRecipes,
+  semanticTokens,
+  tokens,
+} from 'atoms';
 
-import breakpoints from 'atoms/breakpoints';
-import textStyles from 'atoms/typography/typography';
+import breakpoints from '@/atoms/breakpoints';
+import textStyles from '@/atoms/typography/typography';
 
-import moleculeSlotRecipes, { moleculeRecipes } from 'molecules/moleculeRecipes';
+import moleculeSlotRecipes, {
+  moleculeRecipes,
+} from 'molecules/moleculeRecipes';
 
-import { componentRecipes, componentSlotRecipes } from 'components/componentRecipes';
+import {
+  componentRecipes,
+  componentSlotRecipes,
+} from 'components/componentRecipes';
 
 import globalSlotRecipes from 'layout/globalRecipes';
 
@@ -17,7 +27,12 @@ import utilities from 'styles/utilities';
 import variables from 'styles/variables';
 
 const recipes = { ...atomicRecipes, ...moleculeRecipes, ...componentRecipes };
-const slotRecipes = { ...atomicSlotRecipes, ...moleculeSlotRecipes, ...componentSlotRecipes, ...globalSlotRecipes };
+const slotRecipes = {
+  ...atomicSlotRecipes,
+  ...moleculeSlotRecipes,
+  ...componentSlotRecipes,
+  ...globalSlotRecipes,
+};
 
 export default defineConfig({
   preflight: true,
@@ -49,7 +64,10 @@ export default defineConfig({
     css: [
       {
         properties: {
-          filter: ['url(/backgrounds/filters.svg#home-curve)', 'url(/backgrounds/filters.svg#home-curve-dark)'],
+          filter: [
+            'url(/backgrounds/filters.svg#home-curve)',
+            'url(/backgrounds/filters.svg#home-curve-dark)',
+          ],
         },
       },
     ],

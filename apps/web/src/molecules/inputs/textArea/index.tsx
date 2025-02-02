@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react';
 
-import Icon from 'atoms/icon';
+import Icon from '@/atoms/icon';
 
 import Control from 'molecules/inputs/control';
 import Label from 'molecules/inputs/label';
@@ -13,7 +13,13 @@ import type { TextInputProps } from 'molecules/inputs/text';
 interface TextAreaProps extends TextInputProps {}
 
 // TODO: char count
-const TextArea: FC<TextAreaProps> = ({ label, name, required, control, placeholder }) => {
+const TextArea: FC<TextAreaProps> = ({
+  label,
+  name,
+  required,
+  control,
+  placeholder,
+}) => {
   const classes = textInput();
   const [size, setSize] = useState(5);
 
@@ -21,7 +27,12 @@ const TextArea: FC<TextAreaProps> = ({ label, name, required, control, placehold
     <Control>
       {label && <Label name={name} label={label} required={required} />}
       <div className={cx(classes.root, 'group')}>
-        <Icon icon="expand" className={classes.resizeIcon} size="16" onClick={() => setSize(size !== 5 ? 5 : 15)} />
+        <Icon
+          icon='expand'
+          className={classes.resizeIcon}
+          size='16'
+          onClick={() => setSize(size !== 5 ? 5 : 15)}
+        />
         <textarea
           id={name}
           name={name}

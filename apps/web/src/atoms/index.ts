@@ -1,14 +1,14 @@
 import { defineSemanticTokens, defineTokens } from '@pandacss/dev';
 
-import colors, { semanticColors } from 'atoms/colors/color';
-import sectionRecipe from 'atoms/containers/section/styles';
-import glowRecipe from 'atoms/glows/styles';
-import gradients from 'atoms/gradients';
-import radii from 'atoms/radii';
-import shadows from 'atoms/shadows';
-import sizes from 'atoms/sizing/sizing';
-import spacing from 'atoms/spacing';
-import { fontTokens } from 'atoms/typography/typography';
+import colors, { semanticColors } from '@/atoms/colors/color';
+import sectionRecipe from '@/atoms/containers/section/styles';
+import glowRecipe from '@/atoms/glows/styles';
+import gradients from '@/atoms/gradients';
+import radii from '@/atoms/radii';
+import shadows from '@/atoms/shadows';
+import sizes from '@/atoms/sizing/sizing';
+import spacing from '@/atoms/spacing';
+import { fontTokens } from '@/atoms/typography/typography';
 
 export const tokens = defineTokens({
   colors,

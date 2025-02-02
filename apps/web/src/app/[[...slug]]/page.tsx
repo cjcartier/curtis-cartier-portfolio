@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 
 import { runQuery } from 'lib/client';
 
-import ComponentGenerator, { componentGeneratorSelection } from 'utils/componentGenerator';
+import ComponentGenerator, {
+  componentGeneratorSelection,
+} from '@/utils/componentGenerator';
 
 import type { FC } from 'react';
 import type { PageProps } from 'types/global';

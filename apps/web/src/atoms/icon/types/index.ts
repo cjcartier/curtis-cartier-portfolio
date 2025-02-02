@@ -1,4 +1,4 @@
-import { iconSet } from 'atoms/icon/data';
+import { iconSet } from '@/atoms/icon/data';
 
 import type { ColorToken, SpacingToken } from 'theme/tokens';
 import type { ClassStyles } from 'types/global';

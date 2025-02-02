@@ -1,19 +1,34 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
-import { generateValueListFromArray } from 'schemas/utils/schemaFunctions';
+import { logoIds } from '@packages/ui/logos';
 
-import { logoIds } from 'atoms/logo/data';
+import { genValuesFromArray } from '@/utils/schemaFunctions';
 
-const Tools = defineType({
+const tool = defineType({
   name: 'tool',
-  title: 'Entity: Tool',
+  title: 'Tool',
   type: 'document',
   fields: [
-    { name: 'tool', title: 'Tool', type: 'string' },
-    { name: 'company', title: 'Company', type: 'reference', to: [{ type: 'company' }] },
-    { name: 'logoId', title: 'Logo', type: 'string', options: { list: generateValueListFromArray(logoIds) } },
-    { name: 'description', title: 'description', type: 'array', of: [{ type: 'block' }] },
+    defineField({ name: 'tool', title: 'Tool', type: 'string' }),
+    defineField({
+      name: 'company',
+      title: 'Company',
+      type: 'reference',
+      to: [{ type: 'company' }],
+    }),
+    defineField({
+      name: 'logoId',
+      title: 'Logo',
+      type: 'string',
+      options: { list: genValuesFromArray(logoIds) },
+    }),
+    defineField({
+      name: 'description',
+      title: 'description',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
   ],
 });
 
-export default Tools;
+export default tool;
