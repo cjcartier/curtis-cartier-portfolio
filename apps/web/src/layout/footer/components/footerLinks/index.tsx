@@ -1,8 +1,8 @@
-import { FC } from 'react';
-
 import MenuLinks, { FooterLink } from 'layout/footer/components/menuLinks';
 
 import { footer } from 'theme/recipes';
+
+import type { FC } from 'react';
 
 interface FooterLinksProps {
   mainLinks?: FooterLink[];

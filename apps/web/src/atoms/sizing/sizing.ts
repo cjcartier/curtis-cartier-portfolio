@@ -1,6 +1,6 @@
 import { defineTokens } from '@pandacss/dev';
 
-import { spacingMap } from '@/atoms/spacing';
+import { spacingMap } from 'atoms/spacing';
 
 export const containerWidthValues = {
   sm: 640,

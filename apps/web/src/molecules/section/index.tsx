@@ -32,10 +32,10 @@ export const Section: FC<SectionProps> = ({
   ...props
 }) => {
   const { root, grain, container } = section({
-    paddingTop: padding?.top || 'medium',
-    paddingBottom: padding?.bottom || 'medium',
-  });
-  const Component = styled(as || 'section');
+      paddingTop: padding?.top || 'medium',
+      paddingBottom: padding?.bottom || 'medium',
+    }),
+    Component = styled(as || 'section');
 
   return (
     <Component as="section" id={sectionId} className={cx(root, className)} {...props}>
@@ -48,7 +48,7 @@ export const Section: FC<SectionProps> = ({
   );
 };
 
-const sectionSizing = ['none', 'small', 'medium', 'large', 'xLarge'];
+const sectionSizing = ['none', 'small', 'medium', 'large', 'xLarge'] as const;
 
 export const sectionSelection = {
   backgroundImage: q.literal('home-curve').optional(),

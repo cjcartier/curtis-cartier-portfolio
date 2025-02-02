@@ -1,6 +1,6 @@
 import { q } from 'groqd';
 
-import Logo from '@/atoms/logo';
+import Logo from 'atoms/logo';
 
 import { toolsEyebrow } from 'theme/recipes';
 
@@ -17,16 +17,7 @@ const ToolsEyebrow: FC<ToolsEyebrowProps> = ({ tools }) => {
   return (
     <div className={classes.root}>
       {tools.map(
-        (tool) =>
-          tool && (
-            <Logo
-              key={tool._id}
-              className={classes.tool}
-              logo={tool.logoId || ''}
-              isIcon
-              size='24px'
-            />
-          )
+        tool => tool && <Logo key={tool._id} className={classes.tool} logo={tool.logoId || ''} isIcon size="24px" />,
       )}
     </div>
   );

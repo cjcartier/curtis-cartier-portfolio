@@ -1,6 +1,6 @@
 import { defineSlotRecipe } from '@pandacss/dev';
 
-import { containerWidthValues } from '@/atoms/sizing/sizing';
+import { containerWidthValues } from 'atoms/sizing/sizing';
 
 const conversionPanelRecipe = defineSlotRecipe({
   className: 'conversionPanel',
