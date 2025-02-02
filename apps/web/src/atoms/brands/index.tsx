@@ -1,14 +1,14 @@
-import { brandSet } from '@/atoms/brands/data';
+import { brandSet } from '@packages/ui/brands';
 
 import { css, cx } from 'theme/css';
 
-import type { BrandProps } from '@/atoms/brands/types';
+import type { BrandProps } from '@packages/ui/brands/types';
 import type { FC } from 'react';
 
 const Brand: FC<BrandProps> = ({ brand, height, className, ...props }) =>
   brandSet.has(brand) && (
     <svg
-      focusable='false'
+      focusable="false"
       aria-hidden
       className={cx(
         css({
@@ -16,7 +16,7 @@ const Brand: FC<BrandProps> = ({ brand, height, className, ...props }) =>
           stroke: 'current',
           width: '-webkit-fill-available',
         }),
-        className
+        className,
       )}
       style={height && { height }}
       {...props}

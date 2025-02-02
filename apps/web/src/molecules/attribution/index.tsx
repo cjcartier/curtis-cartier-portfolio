@@ -1,14 +1,15 @@
 import { q } from 'groqd';
-import { getSanityImage } from 'lib/groq';
 
 import Image from 'molecules/image';
+
+import { getSanityImage } from 'lib/groq';
 
 import { attribution } from 'theme/recipes';
 
 import type { Selection, TypeFromSelection } from 'groqd';
 import type { FC } from 'react';
 
-interface AttributionProps extends TypeFromSelection<typeof personSelection> {}
+type AttributionProps = TypeFromSelection<typeof personSelection>;
 
 const Attribution: FC<AttributionProps> = ({ headshot, displayName, company, position }) => {
   const classes = attribution();

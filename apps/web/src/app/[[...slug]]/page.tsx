@@ -3,32 +3,22 @@ import { notFound } from 'next/navigation';
 
 import { runQuery } from 'lib/client';
 
-import ComponentGenerator, {
-  componentGeneratorSelection,
-} from '@/utils/componentGenerator';
+import ComponentGenerator, { componentGeneratorQuery } from 'utils/componentGenerator';
 
 import type { FC } from 'react';
 import type { PageProps } from 'types/global';
 
+const pageQuery = q('*').filterByType('pages').filter('seo.slug.current == $slug').grab({
+  body: componentGeneratorQuery,
+});
+
 const Page: FC<PageProps> = async ({ params }) => {
-  const query = q('*')
-    .filterByType('pages')
-    .filter(`slug.current == "${params.slug || '/'}"`)
-    .grab({
-      layout: q('layout').filter().deref().grab$(componentGeneratorSelection),
-    });
+  const resolvedParams = await params;
+  const data = (await runQuery(pageQuery, { slug: resolvedParams.slug }))[0];
 
-  const data = (await runQuery(query))[0];
+  if (!data) return notFound();
 
-  if (!data) {
-    return notFound();
-  }
-
-  return (
-    <>
-      <ComponentGenerator sections={data.layout} />
-    </>
-  );
+  return <ComponentGenerator sections={data.body} />;
 };
 
 export default Page;

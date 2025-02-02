@@ -1,4 +1,4 @@
-import { objectKeys } from '@/utils/typeUtils';
+import { objectKeys } from '@packages/utils/typeUtils';
 
 import { css, cx } from 'theme/css';
 import { styled } from 'theme/jsx';
@@ -6,8 +6,7 @@ import { token } from 'theme/tokens';
 
 import type { FC } from 'react';
 import type { HTMLStyledProps } from 'theme/jsx';
-import type { Token } from 'theme/tokens';
-import type { ColorToken, SpacingToken } from 'theme/tokens';
+import type { ColorToken, SpacingToken, Token } from 'theme/tokens';
 
 export const doodles = {
   hard: {
@@ -49,13 +48,7 @@ export interface DoodleProps extends HTMLStyledProps<'svg'> {
 
 export const SVG = styled('svg');
 
-const Doodle: FC<DoodleProps> = ({
-  doodle,
-  size,
-  doodleColor,
-  className,
-  ...props
-}) =>
+const Doodle: FC<DoodleProps> = ({ doodle, size, doodleColor, className, ...props }) =>
   doodleSet.has(doodle) && (
     <div
       className={cx(
@@ -67,7 +60,7 @@ const Doodle: FC<DoodleProps> = ({
           width: 'fit-content',
           height: 'fit-content',
         }),
-        className
+        className,
       )}
       style={{
         '--doodle-color': token(`colors.${doodles[doodle].base}` as Token),
@@ -79,7 +72,7 @@ const Doodle: FC<DoodleProps> = ({
         h={size || '24'}
         fill={doodleColor || 'currentColor'}
         stroke={doodleColor || 'currentColor'}
-        focusable='false'
+        focusable="false"
         aria-hidden
         className={css({ overflow: 'visible' })}
         {...props}

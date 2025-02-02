@@ -13,7 +13,7 @@ import { form } from 'theme/recipes';
 import type { Selection, TypeFromSelection } from 'groqd';
 import type { Data } from 'types/global';
 
-interface FormProps extends TypeFromSelection<typeof formSelection> {}
+type FormProps = TypeFromSelection<typeof formSelection>;
 
 const Form: FC<FormProps> = ({ _id: formID, title, formFields }) => {
   const [isLoading, setIsLoading] = useState(false),
@@ -107,6 +107,6 @@ export const formSelection = {
   _id: q.string(),
   title: q.string(),
   formFields: q('formFields').filter().deref().grab(fieldSelection),
-} as Selection;
+} satisfies Selection;
 
 export default Form;

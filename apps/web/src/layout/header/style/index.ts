@@ -1,6 +1,6 @@
 import { defineSlotRecipe } from '@pandacss/dev';
 
-import { sectionSizing } from '@/atoms/containers/section/styles';
+import { sectionSizing } from 'molecules/section/styles';
 
 const headerRecipe = defineSlotRecipe({
   className: 'header',

@@ -4,7 +4,7 @@ import { control } from 'theme/recipes';
 import type { FC } from 'react';
 import type { PassThroughProps } from 'types/global';
 
-interface ControlProps extends PassThroughProps {}
+type ControlProps = PassThroughProps;
 
 const Control: FC<ControlProps> = ({ children, className }) => {
   const classes = control();

@@ -2,8 +2,8 @@ import conversionPanelRecipe from 'components/conversionPanel/styles';
 import formRecipe from 'components/form/styles';
 import componentHeroRecipe from 'components/hero/styles';
 import portcoRecipe from 'components/portco/styles';
-import toolsEyebrowRecipe from 'components/switchbackSection/components/toolsEyebrow/styles';
-import switchbackSectionRecipe from 'components/switchbackSection/styles';
+import toolsEyebrowRecipe from 'components/switchback/components/toolsEyebrow/styles';
+import switchbackSectionRecipe from 'components/switchback/styles';
 import testimonialComponentRecipe from 'components/testimonials/styles';
 import toolsRecipe from 'components/tools/styles';
 

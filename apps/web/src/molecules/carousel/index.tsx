@@ -3,11 +3,11 @@
 import * as carouselMachine from '@zag-js/carousel';
 import { normalizeProps, useMachine } from '@zag-js/react';
 
-import Icon from '@/atoms/icon';
+import { hasArrayValues } from '@packages/utils/arrays';
+
+import Icon from 'atoms/icon';
 
 import Testimonial from 'molecules/testimonial';
-
-import { hasArrayValues } from '@/utils/arrays';
 
 import { cx } from 'theme/css';
 import { carousel } from 'theme/recipes';
@@ -22,11 +22,7 @@ interface CarouselProps extends ClassStyles {
   items: (number | TestimonialProps)[];
 }
 
-const getComponent = (
-  componentName: string,
-  props: TestimonialProps,
-  active: boolean
-) => {
+const getComponent = (componentName: string, props: TestimonialProps, active: boolean) => {
   switch (componentName) {
     case 'testimonial':
       return <Testimonial key={props._id} active={active} {...props} />;
@@ -35,15 +31,8 @@ const getComponent = (
   }
 };
 
-const Carousel: FC<CarouselProps> = ({
-  id,
-  className,
-  items,
-  itemComponent,
-}) => {
-  const [state, send] = useMachine(
-    carouselMachine.machine({ id, loop: true, spacing: '32px' })
-  );
+const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) => {
+  const [state, send] = useMachine(carouselMachine.machine({ id, loop: true, spacing: '32px' }));
   const classes = carousel();
 
   const api = carouselMachine.connect(state, send, normalizeProps);
@@ -54,9 +43,7 @@ const Carousel: FC<CarouselProps> = ({
         <div {...api.getItemGroupProps()}>
           {hasArrayValues(items) &&
             items.map((item, index) => {
-              if (typeof item === 'number') {
-                return null;
-              }
+              if (typeof item === 'number') return null;
 
               return (
                 <div key={item._id} {...api.getItemProps({ index })}>
@@ -67,37 +54,18 @@ const Carousel: FC<CarouselProps> = ({
         </div>
       </div>
       <div className={classes.navigationContainer}>
-        <button
-          className={classes.navigationArrows}
-          tabIndex={0}
-          {...api.getPrevTriggerProps()}
-        >
-          <Icon icon='chevron-left' />
+        <button className={classes.navigationArrows} tabIndex={0} {...api.getPrevTriggerProps()}>
+          <Icon icon="chevron-left" />
         </button>
-        <div
-          className={classes.indicatorGroup}
-          {...api.getIndicatorGroupProps()}
-        >
+        <div className={classes.indicatorGroup} {...api.getIndicatorGroupProps()}>
           {items.map((item, index) => {
-            if (typeof item === 'number') {
-              return null;
-            }
+            if (typeof item === 'number') return null;
 
-            return (
-              <button
-                key={item._id}
-                className={classes.indicator}
-                {...api.getIndicatorProps({ index })}
-              />
-            );
+            return <button key={item._id} className={classes.indicator} {...api.getIndicatorProps({ index })} />;
           })}
         </div>
-        <button
-          className={classes.navigationArrows}
-          tabIndex={0}
-          {...api.getNextTriggerProps()}
-        >
-          <Icon icon='chevron-right' />
+        <button className={classes.navigationArrows} tabIndex={0} {...api.getNextTriggerProps()}>
+          <Icon icon="chevron-right" />
         </button>
       </div>
     </div>

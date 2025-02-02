@@ -1,8 +1,8 @@
-import SvgGradient, { svgGradients } from '@/atoms/gradients/svgGradient';
+import SvgGradient, { svgGradients } from 'atoms/gradients/svgGradient';
 
 import { css } from 'theme/css';
 
-import type { SvgGradientTypes } from '@/atoms/gradients/svgGradient';
+import type { SvgGradientTypes } from 'atoms/gradients/svgGradient';
 import type { FC } from 'react';
 
 const Backgrounds: FC<{ id: SvgGradientTypes }> = ({ id }) => {
@@ -21,7 +21,7 @@ const Backgrounds: FC<{ id: SvgGradientTypes }> = ({ id }) => {
         })}
       >
         <svg
-          width='100%'
+          width="100%"
           className={css({
             w: '100%',
             height: '100%',

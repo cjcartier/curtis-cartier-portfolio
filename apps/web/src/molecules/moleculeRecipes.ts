@@ -8,6 +8,7 @@ import hoverCardRecipe from 'molecules/hoverCard/styles';
 import controlRecipe from 'molecules/inputs/control/styles';
 import labelRecipe from 'molecules/inputs/label/styles';
 import textInputRecipe from 'molecules/inputs/text/styles';
+import sectionRecipe from 'molecules/section/styles';
 import switchbackRecipe from 'molecules/switchback/styles';
 import testimonialRecipe from 'molecules/testimonial/styles';
 import themeToggleRecipe from 'molecules/themeToggle/styles';
@@ -27,6 +28,7 @@ export const moleculeSlotRecipes = {
   carousel: carouselRecipe,
   heading: headingRecipe,
   hoverCard: hoverCardRecipe,
+  section: sectionRecipe,
   testimonial: testimonialRecipe,
   textInput: textInputRecipe,
 };

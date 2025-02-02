@@ -63,3 +63,17 @@ export const kebabToTitleCase = (str: string): string => {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(' ');
 };
+
+/**
+ * Converts a camelCase string to a kebab-case string.
+ *
+ * @param str - The input string in camelCase.
+ * @returns The input string converted to kebab-case.
+ */
+export const camelToKebabCase = (str: string): string => {
+  return str
+    .replace(/([A-Z])/g, '-$1')
+    .toLowerCase()
+    .replace(/^-/, '')
+    .replace(/--+/g, '-');
+};
