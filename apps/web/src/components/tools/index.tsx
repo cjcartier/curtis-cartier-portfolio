@@ -12,7 +12,7 @@ import { toolsComponent } from 'theme/recipes';
 import type { Selection, TypeFromSelection } from 'groqd';
 import type { FC } from 'react';
 
-type ToolsQuery = TypeFromSelection<typeof toolsComponentSelection>;
+type ToolsQuery = TypeFromSelection<typeof toolsSelection>;
 
 const Tools: FC<ToolsQuery> = ({ heading, tools }) => {
   const classes = toolsComponent();
@@ -29,9 +29,10 @@ const Tools: FC<ToolsQuery> = ({ heading, tools }) => {
   );
 };
 
-export const toolsComponentSelection = {
+export const toolsSelection = {
   _id: q.string(),
   _key: q.string(),
+  _type: q.literal('tools'),
   heading: q('heading').grab$(headingSelection),
   tools: q('tools').filter().deref().grab$(toolSelection),
   ...sectionSelection,

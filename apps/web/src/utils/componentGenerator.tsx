@@ -10,8 +10,8 @@ import { conversionPanelSelection } from 'components/conversionPanel';
 import { heroSelection } from 'components/hero';
 import { portcoSelection } from 'components/portco';
 import { switchbackSelection } from 'components/switchback';
-import { testimonialComponentSelection } from 'components/testimonials';
-import { toolsComponentSelection } from 'components/tools';
+import { testimonialsSelection } from 'components/testimonials';
+import { toolsSelection } from 'components/tools';
 
 import type { FC } from 'react';
 
@@ -31,18 +31,18 @@ interface ComponentGeneratorProps {
 
 const getComponent = (component: StripArray<StripMaybe<ComponentProps>>) => {
   switch (component._type) {
-    // case 'conversionPanel':
-    //   return <ConversionPanel {...component} />;
+    case 'conversionPanel':
+      return <ConversionPanel {...component} />;
     case 'hero':
       return <Hero {...component} />;
-    // case 'portCo':
-    //   return <Portco {...component} />;
-    // case 'switchback':
-    //   return <SwitchbackSection {...component} />;
-    // case 'testimonialComponent':
-    //   return <Testimonials {...component} />;
-    // case 'toolsComponent':
-    //   return <Tools {...component} />;
+    case 'portCo':
+      return <Portco {...component} />;
+    case 'switchback':
+      return <SwitchbackSection {...component} />;
+    case 'testimonial':
+      return <Testimonials {...component} />;
+    case 'tools':
+      return <Tools {...component} />;
     default:
       return null;
   }
@@ -72,12 +72,12 @@ const ComponentGenerator: FC<ComponentGeneratorProps> = ({ sections }) => {
 };
 
 export const componentGeneratorCondition = {
-  // '_type == "conversionPanel"': conversionPanelSelection,
+  '_type == "conversionPanel"': conversionPanelSelection,
   '_type == "hero"': heroSelection,
-  // '_type == "portCo"': portcoSelection,
-  // '_type == "switchback"': switchbackSelection,
-  // '_type == "testimonialComponent"': testimonialComponentSelection,
-  // '_type == "toolsComponent"': toolsComponentSelection,
+  '_type == "portCo"': portcoSelection,
+  '_type == "switchback"': switchbackSelection,
+  '_type == "testimonial"': testimonialsSelection,
+  '_type == "tools"': toolsSelection,
   default: {
     _type: q.literal('default'),
     _key: q.string(),

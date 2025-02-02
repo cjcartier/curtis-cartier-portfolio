@@ -6,6 +6,9 @@ declare global {
   type Maybe<T> = T | null | undefined;
   type StripMaybe<T> = Exclude<T, undefined | null>;
   type StripArray<T> = T extends Array<infer U> ? U : T;
+  type Maybify<T> = {
+    [P in keyof T]?: T[P];
+  };
   type Optional<T> = {
     [P in keyof T]?: T[P] extends object ? Optional<T[P]> : T[P];
   };

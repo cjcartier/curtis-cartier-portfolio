@@ -36,6 +36,7 @@ const testimonialSelection = {
 export const testimonialsSelection = {
   _id: q.string(),
   _key: q.string(),
+  _type: q.literal('testimonial'),
   heading: q('heading').grab$(headingSelection),
   testimonials: q('testimonials')
     .filter()

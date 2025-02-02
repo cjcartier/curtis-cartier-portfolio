@@ -11,7 +11,7 @@ import { section } from 'theme/recipes';
 import type { ElementType, FC, ReactNode } from 'react';
 import type { HTMLStyledProps } from 'theme/types';
 
-interface SectionProps extends Omit<HTMLStyledProps<'div'>, 'padding' | 'backgroundImage'>, SectionQueryProps {
+interface SectionProps extends Omit<HTMLStyledProps<'div'>, 'padding' | 'backgroundImage'>, Maybify<SectionQueryProps> {
   /**
    * An optional alternative HTML element type to render the section with.
    */
@@ -48,14 +48,12 @@ export const Section: FC<SectionProps> = ({
   );
 };
 
-const sectionSizing = ['none', 'small', 'medium', 'large', 'xLarge'] as const;
-
 export const sectionSelection = {
   backgroundImage: q.literal('home-curve').optional(),
   padding: q
     .object({
-      top: constructUnionFromArray(sectionSizing),
-      bottom: constructUnionFromArray(sectionSizing),
+      top: constructUnionFromArray(['none', 'small', 'medium', 'large', 'xLarge'] as const),
+      bottom: constructUnionFromArray(['none', 'small', 'medium', 'large', 'xLarge'] as const),
     })
     .optional(),
   sectionId: ['sectionId.current', q.string().nullable()],

@@ -20,7 +20,7 @@ export const constructZodLiteralUnionType = <T extends z.ZodLiteral<unknown>>(li
     );
   }
 
-  return q.union(literals).optional();
+  return q.union(literals).optional().nullable();
 };
 
 export const constructLiteralArray = <T extends string>(literals: T[]): z.ZodLiteral<T>[] =>

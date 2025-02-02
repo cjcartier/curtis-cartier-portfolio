@@ -107,6 +107,6 @@ export const formSelection = {
   _id: q.string(),
   title: q.string(),
   formFields: q('formFields').filter().deref().grab(fieldSelection),
-} as Selection;
+} satisfies Selection;
 
 export default Form;

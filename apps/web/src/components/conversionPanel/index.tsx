@@ -42,9 +42,10 @@ const ConversionPanel: FC<ConversionPanelQuery> = ({ heading, form }) => {
 export const conversionPanelSelection = {
   _id: q.string(),
   _key: q.string(),
+  _type: q.literal('conversionPanel'),
   heading: q('heading').grab$(headingSelection),
   form: q('form').deref().grab(formSelection),
   ...sectionSelection,
-} as Selection;
+} satisfies Selection;
 
 export default ConversionPanel;

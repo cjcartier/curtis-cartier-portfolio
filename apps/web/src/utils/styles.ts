@@ -1,4 +1,4 @@
-import { camelToKebab } from 'utils/strings';
+import { camelToKebabCase } from '@packages/utils/strings';
 
 import type { CssProperties } from 'theme/types';
 
@@ -14,6 +14,6 @@ const generateTransitions = (
   props: (keyof CssProperties)[],
   timing: number,
   curve?: CssProperties['animationTimingFunction'],
-) => props.map(prop => `${camelToKebab(prop)} ${timing}ms ${curve || 'ease-in-out'}`).join(', ');
+) => props.map(prop => `${camelToKebabCase(prop)} ${timing}ms ${curve || 'ease-in-out'}`).join(', ');
 
 export default generateTransitions;
