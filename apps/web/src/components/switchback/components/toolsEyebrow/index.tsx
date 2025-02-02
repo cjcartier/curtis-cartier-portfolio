@@ -4,7 +4,7 @@ import Logo from '@/atoms/logo';
 
 import { toolsEyebrow } from 'theme/recipes';
 
-import type { TypeFromSelection } from 'groqd';
+import type { Selection, TypeFromSelection } from 'groqd';
 import type { FC } from 'react';
 
 interface ToolsEyebrowProps {
@@ -35,6 +35,6 @@ const ToolsEyebrow: FC<ToolsEyebrowProps> = ({ tools }) => {
 export const toolsEyebrowSelection = {
   _id: q.string().optional(),
   logoId: q.string().optional(),
-};
+} satisfies Selection;
 
 export default ToolsEyebrow;

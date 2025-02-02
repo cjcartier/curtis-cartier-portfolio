@@ -1,14 +1,14 @@
-import { logoSet } from '@/atoms/logo/data';
+import { logoSet } from '@packages/ui/logos';
 
 import { css, cx } from 'theme/css';
 
-import type { LogoProps } from '@/atoms/logo/types';
+import type { LogoProps } from '@packages/ui/logos/types';
 import type { FC } from 'react';
 
 const Logo: FC<LogoProps> = ({ logo, size, className, isIcon, ...props }) =>
   logoSet.has(logo) && (
     <svg
-      focusable='false'
+      focusable="false"
       aria-hidden
       className={cx(css({ fill: 'current', stroke: 'current' }), className)}
       style={size && { width: size, height: size }}

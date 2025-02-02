@@ -33,9 +33,7 @@ const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
     );
 
   useEffect(() => {
-    if (!tools) {
-      return;
-    }
+    if (!tools) return;
 
     const interval = setInterval(() => {
       const hoveredCard = document.querySelector(
@@ -65,9 +63,7 @@ const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
   return (
     <>
       {currentTools?.map((tool, ind) => {
-        if (typeof tool === 'number' || !tool.logoId) {
-          return null;
-        }
+        if (typeof tool === 'number' || !tool.logoId) return null;
 
         return (
           <div

@@ -16,6 +16,8 @@
   "dependencies": {
     "@packages/config": "*",
     "@packages/tsconfig": "*",
+    "@packages/ui": "*",
+    "@packages/utils": "*",
     "@portabletext/react": "^3.2.0",
     "@sanity/image-url": "^1.1.0",
     "@zag-js/carousel": "^0.82.1",
@@ -31,6 +33,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@packages/eslint": "*",
     "@pandacss/dev": "^0.48.1",
     "@pandacss/types": "^0.48.1",
     "@portabletext/types": "^2.0.13",

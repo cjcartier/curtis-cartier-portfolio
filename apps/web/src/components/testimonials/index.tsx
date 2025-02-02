@@ -1,45 +1,27 @@
 import { q } from 'groqd';
 
-import { runQuery } from 'lib/client';
-import { getComponent } from 'lib/groq';
-
 import { personSelection } from 'molecules/attribution';
 import Carousel from 'molecules/carousel';
 import Heading, { headingSelection } from 'molecules/heading';
+import { sectionSelection } from 'molecules/section';
 
 import { testimonialComponent } from 'theme/recipes';
 
-import type { Selection } from 'groqd';
+import type { Selection, TypeFromSelection } from 'groqd';
 import type { FC } from 'react';
-import type { ComponentId } from 'types/global';
 
-const Testimonials: FC<ComponentId> = async ({ _id }) => {
+type TestimonialsQuery = TypeFromSelection<typeof testimonialsSelection>;
+
+const Testimonials: FC<TestimonialsQuery> = ({ _id, heading, testimonials }) => {
   const classes = testimonialComponent();
-
-  const query = getComponent(_id, 'testimonialComponent').grab({
-    heading: q.object(headingSelection),
-    testimonials: q('testimonials')
-      .filter()
-      .deref()
-      .grab$(testimonialSelection),
-  });
-
-  const { heading, testimonials } = (await runQuery(query))[0];
 
   return (
     <div className={classes.root}>
       <div className={classes.headerWrapper}>
-        {heading && (
-          <Heading headingType='h2' size='md' alignment='start' {...heading} />
-        )}
+        {heading && <Heading headingType="h2" size="md" alignment="start" {...heading} />}
       </div>
       {testimonials && (
-        <Carousel
-          id={_id}
-          className={classes.testimonials}
-          items={testimonials}
-          itemComponent='testimonial'
-        />
+        <Carousel id={_id} className={classes.testimonials} items={testimonials} itemComponent="testimonial" />
       )}
     </div>
   );
@@ -51,9 +33,15 @@ const testimonialSelection = {
   content: q.contentBlocks().optional(),
 } satisfies Selection;
 
-export const testimonialComponentSelection = {
+export const testimonialsSelection = {
+  _id: q.string(),
+  _key: q.string(),
   heading: q('heading').grab$(headingSelection),
-  testimonials: q('testimonials').filter().deref().grab$(testimonialSelection),
+  testimonials: q('testimonials')
+    .filter()
+    .deref()
+    .grab$({ _key: q.string(), ...testimonialSelection }),
+  ...sectionSelection,
 } satisfies Selection;
 
 export default Testimonials;

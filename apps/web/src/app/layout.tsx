@@ -1,15 +1,15 @@
-import ThemeScript from 'lib/ThemeScript';
+import 'app/globals.css';
 
 import { robotoMono, sharpGrotesk, sharpSans } from 'assets/fonts';
-
-import { cx } from 'theme/css';
 
 import Footer from 'layout/footer';
 import Header from 'layout/header';
 
-import type { Metadata } from 'next';
+import ThemeScript from 'lib/ThemeScript';
 
-import 'app/globals.css';
+import { cx } from 'theme/css';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,17 +17,11 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang='en'>
+  <html lang="en">
     <head>
       <ThemeScript />
     </head>
-    <body
-      className={cx(
-        sharpGrotesk.variable,
-        sharpSans.variable,
-        robotoMono.variable
-      )}
-    >
+    <body className={cx(sharpGrotesk.variable, sharpSans.variable, robotoMono.variable)}>
       <Header />
       <main>{children}</main>
       <Footer />

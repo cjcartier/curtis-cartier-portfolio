@@ -1,9 +1,9 @@
 import imageUrlBuilder from '@sanity/image-url';
 import NextImage from 'next/image';
 
-import { dataset, projectId } from 'lib/env';
-
 import Frame from 'molecules/frame';
+
+import { dataset, projectId } from 'lib/env';
 
 import { css, cx } from 'theme/css';
 

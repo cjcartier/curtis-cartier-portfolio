@@ -1,6 +1,8 @@
-import { q, Selection, TypeFromSelection } from 'groqd';
-import { FC } from 'react';
+import { Selection, TypeFromSelection, q } from 'groqd';
+
 import { footer } from 'theme/recipes';
+
+import type { FC } from 'react';
 
 export type FooterLink = TypeFromSelection<typeof footerLink>;
 

@@ -1,5 +1,6 @@
-import type { TypeFromSelection } from 'groqd';
 import 'react';
+
+import type { TypeFromSelection } from 'groqd';
 
 declare global {
   type Maybe<T> = T | null | undefined;

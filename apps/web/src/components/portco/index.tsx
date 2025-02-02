@@ -1,56 +1,33 @@
-import { q, Selection } from 'groqd';
+import { Selection, TypeFromSelection, q } from 'groqd';
 
-import { runQuery } from 'lib/client';
-import { getComponent } from 'lib/groq';
+import { hasArrayValues } from '@packages/utils/arrays';
 
-import Brand from '@/atoms/brands';
+import Brand from 'atoms/brands';
 
 import Heading, { headingSelection } from 'molecules/heading';
+import { sectionSelection } from 'molecules/section';
 
-import { hasArrayValues } from '@/utils/arrays';
-
-import { heading, portco } from 'theme/recipes';
+import { portco } from 'theme/recipes';
 
 import type { FC } from 'react';
-import type { ComponentId } from 'types/global';
 
-const Portco: FC<ComponentId> = async ({ _id }) => {
+type PortcoQuery = TypeFromSelection<typeof portcoSelection>;
+
+const Portco: FC<PortcoQuery> = ({ heading, brands }) => {
   const classes = portco();
-
-  const query = getComponent(_id, 'portCo').grab$({
-    heading: q.object(headingSelection),
-    brands: q('brands').filter().deref().grab$({
-      _id: q.string(),
-      logoId: q.string(),
-    }),
-  });
-
-  const data = (await runQuery(query))[0];
 
   return (
     <div className={classes.root}>
-      {data?.heading && (
+      {heading && (
         <div className={classes.headingContainer}>
-          <Heading
-            headingType='h2'
-            size='md'
-            alignment='start'
-            {...data.heading}
-          />
+          <Heading headingType="h2" size="md" alignment="start" {...heading} />
         </div>
       )}
-      {hasArrayValues(data?.brands) && (
+      {hasArrayValues(brands) && (
         <div className={classes.brandContainer}>
-          {data.brands.map(
-            (brand) =>
-              brand && (
-                <Brand
-                  key={brand._id}
-                  brand={brand.logoId || ''}
-                  height='30px'
-                  className={classes.brand}
-                />
-              )
+          {brands.map(
+            brand =>
+              brand && <Brand key={brand._id} brand={brand.logoId || ''} height="30px" className={classes.brand} />,
           )}
         </div>
       )}
@@ -59,11 +36,11 @@ const Portco: FC<ComponentId> = async ({ _id }) => {
 };
 
 export const portcoSelection = {
+  _id: q.string(),
+  _key: q.string(),
   heading: q('heading').grab$(headingSelection),
-  brands: q('brands')
-    .filter()
-    .deref()
-    .grab$({ _id: q.string(), logoId: q.string() }),
+  brands: q('brands').filter().deref().grab$({ _id: q.string(), logoId: q.string() }),
+  ...sectionSelection,
 } satisfies Selection;
 
 export default Portco;

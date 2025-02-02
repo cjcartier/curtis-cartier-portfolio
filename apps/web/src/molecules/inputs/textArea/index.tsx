@@ -10,7 +10,7 @@ import { textInput } from 'theme/recipes';
 
 import type { TextInputProps } from 'molecules/inputs/text';
 
-interface TextAreaProps extends TextInputProps {}
+type TextAreaProps = TextInputProps;
 
 // TODO: char count
 const TextArea: FC<TextAreaProps> = ({

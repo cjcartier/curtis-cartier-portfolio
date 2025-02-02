@@ -13,7 +13,6 @@ export default defineConfig({
       reporter: ['json-summary', 'json', 'text', 'html'],
       reportOnFailure: true,
     },
-    setupFiles: ['src/test/setup.client.ts'],
   },
   resolve: {
     alias: {

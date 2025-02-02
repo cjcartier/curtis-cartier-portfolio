@@ -1,7 +1,7 @@
+import { iconSet } from 'atoms/icon/data';
+
 import type { ColorToken, SpacingToken } from 'theme/tokens';
 import type { ClassStyles } from 'types/global';
-
-import { iconSet } from '@/atoms/icon/data';
 
 export const iconIds = Array.from(iconSet);
 export type IconIds = (typeof iconIds)[number];
