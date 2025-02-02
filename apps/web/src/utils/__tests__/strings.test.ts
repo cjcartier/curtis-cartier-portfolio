@@ -8,7 +8,7 @@ import {
   toKebabCase,
   toTitleCase,
   tokenToSentence,
-} from 'utils/strings';
+} from '@/utils/strings';
 
 describe('toKebabCase', () => {
   it('converts string to lowercase with hyphens', () => {

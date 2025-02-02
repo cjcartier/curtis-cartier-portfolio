@@ -1,23 +1,30 @@
 import { type Selection, q } from 'groqd';
 
-import Icon from 'atoms/icon';
+import Icon from '@/atoms/icon';
 
-import parseUrl from 'utils/parseUrl';
+import parseUrl from '@/utils/parseUrl';
 
 import { cx } from 'theme/css';
 import { VisuallyHidden, styled } from 'theme/jsx';
 import { button } from 'theme/recipes';
 
-import type { IconIds } from 'atoms/icon/types';
+import type { IconIds } from '@/atoms/icon/types';
 import type { ComponentPropsWithoutRef, FC, ReactNode } from 'react';
 import type { HTMLStyledProps } from 'theme/jsx';
 import type { ButtonVariantProps } from 'theme/recipes';
 
-type NativeButtonProps = ComponentPropsWithoutRef<'button'> & ComponentPropsWithoutRef<'a'>;
+type NativeButtonProps = ComponentPropsWithoutRef<'button'> &
+  ComponentPropsWithoutRef<'a'>;
 
-export type ButtonIconProps = { id: number; position: 'start' | 'end'; icon: IconIds };
+export type ButtonIconProps = {
+  id: number;
+  position: 'start' | 'end';
+  icon: IconIds;
+};
 
-export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps, 'color'> {
+export interface ButtonProps
+  extends ButtonVariantProps,
+    Omit<NativeButtonProps, 'color'> {
   /**
    * String label for button. Recommend short concise call to action
    * if `iconsOnly` is selected, label will become visibly hidden
@@ -38,12 +45,18 @@ export interface ButtonProps extends ButtonVariantProps, Omit<NativeButtonProps,
   iconsOnly?: boolean;
 }
 
-interface LabelProps extends HTMLStyledProps<'span'>, Pick<ButtonProps, 'iconsOnly'> {
+interface LabelProps
+  extends HTMLStyledProps<'span'>,
+    Pick<ButtonProps, 'iconsOnly'> {
   children: ReactNode;
 }
 
 const Label: FC<LabelProps> = ({ iconsOnly, children, className }) =>
-  iconsOnly ? <VisuallyHidden>{children}</VisuallyHidden> : <span className={className}>{children}</span>;
+  iconsOnly ? (
+    <VisuallyHidden>{children}</VisuallyHidden>
+  ) : (
+    <span className={className}>{children}</span>
+  );
 
 const Button: FC<ButtonProps> = ({
   label,
@@ -61,10 +74,19 @@ const Button: FC<ButtonProps> = ({
   loading,
   ...props
 }) => {
-  const { Component: as, ...urlProps } = parseUrl(!disabled && link ? link : '');
+  const { Component: as, ...urlProps } = parseUrl(
+    !disabled && link ? link : ''
+  );
   const component = as === 'div' ? 'button' : 'a';
   const Component = styled(component);
-  const classes = button({ hierarchy, size, color, noPadding, fullWidth, loading });
+  const classes = button({
+    hierarchy,
+    size,
+    color,
+    noPadding,
+    fullWidth,
+    loading,
+  });
 
   return (
     <Component
@@ -80,7 +102,9 @@ const Button: FC<ButtonProps> = ({
           {label}
         </Label>
       )}
-      {icon && icon !== 'none' && <Icon icon={icon as IconIds} className={classes.endIcon} />}
+      {icon && icon !== 'none' && (
+        <Icon icon={icon as IconIds} className={classes.endIcon} />
+      )}
     </Component>
   );
 };
@@ -89,7 +113,13 @@ export const buttonArraySelection = {
   _key: q.string(),
   label: q.string().optional(),
   link: q.string().optional(),
-  icon: q.union([q.literal('none'), q.literal('arrow-right'), q.literal('arrow-left')]).optional(),
+  icon: q
+    .union([
+      q.literal('none'),
+      q.literal('arrow-right'),
+      q.literal('arrow-left'),
+    ])
+    .optional(),
 } satisfies Selection;
 
 export default Button;

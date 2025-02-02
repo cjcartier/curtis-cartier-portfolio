@@ -1,17 +1,28 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": [".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
-    },
-    "//#format-and-lint": { "cache": false },
-    "lint": { "dependsOn": ["^//#format-and-lint"] },
     "dev": {
       "cache": false,
-      "persistent": true
-    }
+      "persistent": true,
+      "inputs": [".env"],
+      "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_DATASET"]
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+    },
+    "studio#build": {
+      "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_DATASET"]
+    },
+    "web#build": {
+      "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_DATASET"]
+    },
+    "//#format-and-lint": { "cache": false },
+    "lint": {},
+    "format": { "dependsOn": ["^//#format-and-lint"] },
+    "type-check": {}
   },
-  "globalDependencies": [".env"]
+  "globalDependencies": [".env"],
+  "globalEnv": ["NODE_ENV"]
 }

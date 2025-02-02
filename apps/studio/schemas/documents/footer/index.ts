@@ -1,46 +1,34 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
-import link from 'schemas/fields/link';
+import link from '@/schemas/fields/links';
 
-export const Footer = defineType({
+export const footer = defineType({
   name: 'footer',
-  title: 'Global: Footer',
+  title: 'Footer',
   type: 'document',
   fields: [
-    {
+    defineField({
       name: 'mainLinks',
       title: 'Main Links',
       type: 'array',
-      of: [
-        link({
-          theme: false,
-        }),
-      ],
-      validation: Rule => Rule.max(6),
-    },
-    {
+      of: [link],
+      validation: rule => rule.max(6),
+    }),
+    defineField({
       name: 'resourceLinks',
       title: 'Resource Links',
       type: 'array',
-      of: [
-        link({
-          theme: false,
-        }),
-      ],
-      validation: Rule => Rule.max(6),
-    },
-    {
+      of: [link],
+      validation: rule => rule.max(6),
+    }),
+    defineField({
       name: 'contactLinks',
       title: 'Contact Links',
       type: 'array',
-      of: [
-        link({
-          theme: false,
-        }),
-      ],
-      validation: Rule => Rule.max(6),
-    },
+      of: [link],
+      validation: rule => rule.max(6),
+    }),
   ],
 });
 
-export default Footer;
+export default footer;

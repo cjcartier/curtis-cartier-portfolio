@@ -1,44 +1,85 @@
-import { defineType } from 'sanity';
+import { UserIcon } from '@sanity/icons';
+import { defineField, defineType } from 'sanity';
 
-import image from 'schemas/fields/image';
+import defineImage from '@/schemas/definitions/image';
 
-const Person = defineType({
+const person = defineType({
   name: 'person',
-  title: 'Entity: Person',
+  title: 'Person',
   type: 'document',
-  fields: [
+  icon: UserIcon,
+
+  fieldsets: [
     {
-      name: 'displayName',
-      title: 'Display Name',
-      type: 'string',
-    },
-    {
-      name: 'fullName',
-      type: 'object',
+      name: 'name',
+      title: 'Name',
       options: { columns: 2 },
-      fields: [
-        {
-          name: 'firstName',
-          type: 'string',
-        },
-        {
-          name: 'lastName',
-          type: 'string',
-        },
-      ],
     },
     {
+      name: 'employment',
+      title: 'Employment',
+    },
+    {
+      name: 'socialMediaUrls',
+      title: 'Social Media Links',
+    },
+  ],
+  fields: [
+    defineField({
+      name: 'firstName',
+      title: 'First',
+      type: 'string',
+      fieldset: 'name',
+      validation: rule => rule.required().warning('You must provide a first name for this person.'),
+    }),
+    defineField({
+      name: 'lastName',
+      title: 'Last',
+      type: 'string',
+      fieldset: 'name',
+      validation: rule => rule.required().warning('You must provide a last name for this person.'),
+    }),
+    defineField({
       name: 'position',
       type: 'string',
-    },
-    image({ fieldAdmin: { name: 'headshot', title: 'Headshot' } }),
-    {
+    }),
+    defineImage({
+      name: 'headshot',
+      title: 'Headshot',
+    }),
+    defineField({
       name: 'company',
       title: 'Company',
       type: 'reference',
       to: [{ type: 'company' }],
-    },
+    }),
   ],
+  preview: {
+    select: {
+      firstName: 'firstName',
+      lastName: 'lastName',
+      role: 'role',
+      companyName: 'company.name',
+      media: 'headshot',
+    },
+    prepare({ firstName, lastName, role, companyName, media }) {
+      const title = [firstName, lastName].filter(i => i).join(' ');
+
+      let subtitle: string[] | string = [role, companyName];
+
+      if (role && companyName) {
+        subtitle = subtitle.join(' | ');
+      } else {
+        subtitle = subtitle.filter(i => i).join('');
+      }
+
+      return {
+        title,
+        subtitle,
+        media,
+      };
+    },
+  },
 });
 
-export default Person;
+export default person;

@@ -1,26 +1,32 @@
-import { defineType } from 'sanity';
+import { CaseIcon } from '@sanity/icons';
+import { defineField, defineType } from 'sanity';
 
-import { generateValueListFromArray } from 'schemas/utils/schemaFunctions';
+import { brandIds } from '@packages/ui/brands';
 
-import { brandIds } from 'atoms/brands/data';
+import { genValuesFromArray } from '@/utils/schemaFunctions';
 
-const Company = defineType({
-  title: 'Entity: Company',
+const company = defineType({
+  title: 'Company',
   name: 'company',
   type: 'document',
+  icon: CaseIcon,
   fields: [
-    {
+    defineField({
       title: 'Company Name',
       name: 'companyName',
       type: 'string',
-    },
-    {
+      validation: Rule => Rule.required().error('You must provide a name for this company.'),
+    }),
+    defineField({
       title: 'Logo',
       name: 'logoId',
       type: 'string',
-      options: { list: generateValueListFromArray(brandIds), layout: 'dropdown' },
-    },
+      options: {
+        list: genValuesFromArray(brandIds),
+        layout: 'dropdown',
+      },
+    }),
   ],
 });
 
-export default Company;
+export default company;

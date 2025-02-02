@@ -1,10 +1,16 @@
 import { defineSlotRecipe } from '@pandacss/dev';
 
-import generateTransitions from 'utils/styles';
+import generateTransitions from '@/utils/styles';
 
 const carouselRecipe = defineSlotRecipe({
   className: 'carousel',
-  slots: ['root', 'navigationContainer', 'navigationArrows', 'indicatorGroup', 'indicator'],
+  slots: [
+    'root',
+    'navigationContainer',
+    'navigationArrows',
+    'indicatorGroup',
+    'indicator',
+  ],
   base: {
     root: {
       display: 'flex',

@@ -4,6 +4,9 @@ import { robotoMono, sharpGrotesk, sharpSans } from 'assets/fonts';
 
 import { cx } from 'theme/css';
 
+import Footer from 'layout/footer';
+import Header from 'layout/header';
+
 import type { Metadata } from 'next';
 
 import 'app/globals.css';
@@ -14,11 +17,21 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang="en">
+  <html lang='en'>
     <head>
       <ThemeScript />
     </head>
-    <body className={cx(sharpGrotesk.variable, sharpSans.variable, robotoMono.variable)}>{children}</body>
+    <body
+      className={cx(
+        sharpGrotesk.variable,
+        sharpSans.variable,
+        robotoMono.variable
+      )}
+    >
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </body>
   </html>
 );
 

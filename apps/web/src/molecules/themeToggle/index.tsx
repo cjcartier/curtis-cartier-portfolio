@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import Icon from 'atoms/icon';
+import Icon from '@/atoms/icon';
 
 import { themeToggle } from 'theme/recipes';
 

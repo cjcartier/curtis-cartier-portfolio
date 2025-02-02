@@ -1,4 +1,4 @@
-import { objectKeys } from 'utils/typeUtils';
+import { objectKeys } from '@/utils/typeUtils';
 
 import { css, cx } from 'theme/css';
 import { styled } from 'theme/jsx';
@@ -49,16 +49,25 @@ export interface DoodleProps extends HTMLStyledProps<'svg'> {
 
 export const SVG = styled('svg');
 
-const Doodle: FC<DoodleProps> = ({ doodle, size, doodleColor, className, ...props }) =>
+const Doodle: FC<DoodleProps> = ({
+  doodle,
+  size,
+  doodleColor,
+  className,
+  ...props
+}) =>
   doodleSet.has(doodle) && (
     <div
       className={cx(
         css({
-          color: { base: 'var(--doodle-color)', _dark: 'var(--doodle-color-dark)' },
+          color: {
+            base: 'var(--doodle-color)',
+            _dark: 'var(--doodle-color-dark)',
+          },
           width: 'fit-content',
           height: 'fit-content',
         }),
-        className,
+        className
       )}
       style={{
         '--doodle-color': token(`colors.${doodles[doodle].base}` as Token),
@@ -70,7 +79,7 @@ const Doodle: FC<DoodleProps> = ({ doodle, size, doodleColor, className, ...prop
         h={size || '24'}
         fill={doodleColor || 'currentColor'}
         stroke={doodleColor || 'currentColor'}
-        focusable="false"
+        focusable='false'
         aria-hidden
         className={css({ overflow: 'visible' })}
         {...props}

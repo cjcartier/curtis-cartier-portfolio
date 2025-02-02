@@ -1,10 +1,10 @@
-import { q } from 'groqd';
+import { q, Selection } from 'groqd';
 
 import { runQuery } from 'lib/client';
 import { getComponent } from 'lib/groq';
 
-import Doodle from 'atoms/doodle';
-import Glow from 'atoms/glows';
+import Doodle from '@/atoms/doodle';
+import Glow from '@/atoms/glows';
 
 import Heading, { headingSelection } from 'molecules/heading';
 
@@ -29,22 +29,38 @@ const ConversionPanel: FC<ComponentId> = async ({ _id }) => {
   return (
     <div className={classes.root}>
       <div className={classes.headingWrapper}>
-        <Doodle doodle="half-hard" className={cx(classes.doodle, classes.doodleOne)} />
-        <Glow temperature="cool" />
+        <Doodle
+          doodle='half-hard'
+          className={cx(classes.doodle, classes.doodleOne)}
+        />
+        <Glow temperature='cool' />
         <div className={classes.headingFrame}>
-          <Doodle doodle="hard" className={cx(classes.doodle, classes.doodleThree)} />
+          <Doodle
+            doodle='hard'
+            className={cx(classes.doodle, classes.doodleThree)}
+          />
         </div>
-        {heading && <Heading headingType="h2" alignment="start" size="md" {...heading} />}
-        <Doodle doodle="squiggle" className={cx(classes.doodle, classes.doodleTwo)} />
+        {heading && (
+          <Heading headingType='h2' alignment='start' size='md' {...heading} />
+        )}
+        <Doodle
+          doodle='squiggle'
+          className={cx(classes.doodle, classes.doodleTwo)}
+        />
       </div>
       {form && (
         <div className={classes.formWrapper}>
-          <Glow temperature="warm" />
+          <Glow temperature='warm' />
           {form && <Form {...form} />}
         </div>
       )}
     </div>
   );
 };
+
+export const conversionPanelSelection = {
+  heading: q('heading').grab$(headingSelection),
+  form: q('form').deref().grab(formSelection),
+} as Selection;
 
 export default ConversionPanel;

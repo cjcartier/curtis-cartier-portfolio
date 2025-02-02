@@ -1,9 +1,9 @@
-import { q } from 'groqd';
+import { q, Selection } from 'groqd';
 
 import { runQuery } from 'lib/client';
 import { getComponent } from 'lib/groq';
 
-import Doodle from 'atoms/doodle';
+import Doodle from '@/atoms/doodle';
 
 import Heading, { headingSelection } from 'molecules/heading';
 
@@ -24,11 +24,19 @@ const Hero: FC<ComponentId> = async ({ _id }) => {
 
   return (
     <div className={root}>
-      <Doodle doodle="half-hard" className={cx(doodle, doodleOne)} />
-      <Doodle doodle="hard" className={cx(doodle, doodleTwo)} />
-      {heading && <Heading headingType="h1" size="lg" alignment="center" {...heading} />}
+      <Doodle doodle='half-hard' className={cx(doodle, doodleOne)} />
+      <Doodle doodle='hard' className={cx(doodle, doodleTwo)} />
+      {heading && (
+        <Heading headingType='h1' size='lg' alignment='center' {...heading} />
+      )}
     </div>
   );
 };
+
+export const heroSelection = {
+  _id: q.string(),
+  _type: q.string(),
+  heading: q('heading').grab$(headingSelection),
+} as Selection;
 
 export default Hero;

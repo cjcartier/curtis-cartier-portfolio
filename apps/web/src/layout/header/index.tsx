@@ -7,7 +7,6 @@ import LoadingThemeToggle from 'molecules/themeToggle/loadingThemeButton';
 import { header } from 'theme/recipes';
 
 const ThemeToggle = dynamic(() => import('molecules/themeToggle'), {
-  ssr: false,
   loading: () => <LoadingThemeToggle />,
 });
 

@@ -1,4 +1,4 @@
-import { getRandomInt } from 'utils/numbers';
+import { getRandomInt } from '@/utils/numbers';
 
 import type { Tool } from 'components/tools/components/toolsSwitcher';
 
@@ -10,11 +10,16 @@ import type { Tool } from 'components/tools/components/toolsSwitcher';
  * @param updateInd - The index of the tool in the currentTools array to replace.
  * @returns The updated currentTools array.
  */
-const updateToolArray = (currentTools: Tool[], allTools: Tool[], updateInd: number) => {
-  const currentToolsIds = currentTools.map(tool => tool.logoId);
+const updateToolArray = (
+  currentTools: Tool[],
+  allTools: Tool[],
+  updateInd: number
+) => {
+  const currentToolsIds = currentTools.map((tool) => tool.logoId);
   const newTools = allTools.reduce(
-    (acc, tool) => (currentToolsIds.includes(tool.logoId) ? acc : [...acc, tool]),
-    [] as Tool[],
+    (acc, tool) =>
+      currentToolsIds.includes(tool.logoId) ? acc : [...acc, tool],
+    [] as Tool[]
   );
 
   currentTools.splice(updateInd, 1, newTools[getRandomInt(newTools.length)]);

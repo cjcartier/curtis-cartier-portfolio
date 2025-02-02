@@ -1,39 +1,25 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
-import link from 'schemas/fields/link';
+import button from '@/schemas/fields/button';
+import link from '@/schemas/fields/links';
 
 export const Header = defineType({
   name: 'header',
-  title: 'Global: Header',
+  title: 'Header',
   type: 'document',
   fields: [
-    {
+    defineField({
       name: 'navItems',
       title: 'Navigation Items',
       type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            link({
-              theme: false,
-            }),
-          ],
-        },
-      ],
-    },
-    {
+      of: [link],
+    }),
+    defineField({
       name: 'buttons',
       title: 'Buttons',
       type: 'array',
-      of: [
-        link({
-          theme: ['fill', 'outline', 'text'],
-          hasIcon: true,
-          fieldAdmin: { name: 'button', title: 'Button' },
-        }),
-      ],
-    },
+      of: [button],
+    }),
   ],
 });
 
