@@ -5,6 +5,7 @@ import carouselRecipe from 'molecules/carousel/styles';
 import frameRecipe from 'molecules/frame/styles';
 import headingRecipe from 'molecules/heading/styles';
 import hoverCardRecipe from 'molecules/hoverCard/styles';
+import imageRecipe from 'molecules/image/styles';
 import controlRecipe from 'molecules/inputs/control/styles';
 import labelRecipe from 'molecules/inputs/label/styles';
 import textInputRecipe from 'molecules/inputs/text/styles';
@@ -17,6 +18,7 @@ export const moleculeRecipes = {
   badge: badgeRecipe,
   control: controlRecipe,
   frame: frameRecipe,
+  image: imageRecipe,
   label: labelRecipe,
   switchback: switchbackRecipe,
   themeToggle: themeToggleRecipe,

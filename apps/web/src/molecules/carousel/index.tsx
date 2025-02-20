@@ -5,8 +5,7 @@ import { normalizeProps, useMachine } from '@zag-js/react';
 
 import { hasArrayValues } from '@packages/utils/arrays';
 
-import Icon from 'atoms/icon';
-
+import Icon from 'molecules/icon';
 import Testimonial from 'molecules/testimonial';
 
 import { cx } from 'theme/css';
@@ -32,26 +31,25 @@ const getComponent = (componentName: string, props: TestimonialProps, active: bo
 };
 
 const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) => {
-  const [state, send] = useMachine(carouselMachine.machine({ id, loop: true, spacing: '32px' }));
-  const classes = carousel();
+  // @ts-expect-error loop exists on this machine
+  const [state, send] = useMachine(carouselMachine.machine({ id, loop: true, spacing: '32px', loop: true })),
+    classes = carousel();
 
   const api = carouselMachine.connect(state, send, normalizeProps);
 
   return (
     <div className={cx(className, classes.root)} {...api.getRootProps()}>
-      <div {...api.getViewportProps()}>
-        <div {...api.getItemGroupProps()}>
-          {hasArrayValues(items) &&
-            items.map((item, index) => {
-              if (typeof item === 'number') return null;
+      <div {...api.getItemGroupProps()}>
+        {hasArrayValues(items) &&
+          items.map((item, index) => {
+            if (typeof item === 'number') return null;
 
-              return (
-                <div key={item._id} {...api.getItemProps({ index })}>
-                  {getComponent(itemComponent, item, api.index === index)}
-                </div>
-              );
-            })}
-        </div>
+            return (
+              <div key={item._id} {...api.getItemProps({ index })}>
+                {getComponent(itemComponent, item, false)}
+              </div>
+            );
+          })}
       </div>
       <div className={classes.navigationContainer}>
         <button className={classes.navigationArrows} tabIndex={0} {...api.getPrevTriggerProps()}>

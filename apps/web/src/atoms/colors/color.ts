@@ -86,7 +86,7 @@ const colorMap = {
 };
 
 export const semanticColors = defineSemanticTokens.colors({
-  bodyCopy: { value: { base: '{colors.gray.800}', _dark: '{colors.gray.200}' } },
+  bodyCopy: { value: { base: '{colors.gray.800}', _dark: '{colors.gray.100}' } },
   heading: { value: { base: '{colors.gray.900}', _dark: '{colors.white}' } },
 });
 

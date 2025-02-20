@@ -9,14 +9,36 @@ const Backgrounds: FC<{ id: SvgGradientTypes }> = ({ id }) => {
   const svgStyles = svgGradients[id];
 
   return (
-    <>
+    <div
+      className={css({
+        marginInline: 'auto',
+        position: 'absolute',
+        top: '30%',
+        left: '0%',
+        display: 'flex',
+        flexDir: 'column',
+        w: '100',
+        maxW: 'container.sm',
+        paddingX: '16',
+        // maskImage: 'linear-gradient(90deg, white 4%, white 10%, white 90%, white 96%)',
+        sm: {
+          maxW: 'container.md',
+          paddingX: '32',
+        },
+        md: {
+          maxW: 'container.lg',
+        },
+        lg: {
+          maxW: 'container.xl',
+        },
+      })}
+    >
       <SvgGradient {...svgStyles} />
       <div
         className={css({
           position: 'absolute',
           w: '145%',
-          top: '50%',
-          left: '-10%',
+
           zIndex: '-1',
         })}
       >
@@ -39,7 +61,7 @@ const Backgrounds: FC<{ id: SvgGradientTypes }> = ({ id }) => {
           <use href={`/backgrounds/sprites.svg#${id}`} />
         </svg>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,3 +1,5 @@
+'use client';
+
 import imageUrlBuilder from '@sanity/image-url';
 import NextImage from 'next/image';
 
@@ -6,6 +8,7 @@ import Frame from 'molecules/frame';
 import { dataset, projectId } from 'lib/env';
 
 import { css, cx } from 'theme/css';
+import { image as imageStyles } from 'theme/recipes';
 
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import type { StaticImport } from 'next/dist/shared/lib/get-img-props';
@@ -18,7 +21,7 @@ interface ImageProps {
    * The `src` prop specifies the source of the image, which can be a string or a StaticImport.
    */
   src?: string | StaticImport;
-  image: SanityImage;
+  image?: SanityImage;
   /**
    * The `alt` prop specifies the alternative text for the image, which is used for accessibility purposes and when the image cannot be displayed.
    */
@@ -37,6 +40,8 @@ interface ImageProps {
   sharpCorners?: boolean;
   frameColor?: string;
   noFrame?: boolean;
+  noCover?: boolean;
+  loadingAnimation?: boolean;
 }
 
 interface OptionalFrameProps extends ReactChildren, Pick<ImageProps, 'frameColor' | 'noFrame' | 'className'> {}
@@ -65,21 +70,37 @@ const Image: FC<ImageProps> = ({
   sharpCorners,
   frameColor,
   noFrame,
-}) => (
-  <OptionalFrame frameColor={frameColor} className={className} noFrame={noFrame}>
-    <div
-      className={cx(css({ position: 'relative' }), className)}
-      style={{ aspectRatio: aspectRatio || `${width} / ${height}` }}
-    >
-      <NextImage
-        src={src || urlFor(image)?.auto('format').url() || ''}
-        alt={alt}
-        fill
-        priority={priority}
-        className={css({ objectFit: 'cover', borderRadius: sharpCorners ? 'unset' : 'md' })}
-      />
-    </div>
-  </OptionalFrame>
-);
+  noCover,
+  loadingAnimation,
+}) => {
+  const classes = imageStyles({ loadingAnimation });
+
+  return (
+    <OptionalFrame frameColor={frameColor} className={className} noFrame={noFrame}>
+      <div
+        className={cx(css({ position: 'relative' }), className)}
+        style={{
+          aspectRatio: aspectRatio || (width && height ? `${width} / ${height}` : undefined),
+          maxWidth: width ? width + 'px' : undefined,
+        }}
+      >
+        <NextImage
+          src={src || (image ? urlFor(image)?.auto('format').url() : '') || ''}
+          alt={alt}
+          fill
+          priority={priority}
+          onLoad={e => e.currentTarget.classList.add('loaded')}
+          className={cx(
+            css({
+              objectFit: noCover ? 'unset' : 'cover',
+              borderRadius: sharpCorners ? 'unset' : 'md',
+            }),
+            classes,
+          )}
+        />
+      </div>
+    </OptionalFrame>
+  );
+};
 
 export default Image;

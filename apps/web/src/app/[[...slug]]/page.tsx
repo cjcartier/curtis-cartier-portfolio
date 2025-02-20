@@ -13,8 +13,8 @@ const pageQuery = q('*').filterByType('pages').filter('seo.slug.current == $slug
 });
 
 const Page: FC<PageProps> = async ({ params }) => {
-  const resolvedParams = await params;
-  const data = (await runQuery(pageQuery, { slug: resolvedParams.slug }))[0];
+  const resolvedParams = await params,
+    data = (await runQuery(pageQuery, { slug: resolvedParams.slug || '/' }))[0];
 
   if (!data) return notFound();
 

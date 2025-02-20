@@ -70,7 +70,7 @@ const contentBlocksMenu = (S: StructureBuilder) =>
       S.list()
         .title('Content Building Blocks')
         .items([
-          // S.documentTypeListItem('hubspotForm').title('Hubspot Forms'),
+          S.documentTypeListItem('form').title('Hubspot Forms'),
           S.documentTypeListItem('symbol').title('Symbols'),
           // S.documentTypeListItem('token').title('Tokens'),
         ]),

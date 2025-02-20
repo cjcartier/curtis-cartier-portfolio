@@ -6,7 +6,8 @@ import Glow from 'atoms/glows';
 import Heading, { headingSelection } from 'molecules/heading';
 import { sectionSelection } from 'molecules/section';
 
-import Form, { formSelection } from 'components/form';
+import Form from 'organisms/form';
+import { hubspotFormSelection } from 'organisms/form/query';
 
 import { cx } from 'theme/css';
 import { conversionPanel } from 'theme/recipes';
@@ -40,11 +41,10 @@ const ConversionPanel: FC<ConversionPanelQuery> = ({ heading, form }) => {
 };
 
 export const conversionPanelSelection = {
-  _id: q.string(),
   _key: q.string(),
   _type: q.literal('conversionPanel'),
   heading: q('heading').grab$(headingSelection),
-  form: q('form').deref().grab(formSelection),
+  form: q('form').deref().grab(hubspotFormSelection),
   ...sectionSelection,
 } satisfies Selection;
 

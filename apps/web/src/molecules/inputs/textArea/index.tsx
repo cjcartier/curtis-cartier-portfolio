@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react';
 
-import Icon from 'atoms/icon';
+import Icon from 'molecules/icon';
 
 import Control from 'molecules/inputs/control';
 import Label from 'molecules/inputs/label';

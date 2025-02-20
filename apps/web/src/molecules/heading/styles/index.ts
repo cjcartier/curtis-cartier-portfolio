@@ -54,9 +54,11 @@ const headingRecipe = defineSlotRecipe({
   slots: ['root', 'heading', 'subheading', 'doodle', 'badges', 'buttons'],
   base: {
     root: {
+      position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       gap: '16',
+      zIndex: '1',
     },
     heading: {
       position: 'relative',

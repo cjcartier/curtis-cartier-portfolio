@@ -1,7 +1,7 @@
 import { defineField } from 'sanity';
 
-import heading from '@/schemas/fields/heading';
 import defineImage from '@/schemas/definitions/image';
+import heading from '@/schemas/fields/heading';
 import externalLink from '@/schemas/fields/links/external';
 
 const caseStudySwitchBack = defineField({
@@ -22,21 +22,26 @@ const caseStudySwitchBack = defineField({
       ],
     }),
     defineField({
-      name: 'title',
-      title: 'Title',
-      type: 'string',
-    }),
-    defineField({
       name: 'reversed',
       title: 'Reversed',
       type: 'boolean',
     }),
     externalLink,
-    defineImage({
-      name: 'image',
-      title: 'Image',
-    }),
+    defineImage(
+      {
+        name: 'image',
+        title: 'Image',
+      },
+      true,
+    ),
   ],
+  preview: {
+    select: {
+      title: 'heading.heading',
+      subtitle: 'heading.subheading',
+      media: 'image',
+    },
+  },
 });
 
 export default caseStudySwitchBack;

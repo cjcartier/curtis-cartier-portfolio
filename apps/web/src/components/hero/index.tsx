@@ -20,15 +20,15 @@ const Hero: FC<HeroQuery> = ({ heading }) => {
       <Doodle doodle="half-hard" className={cx(doodle, doodleOne)} />
       <Doodle doodle="hard" className={cx(doodle, doodleTwo)} />
       {heading && <Heading headingType="h1" size="lg" alignment="center" {...heading} />}
+      {/* <Asset /> */}
     </div>
   );
 };
 
 export const heroSelection = {
   _key: q.string(),
-  _id: q.string(),
   _type: q.literal('hero'),
-  heading: q('heading').grab$(headingSelection),
+  heading: q('heading').grab$(headingSelection).nullable(),
   ...sectionSelection,
 } satisfies Selection;
 

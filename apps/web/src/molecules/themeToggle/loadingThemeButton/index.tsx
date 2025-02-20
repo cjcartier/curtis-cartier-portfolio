@@ -1,4 +1,4 @@
-import Icon from 'atoms/icon';
+import Icon from 'molecules/icon';
 
 import { themeToggle } from 'theme/recipes';
 

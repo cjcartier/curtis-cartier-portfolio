@@ -21,7 +21,7 @@ const button = defineField({
         list: genValuesFromArray(buttonVariations),
         layout: 'radio',
       },
-      initialValue: 'primary',
+      initialValue: 'fill',
     }),
     icon,
     defineField({

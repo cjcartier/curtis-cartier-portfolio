@@ -1,6 +1,5 @@
 'use client';
 
-import { q } from 'groqd';
 import { type FC, useEffect, useState } from 'react';
 
 import Logo from 'atoms/logo';
@@ -8,6 +7,7 @@ import Logo from 'atoms/logo';
 import HoverCard from 'molecules/hoverCard';
 import RichText from 'molecules/richText';
 
+import { toolSelection } from 'components/tools';
 import updateToolArray from 'components/tools/utils/updateToolArray';
 
 import { getRandomInt } from 'utils/numbers';
@@ -15,7 +15,7 @@ import { getRandomInt } from 'utils/numbers';
 import { cx } from 'theme/css';
 import { toolsComponent } from 'theme/recipes';
 
-import type { Selection, TypeFromSelection } from 'groqd';
+import type { TypeFromSelection } from 'groqd';
 
 export type Tool = TypeFromSelection<typeof toolSelection>;
 
@@ -57,7 +57,7 @@ const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
   return (
     <>
       {currentTools?.map((tool, ind) => {
-        if (typeof tool === 'number' || !tool.logoId) return null;
+        if (typeof tool === 'number' || !tool?.logoId) return null;
 
         return (
           <div
@@ -79,12 +79,5 @@ const ToolsSwitcher: FC<ToolSwitchProps> = ({ tools }) => {
     </>
   );
 };
-
-export const toolSelection = {
-  _id: q.string(),
-  logoId: q.string().optional(),
-  tool: q.string().optional(),
-  description: q.contentBlocks().optional(),
-} satisfies Selection;
 
 export default ToolsSwitcher;

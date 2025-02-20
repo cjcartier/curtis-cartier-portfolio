@@ -10,7 +10,7 @@ const headerRecipe = defineSlotRecipe({
       display: 'flex',
       justifyContent: 'center',
       paddingY: '24px',
-      zIndex: '100',
+      zIndex: '1000',
       position: 'fixed',
       w: '100',
     },

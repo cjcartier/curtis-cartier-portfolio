@@ -13,10 +13,29 @@ const Form = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'formId',
+      title: 'Form ID',
+      type: 'string',
+      validation: rule => rule.required(),
+    }),
+    defineField({
+      name: 'variation',
+      title: 'Variation',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'General', value: 'general' },
+          { title: 'Single Line', value: 'singleLine' },
+        ],
+      },
+      initialValue: 'default',
+    }),
+    defineField({
       name: 'formFields',
       title: 'Form Fields',
       type: 'array',
       of: [formField],
+      deprecated: { reason: 'Moving to use Hubspot Form API' },
     }),
   ],
 });

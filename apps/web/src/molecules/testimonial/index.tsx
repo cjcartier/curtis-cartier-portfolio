@@ -4,11 +4,11 @@ import { q } from 'groqd';
 import { type FC, useEffect, useRef, useState } from 'react';
 
 import Attribution, { personSelection } from 'molecules/attribution';
-import Button from 'molecules/button';
+import Icon from 'molecules/icon';
 import RichText from 'molecules/richText';
 
 import { cx } from 'theme/css';
-import { testimonial } from 'theme/recipes';
+import { button, testimonial } from 'theme/recipes';
 
 import type { Selection, TypeFromSelection } from 'groqd';
 
@@ -25,7 +25,8 @@ const Testimonial: FC<TestimonialProps> = ({ _id, author, content, active }) => 
     [truncated, setTruncated] = useState(true),
     [copyMaxHeight, setCopyMaxHeight] = useState(0),
     [copyMinHeight, setCopyMinHeight] = useState(0),
-    classes = testimonial();
+    classes = testimonial(),
+    { root: buttonRoot } = button({ hierarchy: 'fill' });
 
   useEffect(() => {
     if (ref?.current) {
@@ -38,13 +39,14 @@ const Testimonial: FC<TestimonialProps> = ({ _id, author, content, active }) => 
     <div id={_id} className={cx(classes.root, 'group')}>
       <div className={classes.topContainer}>
         {author && <Attribution {...author} />}
-        <Button
-          icon="expand"
-          className={classes.expandButton}
-          onClick={() => setTruncated(!truncated)}
+        <button
+          className={cx(classes.expandButton, buttonRoot)}
           tabIndex={active ? 0 : -1}
-          iconsOnly
-        />
+          data-icon-only
+          onClick={() => setTruncated(!truncated)}
+        >
+          <Icon icon="expand" />
+        </button>
       </div>
       {content && (
         <>

@@ -36,11 +36,10 @@ const Portco: FC<PortcoQuery> = ({ heading, brands }) => {
 };
 
 export const portcoSelection = {
-  _id: q.string(),
   _key: q.string(),
   _type: q.literal('portCo'),
-  heading: q('heading').grab$(headingSelection),
-  brands: q('brands').filter().deref().grab$({ _id: q.string(), logoId: q.string() }),
+  heading: q('heading').grab$(headingSelection).nullable(),
+  brands: q('brands').filter().deref().grab$({ _id: q.string(), logoId: q.string().optional().nullable() }),
   ...sectionSelection,
 } satisfies Selection;
 

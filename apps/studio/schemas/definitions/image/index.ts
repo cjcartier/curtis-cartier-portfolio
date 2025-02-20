@@ -4,7 +4,7 @@ import type { FieldDefinitionBase, FieldGroup } from 'sanity';
 
 type ImageDefinition = FieldDefinitionBase & Omit<FieldGroup, 'fields'>;
 
-const defineImage = (definition: ImageDefinition) =>
+const defineImage = (definition: ImageDefinition, includeFeaturedColor: boolean) =>
   defineField({
     ...definition,
     type: 'image',
@@ -32,6 +32,16 @@ const defineImage = (definition: ImageDefinition) =>
         title: 'Caption',
         type: 'string',
       }),
+      ...(includeFeaturedColor
+        ? [
+            defineField({
+              name: 'featuredColor',
+              title: 'Featured color',
+              type: 'string',
+              validation: rule => rule.regex(/^#[0-9A-Fa-f]{6}$/),
+            }),
+          ]
+        : []),
     ],
   });
 

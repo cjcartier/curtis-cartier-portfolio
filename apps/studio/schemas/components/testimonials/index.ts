@@ -1,8 +1,8 @@
+import { MdOutlineRateReview } from 'react-icons/md';
 import { defineField } from 'sanity';
 
-import heading from '@/schemas/fields/heading';
 import definePageComponent from '@/schemas/definitions/component';
-import { MdOutlineRateReview } from 'react-icons/md';
+import heading from '@/schemas/fields/heading';
 
 const testimonials = definePageComponent({
   title: 'Testimonial',
@@ -22,6 +22,12 @@ const testimonials = definePageComponent({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'heading.heading',
+      subtitle: 'heading.subheading',
+    },
+  },
 });
 
 export default testimonials;

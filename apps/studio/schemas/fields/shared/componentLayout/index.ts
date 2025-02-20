@@ -24,7 +24,7 @@ const componentLayoutFields = [
         options: {
           list: genValuesFromArray(sectionSizing),
         },
-        initialValue: 'lg',
+        initialValue: 'large',
       }),
       defineField({
         name: 'bottom',
@@ -33,7 +33,7 @@ const componentLayoutFields = [
         options: {
           list: genValuesFromArray(sectionSizing),
         },
-        initialValue: 'lg',
+        initialValue: 'large',
       }),
     ],
   }),
@@ -41,6 +41,7 @@ const componentLayoutFields = [
     name: 'backgroundImage',
     title: 'Background Image',
     type: 'string',
+    group: 'layout',
     options: {
       list: genValuesFromArray(svgGradients),
     },

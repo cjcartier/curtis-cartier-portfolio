@@ -12,7 +12,7 @@ import type { FC } from 'react';
 
 type TestimonialsQuery = TypeFromSelection<typeof testimonialsSelection>;
 
-const Testimonials: FC<TestimonialsQuery> = ({ _id, heading, testimonials }) => {
+const Testimonials: FC<TestimonialsQuery> = ({ _key, heading, testimonials }) => {
   const classes = testimonialComponent();
 
   return (
@@ -21,7 +21,7 @@ const Testimonials: FC<TestimonialsQuery> = ({ _id, heading, testimonials }) => 
         {heading && <Heading headingType="h2" size="md" alignment="start" {...heading} />}
       </div>
       {testimonials && (
-        <Carousel id={_id} className={classes.testimonials} items={testimonials} itemComponent="testimonial" />
+        <Carousel id={_key} className={classes.testimonials} items={testimonials} itemComponent="testimonial" />
       )}
     </div>
   );
@@ -34,14 +34,10 @@ const testimonialSelection = {
 } satisfies Selection;
 
 export const testimonialsSelection = {
-  _id: q.string(),
   _key: q.string(),
-  _type: q.literal('testimonial'),
+  _type: q.literal('testimonialComponent'),
   heading: q('heading').grab$(headingSelection),
-  testimonials: q('testimonials')
-    .filter()
-    .deref()
-    .grab$({ _key: q.string(), ...testimonialSelection }),
+  testimonials: q('testimonials').filter().deref().grab$(testimonialSelection),
   ...sectionSelection,
 } satisfies Selection;
 

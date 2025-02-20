@@ -39,17 +39,15 @@ export const Section: FC<SectionProps> = ({
 
   return (
     <Component as="section" id={sectionId} className={cx(root, className)} {...props}>
+      {backgroundImage && <Backgrounds id={backgroundImage} />}
       <div className={grain} />
-      <div className={container}>
-        {backgroundImage && <Backgrounds id={backgroundImage} />}
-        {children}
-      </div>
+      <div className={container}>{children}</div>
     </Component>
   );
 };
 
 export const sectionSelection = {
-  backgroundImage: q.literal('home-curve').optional(),
+  backgroundImage: q.literal('home-curve').optional().nullable(),
   padding: q
     .object({
       top: constructUnionFromArray(['none', 'small', 'medium', 'large', 'xLarge'] as const),

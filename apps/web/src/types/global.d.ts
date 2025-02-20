@@ -52,3 +52,9 @@ export type UndefinedProps<T> = { [K in keyof T]?: T[K] | null };
 export type ExtractKey<T, K extends string> = T extends { [P in K]?: infer U } ? NonNullable<U> : never;
 
 export type ComponentId = { _id: string };
+
+type MaybifySanityMeta<T> = Omit<T, '_id' | '_type' | '_key'> & {
+  _id?: T extends { _id: string } ? T['_id'] : never;
+  _type?: T extends { _type: string } ? T['_type'] : never;
+  _key?: T extends { _key: string } ? T['_key'] : never;
+};

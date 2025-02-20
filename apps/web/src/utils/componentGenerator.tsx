@@ -39,7 +39,7 @@ const getComponent = (component: StripArray<StripMaybe<ComponentProps>>) => {
       return <Portco {...component} />;
     case 'switchback':
       return <SwitchbackSection {...component} />;
-    case 'testimonial':
+    case 'testimonialComponent':
       return <Testimonials {...component} />;
     case 'tools':
       return <Tools {...component} />;
@@ -76,7 +76,7 @@ export const componentGeneratorCondition = {
   '_type == "hero"': heroSelection,
   '_type == "portCo"': portcoSelection,
   '_type == "switchback"': switchbackSelection,
-  '_type == "testimonial"': testimonialsSelection,
+  '_type == "testimonialComponent"': testimonialsSelection,
   '_type == "tools"': toolsSelection,
   default: {
     _type: q.literal('default'),

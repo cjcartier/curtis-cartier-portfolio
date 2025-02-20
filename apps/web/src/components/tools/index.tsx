@@ -5,7 +5,7 @@ import Glow from 'atoms/glows';
 import Heading, { headingSelection } from 'molecules/heading';
 import { sectionSelection } from 'molecules/section';
 
-import ToolsSwitcher, { toolSelection } from 'components/tools/components/toolsSwitcher';
+import ToolsSwitcher from 'components/tools/components/toolsSwitcher';
 
 import { toolsComponent } from 'theme/recipes';
 
@@ -29,8 +29,14 @@ const Tools: FC<ToolsQuery> = ({ heading, tools }) => {
   );
 };
 
-export const toolsSelection = {
+export const toolSelection = {
   _id: q.string(),
+  logoId: q.string().optional(),
+  tool: q.string().optional(),
+  description: q.contentBlocks().optional(),
+} satisfies Selection;
+
+export const toolsSelection = {
   _key: q.string(),
   _type: q.literal('tools'),
   heading: q('heading').grab$(headingSelection),

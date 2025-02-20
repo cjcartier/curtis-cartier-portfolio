@@ -1,1 +1,1 @@
-export const buttonVariations = ['solid', 'ghost', 'text'];
+export const buttonVariations = ['fill', 'ghost', 'text'];

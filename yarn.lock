@@ -4087,7 +4087,10 @@ __metadata:
   resolution: "@iamcurtis/web@workspace:apps/web"
   dependencies:
     "@packages/config": "npm:*"
+    "@packages/eslint": "npm:*"
     "@packages/tsconfig": "npm:*"
+    "@packages/ui": "npm:*"
+    "@packages/utils": "npm:*"
     "@pandacss/dev": "npm:^0.48.1"
     "@pandacss/types": "npm:^0.48.1"
     "@portabletext/react": "npm:^3.2.0"
@@ -4112,6 +4115,7 @@ __metadata:
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-hook-form: "npm:^7.54.2"
+    react-parallax-tilt: "npm:^1.7.280"
     typescript: "npm:^5.7.3"
     vite-tsconfig-paths: "npm:^5.1.4"
     vitest: "npm:^3.0.4"
@@ -17392,6 +17396,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-parallax-tilt@npm:^1.7.280":
+  version: 1.7.280
+  resolution: "react-parallax-tilt@npm:1.7.280"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/c282b54f8379c2e8d9b404dddfc8c5d9b5994827a1778ae70aa89197895b517d354892701d176c047d4f1966ee17dd843479ad52fc3e042f9a8c0bc1d3da3386
+  languageName: node
+  linkType: hard
+
 "react-redux@npm:^7.2.2":
   version: 7.2.9
   resolution: "react-redux@npm:7.2.9"
@@ -20604,11 +20618,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.3#optional!builtin<compat/typescript>":
   version: 5.7.3
-  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=b45daf"
+  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/3b56d6afa03d9f6172d0b9cdb10e6b1efc9abc1608efd7a3d2f38773d5d8cfb9bbc68dfb72f0a7de5e8db04fc847f4e4baeddcd5ad9c9feda072234f0d788896
+  checksum: 10c0/6fd7e0ed3bf23a81246878c613423730c40e8bdbfec4c6e4d7bf1b847cbb39076e56ad5f50aa9d7ebd89877999abaee216002d3f2818885e41c907caaa192cc4
   languageName: node
   linkType: hard
 

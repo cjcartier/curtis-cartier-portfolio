@@ -5,23 +5,27 @@
       "cache": false,
       "persistent": true,
       "inputs": [".env"],
-      "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_DATASET"]
+      "env": [
+        "SANITY_STUDIO_DATASET",
+        "SANITY_STUDIO_DATASET",
+        "NEXT_PUBLIC_SANITY_STUDIO_PROJECT_ID",
+        "NEXT_PUBLIC_SANITY_STUDIO_DATASET",
+        "HUBSPOT_API_KEY"
+      ]
     },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
-    "studio#build": {
+    "@iamcurtis/studio#build": {
       "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_DATASET"]
     },
-    "web#build": {
+    "@iamcurtis/web#build": {
       "env": ["SANITY_STUDIO_DATASET", "SANITY_STUDIO_DATASET"]
     },
     "//#format-and-lint": { "cache": false },
-    "lint": {},
-    "format": { "dependsOn": ["^//#format-and-lint"] },
-    "type-check": {}
+    "lint": {}
   },
   "globalDependencies": [".env"],
   "globalEnv": ["NODE_ENV"]

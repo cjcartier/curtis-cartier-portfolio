@@ -11,7 +11,7 @@ import type { FC } from 'react';
 
 type AttributionProps = TypeFromSelection<typeof personSelection>;
 
-const Attribution: FC<AttributionProps> = ({ headshot, displayName, company, position }) => {
+const Attribution: FC<AttributionProps> = ({ headshot, firstName, lastName, company, position }) => {
   const classes = attribution();
 
   return (
@@ -20,7 +20,7 @@ const Attribution: FC<AttributionProps> = ({ headshot, displayName, company, pos
         <Image image={headshot?.asset} alt={headshot?.alt || ''} noFrame className={classes.headshot} />
       )}
       <div className={classes.details}>
-        <h3 className={classes.name}>{displayName}</h3>
+        <h3 className={classes.name}>{`${firstName} ${lastName}`}</h3>
         {company && (
           <div
             className={classes.position}
@@ -36,7 +36,8 @@ export const companySelection = {
 } satisfies Selection;
 
 export const personSelection = {
-  displayName: q.string().optional(),
+  firstName: q.string().optional(),
+  lastName: q.string().optional(),
   headshot: getSanityImage('headshot'),
   position: q.string().optional(),
   company: q('company').deref().grab(companySelection),

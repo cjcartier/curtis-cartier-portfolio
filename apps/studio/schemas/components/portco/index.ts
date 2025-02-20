@@ -1,5 +1,5 @@
-import heading from '@/schemas/fields/heading';
 import definePageComponent from '@/schemas/definitions/component';
+import heading from '@/schemas/fields/heading';
 
 const portCo = definePageComponent({
   name: 'portCo',
@@ -20,6 +20,12 @@ const portCo = definePageComponent({
       ],
     },
   ],
+  preview: {
+    select: {
+      title: 'heading.heading',
+      subtitle: 'heading.subheading',
+    },
+  },
 });
 
 export default portCo;

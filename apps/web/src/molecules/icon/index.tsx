@@ -1,8 +1,12 @@
-import { iconSet } from 'atoms/icon/data';
+import { Selection } from 'groqd';
+
+import { iconIds, iconSet } from '@packages/ui/icons';
+
+import { constructUnionFromArray } from 'lib/groq';
 
 import { css, cx } from 'theme/css';
 
-import type { IconProps } from 'atoms/icon/types';
+import type { IconProps } from 'molecules/icon/types';
 import type { FC } from 'react';
 
 const Icon: FC<IconProps> = ({ icon, size, ariaLabel, className, ...props }) =>
@@ -20,5 +24,9 @@ const Icon: FC<IconProps> = ({ icon, size, ariaLabel, className, ...props }) =>
       <use href={`/icons/sprites.svg#${icon}`} />
     </svg>
   );
+
+export const iconSelection = {
+  icon: ['icon.name', constructUnionFromArray(iconIds).nullable()],
+} satisfies Selection;
 
 export default Icon;

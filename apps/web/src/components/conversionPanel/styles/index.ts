@@ -124,7 +124,7 @@ const conversionPanelRecipe = defineSlotRecipe({
       right: '0',
 
       lg: {
-        right: '60',
+        right: '35',
       },
     },
   },

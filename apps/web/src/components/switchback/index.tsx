@@ -31,10 +31,9 @@ const SwitchbackSection: FC<SwitchbackQuery> = ({ switchbacks, heading }) => {
 };
 
 export const switchbackSelection = {
-  _id: q.string(),
   _key: q.string(),
   _type: q.literal('switchback'),
-  heading: q('heading').grab$(headingSelection),
+  heading: q('heading').grab$(headingSelection).nullable(),
   switchbacks: q('switchbacks')
     .filter()
     .grab$({ _key: q.string(), ...caseStudySwitchBackSelection }),

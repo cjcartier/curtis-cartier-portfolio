@@ -4,8 +4,8 @@ import { hasArrayValues } from '@packages/utils/arrays';
 
 import Doodle from 'atoms/doodle';
 
-import Badge, { badgeSelection } from 'molecules/badge';
-import Button, { buttonArraySelection } from 'molecules/button';
+import Badge from 'molecules/badge';
+import Button, { buttonSelection } from 'molecules/button';
 import ButtonWrapper from 'molecules/button/components/ButtonWrapper';
 import RichText from 'molecules/richText';
 
@@ -42,7 +42,7 @@ const Heading: FC<HeadingProps> = ({
     <>
       <div className={classes.root}>
         {beforeHeading && beforeHeading}
-        {hasArrayValues(badges) && badges.map(badge => badge && <Badge key={badge._key} {...badge} />)}
+        {hasArrayValues(badges) && badges.map(badge => badge && <Badge key={badge} label={badge} />)}
         {heading && (
           <Component className={classes.heading}>
             {doodle && <Doodle doodle={doodle as DoodleIds} className={classes.doodle} />}
@@ -64,10 +64,10 @@ const Heading: FC<HeadingProps> = ({
 
 export const headingSelection = {
   heading: q.string().optional(),
-  subheading: q.contentBlocks().optional(),
-  doodle: q.string().optional(),
-  badges: q.object(badgeSelection).array().optional(),
-  buttons: q.object(buttonArraySelection).array().optional(),
+  subheading: q.contentBlocks().optional().nullable(),
+  doodle: q.string().optional().nullable(),
+  badges: q.array(q.string()).optional().nullable(),
+  buttons: q('buttons').filter().grab$(buttonSelection).nullable(),
 } satisfies Selection;
 
 export default Heading;
