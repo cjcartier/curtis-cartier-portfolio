@@ -13,8 +13,9 @@
         "HUBSPOT_API_KEY"
       ]
     },
+    "prepare": {},
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^prepare", "^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },

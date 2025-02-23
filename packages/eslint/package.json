@@ -7,13 +7,13 @@
     "./internal": "./eslint.internal.config.mjs"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.6",
+    "@eslint/compat": "^1.2.7",
     "@packages/tsconfig": "*",
     "@types/eslint": "^9.6.1",
     "@types/eslint__eslintrc": "^2.1.2",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
-    "@typescript-eslint/parser": "^8.22.0",
-    "eslint": "^9.19.0",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
+    "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -22,9 +22,9 @@
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
-    "globals": "^15.14.0",
+    "globals": "^15.15.0",
     "jiti": "^2.4.2",
     "typescript": "5.7.3",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.24.1"
   }
 }

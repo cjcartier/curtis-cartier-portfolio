@@ -13,7 +13,8 @@
     "dev:cms": "dotenv -- turbo run dev --filter=studio",
     "dev:web": "dotenv -- turbo run dev --filter=web",
     "format-and-lint": "biome check . --fix",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "prepare": "turbo run prepare"
   },
   "husky": {
     "hooks": {
@@ -22,15 +23,30 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "biome check --write --no-errors-on-unmatched"
+      "turbo run lint"
     ]
   },
   "devDependencies": {
     "dotenv-cli": "^8.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
-    "prettier": "^3.4.2",
-    "turbo": "^2.4.0"
+    "prettier": "^3.5.2",
+    "turbo": "^2.4.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=20"
   },
   "packageManager": "yarn@4.6.0"
 }

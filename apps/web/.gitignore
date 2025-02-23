@@ -6,8 +6,8 @@
 /out/
 
 ## Panda
-src/theme
-src/theme-studio
+# src/theme
+# src/theme-studio
 
 # local env files
 .env*
