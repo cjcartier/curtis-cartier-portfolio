@@ -7,6 +7,7 @@ import { css } from 'theme/css';
 import type { SvgGradientTypes } from 'atoms/gradients/svgGradient';
 import type { FC } from 'react';
 
+// TODO: Figure out why the SVG version was not working on Safari and why it was slowing down FF
 const Backgrounds: FC<{ id: SvgGradientTypes }> = () => (
   // const svgStyles = svgGradients[id];
 
@@ -46,6 +47,7 @@ const Backgrounds: FC<{ id: SvgGradientTypes }> = () => (
       <Image
         src="/backgrounds/swoosh-stroke-1-light.svg"
         alt=""
+        priority
         fill
         className={css({
           maskImage: 'linear-gradient(0deg, transparent 10%, white 30%)',
@@ -56,6 +58,7 @@ const Backgrounds: FC<{ id: SvgGradientTypes }> = () => (
       <Image
         src="/backgrounds/swoosh-stroke-1.svg"
         alt=""
+        priority
         fill
         className={css({
           maskImage: 'linear-gradient(0deg, transparent 10%, white 30%)',

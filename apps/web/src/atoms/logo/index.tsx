@@ -14,7 +14,10 @@ const Logo: FC<LogoProps> = ({ logo, size, className, isIcon, ...props }) =>
       style={size && { width: size, height: size }}
       {...props}
     >
-      <use href={`/logos/sprites.svg#${logo}${isIcon ? '-icon' : ''}`} />
+      <use
+        href={`/logos/sprites.svg#${logo}${isIcon ? '-icon' : ''}`}
+        xlinkHref={`/logos/sprites.svg#${logo}${isIcon ? '-icon' : ''}`}
+      />
     </svg>
   );
 

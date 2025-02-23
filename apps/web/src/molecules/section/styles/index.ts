@@ -45,6 +45,7 @@ export const sectionRecipe = defineSlotRecipe({
       alignItems: 'center',
       flexDirection: 'column',
       w: 'screen',
+      scrollMarginTop: '90px',
     },
     grain: {
       absoluteCover: true,

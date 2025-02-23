@@ -5,6 +5,7 @@ import Glow from 'atoms/glows';
 import Heading, { headingSelection } from 'molecules/heading';
 import { sectionSelection } from 'molecules/section';
 
+import LogoGradients from 'components/tools/components/logoGradients';
 import ToolsSwitcher from 'components/tools/components/toolsSwitcher';
 
 import { toolsComponent } from 'theme/recipes';
@@ -21,6 +22,7 @@ const Tools: FC<ToolsQuery> = ({ heading, tools }) => {
     <div className={classes.root}>
       {heading && <Heading headingType="h2" alignment="start" size="md" {...heading} />}
       <div className={classes.toolsContainer}>
+        <LogoGradients />
         <Glow temperature="warm" />
         <div className={classes.hiddenTool} />
         <ToolsSwitcher tools={tools} />

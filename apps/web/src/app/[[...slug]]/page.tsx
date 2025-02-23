@@ -14,15 +14,15 @@ const pageQuery = q('*').filterByType('pages').filter('seo.slug.current == $slug
     body: componentGeneratorQuery,
   }),
   pagesQuery = q('*')
-    .filterByType('page')
+    .filterByType('pages')
     .grab$({
       slug: ['seo.slug.current', q.string()],
     }),
   pageSeoQuery = q('*')
-    .filterByType('page')
+    .filterByType('pages')
     .filter('seo.slug.current == $slug')
     .grab$({
-      seo: q('seo').grab$(seoSelection),
+      seo: q('seo').grab$(seoSelection).nullable(),
     });
 
 const Page: FC<PageProps> = async ({ params }) => {
@@ -43,12 +43,13 @@ export const generateStaticParams = async () => {
 
 export const generateMetadata = async ({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> => {
   const resolvedParams = await params,
-    slug = (Array.isArray(resolvedParams.slug) && resolvedParams.slug?.join('/')) || 'home',
-    data = (await runQuery(pageSeoQuery, { slug }))[0];
+    data = (await runQuery(pageSeoQuery, { slug: resolvedParams.slug || '/' }))[0];
 
-  if (!data) return {};
+  console.log(data, resolvedParams);
 
-  return constructMetadata(data.seo, slug === 'home' ? '' : slug);
+  if (!data?.seo) return {};
+
+  return constructMetadata(data.seo, resolvedParams.slug || '/');
 };
 
 export const revalidate = 3600;

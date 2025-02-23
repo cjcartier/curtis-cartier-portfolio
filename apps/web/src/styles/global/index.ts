@@ -1,6 +1,9 @@
 import { defineGlobalStyles } from '@pandacss/dev';
 
 const globalCss = defineGlobalStyles({
+  html: {
+    scrollBehavior: 'smooth',
+  },
   'html, body': {
     overflowX: 'hidden',
   },

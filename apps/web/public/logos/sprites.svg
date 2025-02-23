@@ -6,20 +6,38 @@
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
 >
+  <defs>
+    <linearGradient id="jira-a">
+      <stop offset=".18" stop-color="#0052cc" />
+      <stop offset="1" stop-color="#2684ff" />
+    </linearGradient>
+    <linearGradient id="jira-b" x1="98.031%" x2="58.888%" xlink:href="#jira-a" y1=".161%" y2="40.766%" />
+    <linearGradient id="jira-c" x1="100.665%" x2="55.402%" xlink:href="#jira-a" y1=".455%" y2="44.727%" />
+
+    <linearGradient id="dato-gradient" x1="1" y1="1" x2="1" y2="0" gradientUnits="objectBoundingBox">
+      <stop stop-color="#FF7751"></stop>
+      <stop offset="1" stop-color="#FF593D"></stop>
+    </linearGradient>
+
+    <linearGradient
+      id="turbo-gradient"
+      x1="0"
+      y1="0"
+      x2="1"
+      y2="0"
+      gradientUnits="userSpaceOnUse"
+      gradientTransform="matrix(-2.73101,2.73099,-2.73099,-2.73101,3.24766,0.526225)"
+    >
+      <stop offset="0" stop-color="#0096ff" style="stop-opacity: 1" />
+      <stop offset="1" stop-color="#ff1e56" style="stop-opacity: 1" />
+    </linearGradient>
+  </defs>
   <symbol
     stroke="none"
     preserveAspectRatio="xMidYMid"
     viewBox="0 -30.632388516510233 255.324 285.95638851651023"
     id="jira"
   >
-    <defs>
-      <linearGradient id="jira-a">
-        <stop offset=".18" stop-color="#0052cc" />
-        <stop offset="1" stop-color="#2684ff" />
-      </linearGradient>
-      <linearGradient id="jira-b" x1="98.031%" x2="58.888%" xlink:href="#jira-a" y1=".161%" y2="40.766%" />
-      <linearGradient id="jira-c" x1="100.665%" x2="55.402%" xlink:href="#jira-a" y1=".455%" y2="44.727%" />
-    </defs>
     <path
       d="M244.658 0H121.707a55.502 55.502 0 0 0 55.502 55.502h22.649V77.37c.02 30.625 24.841 55.447 55.466 55.467V10.666C255.324 4.777 250.55 0 244.658 0z"
       fill="#2684ff"
@@ -44,14 +62,8 @@
   <symbol fill="none" viewBox="0 0 87 88" id="dato">
     <path
       d="M43.4998 0.0214844H0.27832V87.0215H43.4998C65.115 87.0215 86.7225 67.5446 86.7225 43.5337C86.7225 19.5228 65.124 0.0214844 43.4998 0.0214844ZM43.4998 63.2872C39.5904 63.2859 35.7691 62.1254 32.5193 59.9524C29.2694 57.7794 26.7369 54.6915 25.242 51.0792C23.7471 47.4668 23.357 43.4924 24.1209 39.6583C24.8849 35.8243 26.7686 32.3028 29.5338 29.5394C32.2991 26.7759 35.8217 24.8945 39.6563 24.133C43.4908 23.3716 47.4651 23.7643 51.0764 25.2616C54.6878 26.7588 57.774 29.2933 59.9449 32.5446C62.1158 35.7959 63.2738 39.6179 63.2726 43.5273C63.2727 46.1233 62.7613 48.6939 61.7675 51.0922C60.7738 53.4905 59.3171 55.6695 57.4808 57.5046C55.6446 59.3397 53.4647 60.7949 51.0657 61.7871C48.6668 62.7793 46.0958 63.2891 43.4998 63.2872Z"
-      fill="url(#paint0_linear_1073_9497)"
+      fill="url(#dato-gradient)"
     ></path>
-    <defs>
-      <linearGradient id="paint0_linear_1073_9497" x1="1" y1="1" x2="1" y2="0" gradientUnits="objectBoundingBox">
-        <stop stop-color="#FF7751"></stop>
-        <stop offset="1" stop-color="#FF593D"></stop>
-      </linearGradient>
-    </defs>
   </symbol>
   <symbol viewBox=".15 .13 799.7 479.69" id="tailwind">
     <path
@@ -202,19 +214,5 @@
         style="fill: url(#turbo-gradient)"
       />
     </g>
-    <defs>
-      <linearGradient
-        id="turbo-gradient"
-        x1="0"
-        y1="0"
-        x2="1"
-        y2="0"
-        gradientUnits="userSpaceOnUse"
-        gradientTransform="matrix(-2.73101,2.73099,-2.73099,-2.73101,3.24766,0.526225)"
-      >
-        <stop offset="0" stop-color="#0096ff" style="stop-opacity: 1" />
-        <stop offset="1" stop-color="#ff1e56" style="stop-opacity: 1" />
-      </linearGradient>
-    </defs>
   </symbol>
 </svg>
