@@ -6,10 +6,9 @@
   "scripts": {
     "build": "tsc & next build",
     "dev": "next dev",
-    "generate": "pnpm generate:css",
+    "generate": "yarn generate:css",
     "generate:css": "panda codegen",
-    "lint": "",
-    "prepare": "pnpm generate:css",
+    "prepare": "yarn generate:css",
     "start": "next start",
     "test": "vitest"
   },

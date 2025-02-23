@@ -1,12 +1,13 @@
 import * as hoverCardMachine from '@zag-js/hover-card';
 import { Portal, normalizeProps, useMachine } from '@zag-js/react';
 
+import { IconIds } from '@packages/ui/icons';
+
 import Icon from 'molecules/icon';
 
 import { cx } from 'theme/css';
 import { hoverCard } from 'theme/recipes';
 
-import type { IconIds } from 'molecules/icon/types';
 import type { FC } from 'react';
 import type { ReactChildren } from 'types/global';
 
