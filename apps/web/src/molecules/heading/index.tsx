@@ -9,6 +9,7 @@ import Button, { buttonSelection } from 'molecules/button';
 import ButtonWrapper from 'molecules/button/components/ButtonWrapper';
 import RichText from 'molecules/richText';
 
+import { cx } from 'theme/css';
 import { styled } from 'theme/jsx';
 import { heading as headingStyles } from 'theme/recipes';
 
@@ -22,6 +23,7 @@ type HeadingQuery = TypeFromSelection<typeof headingSelection>;
 interface HeadingProps extends HeadingQuery, HeadingVariant {
   headingType?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   beforeHeading?: ReactNode;
+  bodyClasses?: string;
 }
 
 const Heading: FC<HeadingProps> = ({
@@ -34,6 +36,7 @@ const Heading: FC<HeadingProps> = ({
   beforeHeading,
   buttons,
   headingType,
+  bodyClasses,
 }) => {
   const classes = headingStyles({ size, alignment }),
     Component = styled(headingType || 'h2');
@@ -50,7 +53,7 @@ const Heading: FC<HeadingProps> = ({
           </Component>
         )}
         {subheading && (
-          <div className={classes?.subheading}>
+          <div className={cx(classes?.subheading, bodyClasses)}>
             <RichText blocks={subheading} />
           </div>
         )}
