@@ -1,3 +1,4 @@
+<div align="center">
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 ![Panda CSS](https://img.shields.io/badge/Panda%20CSS-ff69b4?style=for-the-badge&logo=panda&logoColor=white)
@@ -6,6 +7,19 @@
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Zod](https://img.shields.io/badge/Zod-FF69B4?style=for-the-badge)
 ![Vitest](https://img.shields.io/badge/Vitest-6E4C13?style=for-the-badge&logo=vitest&logoColor=white)
+</div>
+
+```
+  ______                      __     __                  ______                      __     __
+ /      \                    /  |   /  |                /      \                    /  |   /  |
+/$$$$$$  |__    __  ______  _$$ |_  $$/  _______       /$$$$$$  | ______   ______  _$$ |_  $$/  ______   ______
+$$ |  $$//  |  /  |/      \/ $$   | /  |/       |      $$ |  $$/ /      \ /      \/ $$   | /  |/      \ /      \
+$$ |     $$ |  $$ /$$$$$$  $$$$$$/  $$ /$$$$$$$/       $$ |      $$$$$$  /$$$$$$  $$$$$$/  $$ /$$$$$$  /$$$$$$  |
+$$ |   __$$ |  $$ $$ |  $$/  $$ | __$$ $$      \       $$ |   __ /    $$ $$ |  $$/  $$ | __$$ $$    $$ $$ |  $$/
+$$ \__/  $$ \__$$ $$ |       $$ |/  $$ |$$$$$$  |      $$ \__/  /$$$$$$$ $$ |       $$ |/  $$ $$$$$$$$/$$ |
+$$    $$/$$    $$/$$ |       $$  $$/$$ /     $$/       $$    $$/$$    $$ $$ |       $$  $$/$$ $$       $$ |
+ $$$$$$/  $$$$$$/ $$/         $$$$/ $$/$$$$$$$/         $$$$$$/  $$$$$$$/$$/         $$$$/ $$/ $$$$$$$/$$/
+```
 
 # Curtis Cartier's Developer Portfolio
 
