@@ -1,48 +1,70 @@
-import SvgGradient, { svgGradients } from 'atoms/gradients/svgGradient';
+import Image from 'next/image';
+
+// import SvgGradient, { svgGradients } from 'atoms/gradients/svgGradient';
 
 import { css } from 'theme/css';
 
 import type { SvgGradientTypes } from 'atoms/gradients/svgGradient';
 import type { FC } from 'react';
 
-const Backgrounds: FC<{ id: SvgGradientTypes }> = ({ id }) => {
-  const svgStyles = svgGradients[id];
+const Backgrounds: FC<{ id: SvgGradientTypes }> = () => (
+  // const svgStyles = svgGradients[id];
 
-  return (
+  <div
+    className={css({
+      marginInline: 'auto',
+      position: 'absolute',
+      display: 'flex',
+      alignItems: 'center',
+      top: '30%',
+      flexDir: 'column',
+      w: '100',
+      maxW: 'container.sm',
+      paddingX: '16',
+      sm: {
+        maxW: 'container.md',
+        paddingX: '32',
+      },
+      md: {
+        maxW: 'container.lg',
+      },
+      lg: {
+        maxW: 'container.xl',
+      },
+    })}
+  >
+    {/* <SvgGradient {...svgStyles} /> */}
     <div
       className={css({
-        marginInline: 'auto',
         position: 'absolute',
-        top: '30%',
-        left: '0%',
-        display: 'flex',
-        flexDir: 'column',
-        w: '100',
-        maxW: 'container.sm',
-        paddingX: '16',
-        // maskImage: 'linear-gradient(90deg, white 4%, white 10%, white 90%, white 96%)',
-        sm: {
-          maxW: 'container.md',
-          paddingX: '32',
-        },
-        md: {
-          maxW: 'container.lg',
-        },
-        lg: {
-          maxW: 'container.xl',
-        },
+        w: '145%',
+        aspectRatio: '1915/ 1362',
+        maskImage: 'linear-gradient(90deg, transparent 8%, white 20%, white 70%, transparent 85%)',
+        zIndex: '-1',
       })}
     >
-      <SvgGradient {...svgStyles} />
-      <div
+      <Image
+        src="/backgrounds/swoosh-stroke-1-light.svg"
+        alt=""
+        fill
         className={css({
-          position: 'absolute',
-          w: '145%',
-
-          zIndex: '-1',
+          maskImage: 'linear-gradient(0deg, transparent 10%, white 30%)',
+          opacity: { base: '1', _dark: '0' },
+          transition: 'opacity 0.2s ease-in-out',
         })}
-      >
-        <svg
+      />
+      <Image
+        src="/backgrounds/swoosh-stroke-1.svg"
+        alt=""
+        fill
+        className={css({
+          maskImage: 'linear-gradient(0deg, transparent 10%, white 30%)',
+          opacity: { base: '0', _dark: '1' },
+          transition: 'opacity 0.2s ease-in-out',
+        })}
+      />
+
+      {/* <svg
           width="100%"
           className={css({
             w: '100%',
@@ -59,10 +81,9 @@ const Backgrounds: FC<{ id: SvgGradientTypes }> = ({ id }) => {
           }}
         >
           <use href={`/backgrounds/sprites.svg#${id}`} />
-        </svg>
-      </div>
+        </svg> */}
     </div>
-  );
-};
-
+  </div>
+);
 export default Backgrounds;
+//

@@ -3,6 +3,7 @@ import { defineRecipe } from '@pandacss/dev';
 const badgeRecipe = defineRecipe({
   className: 'badge',
   base: {
+    position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     textStyle: 'text.md',
