@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 
+import icon from '@/schemas/fields/icon';
 import link from '@/schemas/fields/links';
 
 export const footer = defineType({
@@ -25,10 +26,19 @@ export const footer = defineType({
       name: 'contactLinks',
       title: 'Contact Links',
       type: 'array',
-      of: [link],
+      of: [
+        {
+          type: 'object',
+          fields: [link, icon],
+        },
+      ],
       validation: rule => rule.max(6),
     }),
   ],
+  options: {
+    // @ts-expect-error - Singleton is a valid option with a plugin
+    singleton: true,
+  },
 });
 
 export default footer;

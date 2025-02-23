@@ -30,11 +30,9 @@ const conversionPanelRecipe = defineSlotRecipe({
       },
     },
     headingWrapper: {
-      paddingTop: '88px',
-      paddingRight: '134px',
-      paddingLeft: '32',
-      borderRadius: 'lg',
       w: '100',
+
+      sm: { paddingTop: '88px', paddingRight: '134px', paddingLeft: '32', borderRadius: 'lg' },
 
       lg: {
         paddingRight: '64',
@@ -74,16 +72,20 @@ const conversionPanelRecipe = defineSlotRecipe({
     formWrapper: {
       position: 'relative',
       borderRadius: 'lg',
-      padding: '32',
+      paddingBlock: '24',
+      paddingInline: '16',
+      w: '100',
       flex: '1 0 50%',
-      w: 'calc(100% - 32px)',
       backgroundColor: 'white/3',
       backdropFilter: 'blur(105px)',
       boxShadow: 'black.lgDim',
       zIndex: '10',
 
       sm: {
+        padding: '32',
+
         marginLeft: '32px',
+        w: 'calc(100% - 32px)',
       },
 
       lg: {
@@ -102,8 +104,13 @@ const conversionPanelRecipe = defineSlotRecipe({
       zIndex: '100',
     },
     doodleOne: {
-      top: '-12',
+      top: '-24',
       left: '16',
+
+      sm: {
+        top: '-12',
+        left: '16',
+      },
 
       lg: {
         left: '-12',

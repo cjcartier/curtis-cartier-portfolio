@@ -1,5 +1,8 @@
 import { Selection, TypeFromSelection, q } from 'groqd';
 
+import Icon, { iconSelection } from 'molecules/icon';
+import { linkSelection } from 'molecules/link';
+
 import { footer } from 'theme/recipes';
 
 import type { FC } from 'react';
@@ -7,21 +10,20 @@ import type { FC } from 'react';
 export type FooterLink = TypeFromSelection<typeof footerLink>;
 
 interface FootMenuLink {
-  menuLabel: string;
+  menuLabel?: string;
   links: FooterLink[];
 }
 
-// TODO: Add Link
 const MenuLinks: FC<FootMenuLink> = ({ menuLabel, links }) => {
   const classes = footer();
 
   return (
     <div className={classes.menuWrapper}>
-      <h2>{menuLabel}</h2>
+      {menuLabel && <h2>{menuLabel}</h2>}
       <ul className={classes.menuList}>
-        {links?.map(({ link, label }) => (
-          <li key={link} className={classes.menuItem}>
-            <a href={`/${link}`}>{label}</a>
+        {links?.map(({ _key, link, icon }) => (
+          <li key={_key} className={classes.menuItem}>
+            <a href={link.link?.href}>{icon ? <Icon icon={icon} /> : link.label}</a>
           </li>
         ))}
       </ul>
@@ -30,8 +32,9 @@ const MenuLinks: FC<FootMenuLink> = ({ menuLabel, links }) => {
 };
 
 export const footerLink = {
-  link: q.string().optional(),
-  label: q.string().optional(),
+  _key: q.string(),
+  link: q('link').grab$(linkSelection),
+  ...iconSelection,
 } satisfies Selection;
 
 export default MenuLinks;

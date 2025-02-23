@@ -16,10 +16,13 @@ const portcoRecipe = defineSlotRecipe({
     },
     brandContainer: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))',
+      gridTemplateColumns: '1fr 1fr',
       alignItems: 'center',
       columnGap: '48px',
       rowGap: '96px',
+      sm: {
+        gridTemplateColumns: 'repeat(auto-fill, minmax(165px, 1fr))',
+      },
     },
     brand: {
       color: { base: 'gray.900', _dark: 'white' },

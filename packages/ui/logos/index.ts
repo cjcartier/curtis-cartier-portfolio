@@ -9,6 +9,7 @@ export const logoIds = [
   'panda',
   'storybook',
   'tailwind',
+  'turbo',
 ];
 
 export const logoSet = new Set([...logoIds]);

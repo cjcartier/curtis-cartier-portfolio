@@ -6,8 +6,7 @@ import Glow from 'atoms/glows';
 
 import Section from 'molecules/section';
 
-import FooterLinks from 'layout/footer/components/footerLinks';
-import { footerLink } from 'layout/footer/components/menuLinks';
+import MenuLinks, { footerLink } from 'layout/footer/components/menuLinks';
 
 import { runQuery } from 'lib/client';
 
@@ -16,9 +15,7 @@ import { footer } from 'theme/recipes';
 const footerSelection = {
   _id: q.string(),
   _type: q.string(),
-  contactLinks: q.object(footerLink).array().optional(),
-  mainLinks: q.object(footerLink).array().optional(),
-  resourceLinks: q.object(footerLink).array().optional(),
+  contactLinks: q('contactLinks').filter().grab$(footerLink), // q.object(footerLink).array().optional(),
 } satisfies Selection;
 
 const Footer = async () => {
@@ -35,11 +32,15 @@ const Footer = async () => {
         <Glow temperature="cool" />
       </div>
       <footer className={classes.root}>
-        <div className={classes.logoWrapper}>
-          <Logo className={classes.logo} />
-          Curtis Cartier
+        <div className={classes.container}>
+          <div className={classes.logoWrapper}>
+            <Logo className={classes.logo} />
+            Curtis Cartier
+          </div>
+          {/* {data && <FooterLinks {...data} />} */}
+          {data && data.contactLinks && <MenuLinks links={data.contactLinks} />}
         </div>
-        {data && <FooterLinks {...data} />}
+
         <div className={classes.legalContainer}>
           <span className={classes.copyright}>© {new Date().getFullYear()} Curtis Cartier. All Rights Reserved.</span>
         </div>

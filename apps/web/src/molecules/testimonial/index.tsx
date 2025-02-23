@@ -39,14 +39,16 @@ const Testimonial: FC<TestimonialProps> = ({ _id, author, content, active }) => 
     <div id={_id} className={cx(classes.root, 'group')}>
       <div className={classes.topContainer}>
         {author && <Attribution {...author} />}
-        <button
-          className={cx(classes.expandButton, buttonRoot)}
-          tabIndex={active ? 0 : -1}
-          data-icon-only
-          onClick={() => setTruncated(!truncated)}
-        >
-          <Icon icon="expand" />
-        </button>
+        {copyMaxHeight > copyMinHeight && (
+          <button
+            className={cx(classes.expandButton, buttonRoot)}
+            tabIndex={active ? 0 : -1}
+            data-icon-only
+            onClick={() => setTruncated(!truncated)}
+          >
+            <Icon icon="expand" />
+          </button>
+        )}
       </div>
       {content && (
         <>

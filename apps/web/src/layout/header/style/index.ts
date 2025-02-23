@@ -44,9 +44,14 @@ const headerRecipe = defineSlotRecipe({
       display: 'flex',
       alignItems: 'center',
       gap: '12',
-      textStyle: 'display.sm',
+      textStyle: 'text.xl',
       fontWeight: 'extraBold',
+      fontFamily: 'display',
       color: { base: 'gray.900', _dark: 'white' },
+      md: {
+        textStyle: 'display.sm',
+        fontWeight: 'extraBold',
+      },
     },
     logo: {
       fill: 'currentColor',

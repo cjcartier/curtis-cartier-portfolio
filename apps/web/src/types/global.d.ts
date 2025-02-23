@@ -22,9 +22,7 @@ declare module 'react' {
 }
 
 export interface PageProps {
-  params: {
-    slug: string[];
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export interface ClassStyles {

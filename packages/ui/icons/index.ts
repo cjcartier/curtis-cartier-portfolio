@@ -1,7 +1,7 @@
 export const buttonIds = ['chevron-right', 'chevron-left', 'mail', 'moon', 'sun', 'expand', 'external-link'] as const;
 export type ButtonIds = (typeof buttonIds)[number];
 
-export const miscellaneousIds = ['info-circle'] as const;
+export const miscellaneousIds = ['info-circle', 'github', 'linkedin'] as const;
 export type MiscIds = (typeof miscellaneousIds)[number];
 
 export const iconSet = new Set([...buttonIds, ...miscellaneousIds]);

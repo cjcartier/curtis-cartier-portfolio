@@ -8,7 +8,7 @@ import { hasArrayValues } from '@packages/utils/arrays';
 import Icon from 'molecules/icon';
 import Testimonial from 'molecules/testimonial';
 
-import { cx } from 'theme/css';
+import { css, cx } from 'theme/css';
 import { carousel } from 'theme/recipes';
 
 import type { TestimonialProps } from 'molecules/testimonial';
@@ -31,15 +31,14 @@ const getComponent = (componentName: string, props: TestimonialProps, active: bo
 };
 
 const Carousel: FC<CarouselProps> = ({ id, className, items, itemComponent }) => {
-  // @ts-expect-error loop exists on this machine
-  const [state, send] = useMachine(carouselMachine.machine({ id, loop: true, spacing: '32px', loop: true })),
+  const [state, send] = useMachine(carouselMachine.machine({ id, loop: true, spacing: '32px' })),
     classes = carousel();
 
   const api = carouselMachine.connect(state, send, normalizeProps);
 
   return (
     <div className={cx(className, classes.root)} {...api.getRootProps()}>
-      <div {...api.getItemGroupProps()}>
+      <div {...api.getItemGroupProps()} className={css({ overscrollBehavior: 'auto!' })}>
         {hasArrayValues(items) &&
           items.map((item, index) => {
             if (typeof item === 'number') return null;

@@ -7,6 +7,7 @@ const footerRecipe = defineSlotRecipe({
     'glowOne',
     'glowTwo',
     'root',
+    'container',
     'logoWrapper',
     'logo',
     'menuContainer',
@@ -35,6 +36,16 @@ const footerRecipe = defineSlotRecipe({
         gap: '64',
       },
     },
+    container: {
+      display: 'flex',
+      flexFlow: 'column nowrap',
+      justifyContent: 'space-between',
+      gap: '36',
+      sm: {
+        alignItems: 'center',
+        flexFlow: 'row nowrap',
+      },
+    },
     logoWrapper: {
       display: 'flex',
       alignItems: 'center',
@@ -59,7 +70,7 @@ const footerRecipe = defineSlotRecipe({
     },
     menuList: {
       display: 'flex',
-      flexFlow: 'column nowrap',
+      flexFlow: 'row nowrap',
       gap: '24',
       lg: {
         flexDirection: 'row',

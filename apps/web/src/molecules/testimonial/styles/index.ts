@@ -5,6 +5,7 @@ const testimonialRecipe = defineSlotRecipe({
   slots: ['root', 'topContainer', 'expandButton', 'copy'],
   base: {
     root: {
+      position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       gap: '24',
@@ -28,7 +29,14 @@ const testimonialRecipe = defineSlotRecipe({
     },
     expandButton: {
       cursor: 'pointer',
+      w: 'fit-content',
+      position: 'absolute',
+      top: '32',
+      right: '32',
       lg: {
+        position: 'relative',
+        top: 'unset',
+        right: 'unset',
         opacity: '0',
         transition: 'opacity 200ms ease-in-out',
 

@@ -6,8 +6,13 @@ const attributionRecipe = defineSlotRecipe({
   base: {
     root: {
       display: 'flex',
-      alignItems: 'center',
+      flexDirection: 'column',
+      alignItems: 'start',
       gap: '24',
+      sm: {
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
     },
     details: {
       display: 'flex',

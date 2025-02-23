@@ -1,7 +1,6 @@
 import { type FC, useEffect } from 'react';
 
 import Button from 'molecules/button';
-import Icon from 'molecules/icon';
 
 import type { FieldGroups } from 'organisms/form/types';
 import type { FieldGeneratorProps } from 'organisms/form/utils/fieldGenerator';
@@ -28,9 +27,8 @@ const SingleLineForm: FC<SingleLineFormProps> = ({
     field = fieldGroups?.[0]?.fields?.[0];
 
   useEffect(() => {
-    if (!fieldObjectIds.some(obj => obj['fieldName'] === field?.name)) {
+    if (!fieldObjectIds.some(obj => obj['fieldName'] === field?.name))
       setFieldObjectIds([...fieldObjectIds, { fieldName: field?.name, objectTypeId: field?.objectTypeId }]);
-    }
   }, []);
 
   return (
@@ -51,7 +49,6 @@ const SingleLineForm: FC<SingleLineFormProps> = ({
       </form>
       {Boolean(state === 'submitted') && (
         <div className="flex items-center gap-1 font-semibold text-mud-900 dark:text-mud-50">
-          <Icon icon="sealCheck" size={16} />
           <span className="font-mono text-mono-sm text-mud-800 dark:text-mud-100">Submitted! Thank you.</span>
         </div>
       )}

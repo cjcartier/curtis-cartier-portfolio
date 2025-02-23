@@ -59,6 +59,8 @@ const peopleAndCompaniesMenu = (S: StructureBuilder) =>
         .items([
           S.documentTypeListItem('person').title('People'),
           S.documentTypeListItem('company').title('Companies'),
+          S.documentTypeListItem('tool').title('Tools'),
+          S.documentTypeListItem('testimonial').title('Testimonials'),
         ]),
     );
 

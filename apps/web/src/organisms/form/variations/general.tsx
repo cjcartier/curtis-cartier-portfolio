@@ -41,7 +41,7 @@ const FormState: FC<GeneralFormProps> = ({ onSubmit, state, fieldGroups, ...prop
         <form className={classes.root} autoComplete="on" onSubmit={onSubmit}>
           <h3 className={classes.title}>Get In Touch</h3>
           <FieldGenerator fieldGroups={fieldGroups} {...props} />
-          <Button type="submit" label="Book a Demozz" hierarchy="fill" className={css({ width: '100%' })} />
+          <Button type="submit" label="Submit" hierarchy="fill" className={css({ width: '100%' })} />
         </form>
       ) : (
         <div>No form fields defined</div>
