@@ -1,4 +1,4 @@
-![Build Status](https://img.shields.io/github/actions/workflow/status/username/repo-name/build.yml)![Node Version](https://img.shields.io/node/v/your-package)![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)![Panda CSS](https://img.shields.io/badge/Panda%20CSS-ff69b4?style=for-the-badge&logo=panda&logoColor=white)![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)![Sanity](https://img.shields.io/badge/Sanity-F03E2F?style=for-the-badge&logo=sanity&logoColor=white)![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)![Zod](https://img.shields.io/badge/Zod-FF69B4?style=for-the-badge)![Vitest](https://img.shields.io/badge/Vitest-6E4C13?style=for-the-badge&logo=vitest&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)![Panda CSS](https://img.shields.io/badge/Panda%20CSS-ff69b4?style=for-the-badge&logo=panda&logoColor=white)![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)![Sanity](https://img.shields.io/badge/Sanity-F03E2F?style=for-the-badge&logo=sanity&logoColor=white)![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)![Zod](https://img.shields.io/badge/Zod-FF69B4?style=for-the-badge)![Vitest](https://img.shields.io/badge/Vitest-6E4C13?style=for-the-badge&logo=vitest&logoColor=white)
 
 # Curtis Cartier's Developer Portfolio
 
@@ -7,8 +7,8 @@ It serves as a living document of my journey as a developer and provides insight
 
 ## Project Structure
 
-This portfolio is organized into multiple workspaces, which allows for efficient management of dependencies
-and scripts across different parts of the project. The main directories include:
+This portfolio is organized into multiple workspaces, which allows for efficient management of dependencies and scripts
+across different parts of the project. The main directories include:
 
 - **apps/**: Contains the main applications, such as the web front-end and content management system (CMS).
 - **packages/**: Houses shared packages and libraries used across applications.
@@ -17,17 +17,27 @@ and scripts across different parts of the project. The main directories include:
 
 ### TypeScript
 
-I use TypeScript as the primary language for building both client-side and server-side applications. TypeScript's static typing and advanced features enhance code quality, making it easier to catch errors early and improve maintainability. Its integration with modern JavaScript frameworks ensures a robust development experience.
+I use TypeScript as the primary language for building both client-side and server-side applications. TypeScript's static
+typing and advanced features enhance code quality, making it easier to catch errors early and improve maintainability.
+Its integration with modern JavaScript frameworks ensures a robust development experience.
 
 ### Next.js
 
-Next.js is utilized as the React framework for building the web front-end of this portfolio. It provides powerful features like server-side rendering, static site generation, and API routes, which enhance performance and SEO. Next.js's seamless integration with React and its developer-friendly environment make it an ideal choice for building modern web applications.
+Next.js is utilized as the React framework for building the web front-end of this portfolio. It provides powerful
+features like server-side rendering, static site generation, and API routes, which enhance performance and SEO.
+Next.js's seamless integration with React and its developer-friendly environment make it an ideal choice for building
+modern web applications.
 
 ### Turbo
 
-Turbo is a powerful build system used in this portfolio to orchestrate tasks and manage complex workflows efficiently. It allows for running scripts in parallel, which significantly speeds up the development process. Turbo's caching mechanism ensures that only the necessary tasks are re-executed, saving time and computational resources.
+Turbo is a powerful build system used in this portfolio to orchestrate tasks and manage complex workflows efficiently.
+It allows for running scripts in parallel, which significantly speeds up the development process. Turbo's caching
+mechanism ensures that only the necessary tasks are re-executed, saving time and computational resources.
 
-With Turbo, I can streamline the build process, handle dependencies effectively, and maintain a robust development environment. Its ability to manage multiple tasks concurrently makes it an indispensable tool for building scalable applications. Turbo's integration with modern development practices ensures that the project remains fast, efficient, and easy to maintain.
+With Turbo, I can streamline the build process, handle dependencies effectively, and maintain a robust development
+environment. Its ability to manage multiple tasks concurrently makes it an indispensable tool for building scalable
+applications. Turbo's integration with modern development practices ensures that the project remains fast, efficient,
+and easy to maintain.
 
 ### Sanity
 
@@ -54,8 +64,8 @@ style sheets. This enhances the overall user experience and ensures that the app
 
 ### Prettier and Linting Tools
 
-To maintain a consistent code style, I use Prettier for formatting and linting capabilities. This ensures that
-the codebase remains clean and easy to read.
+To maintain a consistent code style, I use Prettier for formatting and linting capabilities. This ensures that the
+codebase remains clean and easy to read.
 
 ### Husky and Lint-Staged
 
@@ -64,7 +74,9 @@ helps catch potential issues early in the development process.
 
 ### Vitest
 
-Vitest is employed for testing within the Utils package of this portfolio. It provides a fast and efficient testing environment that integrates well with modern JavaScript and TypeScript projects. By using Vitest, I ensure that the utility functions are reliable and perform as expected, contributing to the overall robustness of the codebase.
+Vitest is employed for testing within the Utils package of this portfolio. It provides a fast and efficient testing
+environment that integrates well with modern JavaScript and TypeScript projects. By using Vitest, I ensure that the
+utility functions are reliable and perform as expected, contributing to the overall robustness of the codebase.
 
 ### Environment Management
 
@@ -81,8 +93,8 @@ with the latest features and security updates.
 To get started with this portfolio, clone the repository and run the following commands:
 
 ```bash
-npm install
-npm run dev
+yarn install
+yarn dev
 ```
 
 This will set up the development environment and start the applications.
