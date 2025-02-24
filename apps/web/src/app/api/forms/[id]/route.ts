@@ -7,7 +7,7 @@ export const GET = async (_: Request, { params }: { params: Promise<{ id: string
         method: 'GET',
         headers: {
           accept: 'application/json',
-          authorization: `Bearer ${process.env.HUBSPOT_API_KEY || 'pat-na2-9086b687-5dc5-4698-b20f-016e378dd306'}`,
+          authorization: `Bearer ${process.env.HUBSPOT_API_KEY}`,
         },
       }),
       data = await response.json();
