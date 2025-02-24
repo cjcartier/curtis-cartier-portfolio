@@ -37,7 +37,7 @@ const CaseStudySwitchBack: FC<CaseStudySwitchBackQuery> = ({ tools, image, headi
         {image && (
           <Image image={image} alt={image.alt || ''} aspectRatio="14/9" frameColor={image.featuredColor || ''} />
         )}
-        {link.href && (
+        {link?.href && (
           <div className={cx(mediaOverlay, 'dark')}>
             <Button label="View Site" link={link.href} hierarchy="ghost" icon="external-link" />
           </div>
@@ -51,7 +51,7 @@ export const caseStudySwitchBackSelection = {
   heading: q('heading').grab$(headingSelection).nullable(),
   image: getSanityImage('image'),
   reversed: q.boolean().optional(),
-  link: q('link').grab$(externalLinkSelection),
+  link: q('link').grab$(externalLinkSelection).nullable(),
   tools: q('tools').filter().deref().grab$({ _id: q.string(), logoId: q.string() }),
 } satisfies Selection;
 

@@ -1,15 +1,27 @@
 export const logoIds = [
+  'apollo',
+  'builder',
+  'cloudflare',
   'contentful',
   'dato',
+  'eslint',
   'figma',
   'gatsby',
   'github',
   'jira',
+  'netlify',
   'nextjs',
   'panda',
+  'radix',
+  'react',
+  'sanity',
+  'shopify',
   'storybook',
+  'supabase',
   'tailwind',
   'turbo',
+  'vercel',
+  'vitest',
 ];
 
 export const logoSet = new Set([...logoIds]);
